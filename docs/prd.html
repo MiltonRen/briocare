@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrioCare PRD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+</head>
+<body>
+<style>
+/* ============ TOKENS: light (complete palette) ============ */
+:root{
+  --ground:#EFF1EE;
+  --surface:#FAFBF9;
+  --surface-2:#E7EAE5;
+  --ink:#161C19;
+  --ink-2:#3E4A44;
+  --ink-3:#6A7871;
+  --rule:#D3D9D2;
+  --rule-soft:#E2E7E0;
+
+  --green:#1F6F5C;
+  --green-deep:#134B3E;
+  --green-wash:#E2EDE8;
+
+  --z-blue:#3E6E9C;
+  --z-yellow:#B07A12;
+  --z-red:#A63F35;
+
+  --shadow:0 1px 2px rgba(19,40,33,.05), 0 8px 24px -12px rgba(19,40,33,.14);
+  --maxw:70rem;
+  --read:66ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1513;
+    --surface:#141D1A;
+    --surface-2:#1C2724;
+    --ink:#E6EBE7;
+    --ink-2:#B3BEB8;
+    --ink-3:#7E8D86;
+    --rule:#2A3733;
+    --rule-soft:#212C29;
+
+    --green:#5FBFA2;
+    --green-deep:#8ED8BE;
+    --green-wash:#17302A;
+
+    --z-blue:#7FAAD4;
+    --z-yellow:#D9AA4E;
+    --z-red:#D97F72;
+
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1513;
+  --surface:#141D1A;
+  --surface-2:#1C2724;
+  --ink:#E6EBE7;
+  --ink-2:#B3BEB8;
+  --ink-3:#7E8D86;
+  --rule:#2A3733;
+  --rule-soft:#212C29;
+
+  --green:#5FBFA2;
+  --green-deep:#8ED8BE;
+  --green-wash:#17302A;
+
+  --z-blue:#7FAAD4;
+  --z-yellow:#D9AA4E;
+  --z-red:#D97F72;
+
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--green);color:var(--ground)}
+a{color:var(--green);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem)}
+.read{max-width:var(--read)}
+
+h1,h2,h3,h4{font-family:Newsreader,Georgia,"Times New Roman",serif;text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.012em}
+h1{font-size:clamp(2.2rem,5.4vw,3.4rem);line-height:1.06;letter-spacing:-.026em}
+h2{font-size:clamp(1.6rem,3.1vw,2.1rem);line-height:1.16}
+h3{font-size:1.2rem;line-height:1.3;font-weight:600}
+h4{font-size:1rem;line-height:1.35;font-weight:600}
+p{margin:0}
+.lede{font-size:clamp(1.05rem,1.8vw,1.2rem);line-height:1.56;color:var(--ink-2)}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--green);
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.small{font-size:.85rem;color:var(--ink-3)}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-top:clamp(2.2rem,6vw,3.6rem);padding-bottom:clamp(1.6rem,4vw,2.4rem);display:flex;flex-direction:column;gap:1.1rem}
+.mast-meta{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:baseline;border-top:1px solid var(--rule-soft);padding-top:1rem;font-size:.78rem;color:var(--ink-3)}
+.mast-meta .mono{color:var(--ink-2)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(2.6rem,6vw,4.2rem) 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.9rem}
+.sec-head p{color:var(--ink-2)}
+.stack{display:flex;flex-direction:column;gap:1rem}
+
+/* ---------- tags ---------- */
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;padding:.14rem .5rem;border-radius:2px;border:1px solid var(--rule);white-space:nowrap}
+.tag-v0{background:var(--green-wash);color:var(--green-deep);border-color:var(--green)}
+.tag-part{background:transparent;color:var(--z-yellow);border-color:var(--z-yellow)}
+.tag-road{background:transparent;color:var(--ink-3)}
+
+/* ---------- persona spec ---------- */
+.persona{display:grid;grid-template-columns:minmax(15rem,1.05fr) 1.6fr;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.persona-spec{background:var(--surface-2);padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:.85rem;border-right:1px solid var(--rule)}
+.persona-spec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.5rem .9rem}
+.persona-spec dt{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:.15rem}
+.persona-spec dd{margin:0;font-size:.88rem;color:var(--ink);line-height:1.45}
+.persona-body{padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:.9rem}
+.persona-body p{font-size:.95rem;color:var(--ink-2)}
+@media (max-width:44rem){.persona{grid-template-columns:1fr}.persona-spec{border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* ---------- cards & grids ---------- */
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(11.5rem,1fr))}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.55rem;box-shadow:var(--shadow)}
+.card p,.card li{font-size:.92rem;color:var(--ink-2);line-height:1.55}
+.card .eyebrow{font-size:.62rem}
+
+.stat{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:1.05rem 1.1rem;display:flex;flex-direction:column;gap:.28rem}
+.stat .num{font-family:Newsreader,Georgia,serif;font-size:1.9rem;line-height:1;font-weight:600;color:var(--green);font-variant-numeric:tabular-nums}
+.stat .lab{font-size:.83rem;color:var(--ink-2);line-height:1.4}
+
+/* ---------- callout ---------- */
+.callout{background:var(--green-wash);border:1px solid var(--rule);border-left:4px solid var(--green);border-radius:3px;padding:clamp(1.2rem,2.6vw,1.7rem);display:flex;flex-direction:column;gap:.7rem}
+.callout p{color:var(--ink-2)}
+.callout strong{color:var(--ink)}
+
+/* ---------- airtime ledger ---------- */
+.ledger{border:1px solid var(--rule);border-radius:3px;background:var(--surface);overflow:hidden;box-shadow:var(--shadow)}
+.ledger-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.72rem 1.2rem;border-bottom:1px solid var(--rule-soft);font-size:.92rem}
+.ledger-row:last-child{border-bottom:0}
+.ledger-row .amt{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.ledger-row.total{background:var(--surface-2);font-weight:600}
+.ledger-row.total .amt{color:var(--green-deep)}
+.ledger-row.result .amt{color:var(--z-red);font-weight:600}
+.ledger-row .who{color:var(--ink-2)}
+
+/* ---------- tables ---------- */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:46rem}
+caption{text-align:left;padding:1rem 1.2rem .4rem;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+th{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.7rem 1.2rem;border-bottom:1px solid var(--rule);font-weight:500}
+td{padding:.85rem 1.2rem;border-bottom:1px solid var(--rule-soft);font-size:.9rem;color:var(--ink-2);vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:0}
+td strong{color:var(--ink);font-weight:600}
+td .small{display:block;margin-top:.3rem}
+
+/* ---------- workflow strip ---------- */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(16.5rem,1fr));gap:1rem}
+.flow-col{background:var(--surface);border:1px solid var(--rule);border-radius:3px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.flow-col.now{border-top:4px solid var(--green)}
+.flow-col.later{border-top:4px solid var(--rule)}
+.flow-head{padding:1rem 1.2rem .8rem;display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;border-bottom:1px solid var(--rule-soft)}
+.flow-col ul{margin:0;padding:0.9rem 1.2rem 1.1rem;list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.flow-col li{font-size:.88rem;color:var(--ink-2);line-height:1.5;padding-left:1rem;position:relative}
+.flow-col li::before{content:"";position:absolute;left:0;top:.55em;width:.35rem;height:.35rem;border-radius:50%;background:var(--rule)}
+.flow-col.now li::before{background:var(--green)}
+.flow-col li em{font-style:normal;color:var(--ink);font-weight:600}
+
+/* ---------- never / always ---------- */
+.bounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:1rem}
+.bound{border:1px solid var(--rule);border-radius:3px;background:var(--surface);box-shadow:var(--shadow);padding:1.25rem 1.35rem;display:flex;flex-direction:column;gap:.8rem}
+.bound.never{border-top:4px solid var(--z-red)}
+.bound.always{border-top:4px solid var(--green)}
+.bound ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.bound li{font-size:.92rem;color:var(--ink-2);line-height:1.5;padding-left:1.4rem;position:relative}
+.bound.never li::before{content:"×";position:absolute;left:0;top:0;color:var(--z-red);font-weight:700;font-family:"IBM Plex Mono",monospace}
+.bound.always li::before{content:"✓";position:absolute;left:0;top:0;color:var(--green);font-weight:700;font-family:"IBM Plex Mono",monospace}
+
+/* ---------- roadmap ladder ---------- */
+.ladder{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--rule);margin-left:.4rem}
+.rung{position:relative;padding:0 0 2rem 1.7rem}
+.rung:last-child{padding-bottom:.2rem}
+.rung::before{content:"";position:absolute;left:-.48rem;top:.32rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--ground);border:2.5px solid var(--green)}
+.rung.future::before{border-color:var(--ink-3)}
+.rung-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;margin-bottom:.45rem}
+.rung h3{font-size:1.15rem}
+.rung p{font-size:.93rem;color:var(--ink-2);max-width:var(--read)}
+.rung .exit{margin-top:.5rem;font-size:.85rem;color:var(--ink-2)}
+.rung .exit b{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:500;margin-right:.4rem}
+
+/* ---------- discovery list ---------- */
+.disco{margin:0;padding:0;list-style:none;counter-reset:d;display:flex;flex-direction:column;gap:.7rem;max-width:var(--read)}
+.disco li{counter-increment:d;position:relative;padding-left:2.3rem;font-size:.93rem;color:var(--ink-2);line-height:1.55}
+.disco li::before{content:counter(d,decimal-leading-zero);position:absolute;left:0;top:.1rem;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--green);font-weight:600}
+
+/* ---------- footer ---------- */
+footer{padding:2.2rem 0 3.2rem;color:var(--ink-3);font-size:.83rem}
+footer p{max-width:var(--read)}
+
+@media print{
+  body{background:#fff}
+  section{padding:1.6rem 0}
+  .card,.stat,.persona,.ledger,.tbl-scroll,.flow-col,.bound{box-shadow:none}
+}
+</style>
+
+<main>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">BrioCare · Product Requirements Document</p>
+    <h1>The second chair, staffed by software</h1>
+    <p class="lede read">BrioCare puts an AI co-facilitator — working name <strong>Brio</strong> — in the second chair of clinician-supervised pediatric group teletherapy. It keeps the turn ledger, draws in the quiet child, and drafts the per-child record, so one therapist can run a group that clinical practice says takes two.</p>
+    <div class="mast-meta">
+      <span><span class="mono">v0.5</span> · 29 August 2026</span>
+      <span>Author · <span class="mono">Milton Ren</span></span>
+      <span>Status · <span class="mono">build-challenge submission</span></span>
+      <span>Companions · <span class="mono">TDD</span> + field research (<span class="mono">Inside the Therapy Circle</span>)</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 01 USER ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">01 · The people</p>
+      <h2>One therapist, three people in the room</h2>
+      <p class="read">Three people meet this product: the clinician who runs the session, the child who lives inside it, and the parent who chose it and pays for it. We design for the clinician — she holds the license and the liability, and she alone decides whether an AI belongs in her room. But the other two set hard requirements of their own, and the product fails if it wins only her.</p>
+    </div>
+
+    <div class="persona">
+      <div class="persona-spec">
+        <p class="eyebrow">The group clinician</p>
+        <dl>
+          <dt>License</dt><dd>LCSW / LMFT / child psychologist</dd>
+          <dt>Setting</dt><dd>Telehealth, from clinic or home office</dd>
+          <dt>Group</dt><dd>6–8 children, ages 8–12, closed cohort</dd>
+          <dt>Curriculum</dt><dd>Manualized social-skills / anxiety CBT (PEERS-style)</dd>
+          <dt>Cadence</dt><dd>45 min weekly × 12–16 weeks</dd>
+          <dt>Staffing</dt><dd>Solo — reimbursement doesn't cover a second facilitator</dd>
+          <dt>Paperwork</dt><dd>20–30 min per session, individualized per child, usually after hours</dd>
+        </dl>
+      </div>
+      <div class="persona-body">
+        <p>Her session is a juggling act the literature has already named: co-facilitated groups split into a <strong>dynamic-administrator</strong> (runs the room — norms, safety, the exercise) and an <strong>analyst-interpreter</strong> (watches the room — who's gone quiet, where tension is building, who said something worth linking). On telehealth she performs both jobs at once, through a grid of thumbnails, while also working the mute buttons.</p>
+        <p>Her three jobs, in her words: <em>run the protocol so every child leaves having participated; keep the room safe while the exercise is live; produce the compliant record without donating my evening.</em></p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <p class="eyebrow">The target patient · who it must work for</p>
+        <h3>The child: 8–12, and groups are hard for them</h3>
+        <p>Often referred precisely <em>because</em> peer settings are hard. This is the band where the evidence-based programs cluster (Secret Agent Society 8–12, UP-C 8–11, FRIENDS 7–12), and the peer room is the treatment mechanism, not a discount format. BrioCare's clinical scope is ages 6–12; the prototype is tuned to 8–12.</p>
+        <p>What the child needs from v0: predictable rituals, a warm voice that never puts them on the spot, and ways to participate before they are ready to speak — tap a feeling, thumbs up, a turn holding the stick. Their whole engagement layer is designed, in section 05.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">The parent · who decides it continues</p>
+        <h3>The parent: waited three months, watching closely</h3>
+        <p>They waited months for a seat, are price-sensitive, and judge fast — a bad early experience is the documented dropout driver, and their #1 reported pain is whether <em>their</em> child gets an equal chance to participate. The manuals also cast them as the home co-coach; the roadmap's parent loop serves that role.</p>
+        <p>What the parent needs from v0: plain consent language about what Brio is and will never do — then evidence: the participation their child actually got, and progress they can see. In the service model the parent chooses BrioCare, and the parent can leave it.</p>
+      </div>
+    </div>
+    <p class="read" style="color:var(--ink-2)">When their needs collide, v0 resolves in this order: the clinician is the adoption gate, the child's experience is the outcome, the parent buys the evidence of both.</p>
+  </div>
+</section>
+
+<!-- ================= 02 PAIN ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">02 · The pain, quantified</p>
+      <h2>A two-person job, staffed by one, through a screen</h2>
+      <p class="read">Every number below is sourced in the companion research document. Together they describe a service that families wait three months for and then leave early — not because the treatment is weak, but because delivering it solo over video exceeds one person's attention.</p>
+    </div>
+
+    <div class="grid g4">
+      <div class="stat"><span class="num">1:20</span><span class="lab">average speaking time per child in a 12-child, 45-minute session</span></div>
+      <div class="stat"><span class="num">20–30<span style="font-size:1rem"> min</span></span><span class="lab">of documentation after every session — one individualized portion per child, by rule</span></div>
+      <div class="stat"><span class="num">28–75%</span><span class="lab">of child outpatient treatments end in premature termination</span></div>
+      <div class="stat"><span class="num">3 mo</span><span class="lab">typical waitlist before a child first talks to anyone at all</span></div>
+    </div>
+
+    <div class="grid g2">
+      <div class="ledger" role="table" aria-label="Airtime arithmetic for a 45-minute session">
+        <div class="ledger-row total"><span class="who">Telehealth session (length set by children's on-screen attention)</span><span class="amt">45:00</span></div>
+        <div class="ledger-row"><span class="who">Rituals, agreements, feelings checks, dismissal</span><span class="amt">−13:00</span></div>
+        <div class="ledger-row"><span class="who">Teaching and role-play demo (facilitator-led)</span><span class="amt">−16:00</span></div>
+        <div class="ledger-row total"><span class="who">Shared floor for the children</span><span class="amt">≈16:00</span></div>
+        <div class="ledger-row"><span class="who">Per child at n = 8</span><span class="amt">2:00</span></div>
+        <div class="ledger-row result"><span class="who">Per child at n = 12</span><span class="amt">1:20</span></div>
+      </div>
+      <div class="callout">
+        <p><strong>At twelve children, uneven participation is not a facilitation failure — it's arithmetic.</strong> One child talking for four minutes spends three other children's entire session. AI Fund's own parent survey ranks "every child gets an equal chance to participate" as pain point #1, and a bad early experience is what drives dropout from a closed cohort — where one empty seat also weakens the peer mechanism for everyone who stays.</p>
+        <p>The sharpest evidence that the room is the bottleneck: the one documented clinic that moved an established children's group program online <strong>gave up on the group format entirely</strong>, retreating to individual triads. Their stated barriers — can't read subtle emotional shifts on screen, lost peer dynamics — are this product's spec, line for line.</p>
+      </div>
+    </div>
+
+    <p class="read">The documentation pain compounds the throughput pain: a group note legally requires an individualized narrative per child, so growing a group from 8 to 12 raises the after-hours burden by half. The growth lever that makes the business work makes her evening worse — unless the record writes itself from evidence captured live.</p>
+  </div>
+</section>
+
+<!-- ================= 03 WEDGE ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">03 · The wedge</p>
+      <h2>Why a co-facilitator, and why now</h2>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <p class="eyebrow">It staffs an existing role</p>
+        <h3>The second chair is standard clinical practice</h3>
+        <p>Two-leader groups are the norm in the manuals — Secret Agent Society specifies two facilitators. Brio takes the <strong>analyst-interpreter</strong> chair: observe, count, remember, surface. That's the half of the job bounded by attention and memory rather than judgment — precisely what software does better than a tired human. We introduce no new clinical behavior, so a licensed clinician can adopt it inside her existing practice.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">It stays inside the license</p>
+        <h3>Facilitation, not treatment</h3>
+        <p>Brio never diagnoses, interprets, or makes a therapeutic decision — it manages turns, pacing, prompts, and records, under live clinician supervision. That keeps BrioCare out of "AI therapy" and out of a multi-year device-approval path, while sessions remain billable group psychotherapy (CPT 90853) delivered by the supervising clinician. Go-to-market is measured in weeks, not FDA cycles.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">It unlocks the economics</p>
+        <h3>Equity is the constraint on group size</h3>
+        <p>What breaks first as a group grows isn't logistics — it's even participation, the #1 quality signal parents watch. Hold equity mechanically and 6–8 children can become 10–12 (the billing cap), roughly 1.5–2× families per clinician-hour: shorter waitlists, lower price, better clinician pay. The roadmap goes further — breakout rooms create <em>parallel</em> airtime, the only way per-child talk time survives scale, and an AI second chair can sit in every breakout at once. A human co-facilitator never could.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">It's timed right</p>
+        <h3>The gap is open and named</h3>
+        <p>Low-latency duplex voice AI crossed the usable threshold this year. The telehealth-group failure mode is documented, recent, and specific. And the supply gap keeps widening: ~5.4 clinical child psychologists per 100,000 children, with 40% of the U.S. living in a designated shortage area. Nobody else is building the second chair — incumbents sell scheduling and notes for individual therapy.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:.6rem">
+      <p class="eyebrow">The scaling mechanism</p>
+      <h3 style="margin-top:.4rem;font-size:1.35rem">Serial airtime divides. Parallel airtime multiplies.</h3>
+    </div>
+    <div class="grid g2">
+      <div class="ledger" role="table" aria-label="Parallel airtime at twelve children">
+        <div class="ledger-row total"><span class="who">Shared floor in a 45-minute session</span><span class="amt">≈16:00</span></div>
+        <div class="ledger-row result"><span class="who">One floor, whole group, n = 12</span><span class="amt">1:20 / child</span></div>
+        <div class="ledger-row total"><span class="who">Three Brio-held rooms of four, same clock</span><span class="amt">4:00 / child</span></div>
+        <div class="ledger-row"><span class="who">Therapist roves; every room logged, flagged, visible</span><span class="amt">×3</span></div>
+      </div>
+      <div class="callout">
+        <p><strong>Breakout rooms are the load-bearing scaling move, not a nice-to-have.</strong> Splitting into small rooms is already a documented drawing-out technique — and parallel floors are the only way per-child speaking time survives a bigger group. A human co-facilitator can hold one extra room; Brio holds every room at once — running the exercise structure, capturing acts, escalating anything that needs the clinician, who roves with full sight of all of it.</p>
+        <p>This lands in Phase 2, deliberately after supervised whole-group pilots earn clinician trust — but v0's architecture treats a session as rooms from day one, so breakouts are an extension, not a rebuild.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>The wedge points at a service, not a SaaS.</strong> BrioCare's model is services-as-software: employ therapists and deliver pediatric group care end-to-end, with Brio as the operating system of our own clinical practice. The co-facilitator is the first capability that practice needs — and every pilot session it runs is billable revenue, not a free trial for someone else's clinic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 WORKFLOW ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">04 · The workflow</p>
+      <h2>Where BrioCare sits in the clinical journey</h2>
+      <p class="read">The prototype deliberately implements one block end to end — the structured exercise, the most facilitation-dense minutes of the session — and exits into the record. The surrounding blocks are mapped so the build contradicts nothing, but v0 carries no agenda machinery: it runs one exercise superbly.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-col later">
+        <div class="flow-head"><h3>Before</h3><span class="tag tag-part">Partial</span></div>
+        <ul>
+          <li>Referral, intake, and risk screening <span class="tag tag-road">Roadmap</span></li>
+          <li><em>Group composition</em> — age-band, goal fit, balance; the cohort is set up to succeed or quietly fail here <span class="tag tag-road">Roadmap</span></li>
+          <li>Parent consent, positioned as home co-coaching <span class="tag tag-road">Roadmap</span></li>
+          <li>Tech-readiness screen and practice call per family <span class="tag tag-road">Roadmap</span></li>
+          <li><em>Session setup</em> — the therapist picks the exercise and sets per-child context: "Leo had a rough week" becomes a quiet setting and a baseline <span class="tag tag-v0">Prototype</span></li>
+        </ul>
+      </div>
+      <div class="flow-col now">
+        <div class="flow-head"><h3>During · 45 min</h3><span class="tag tag-v0">The exercise</span></div>
+        <ul>
+          <li><em>Arrival ritual + tech check</em> — Brio greets each child by name, confirms audio, seats the session pets <span class="tag tag-road">Roadmap</span></li>
+          <li><em>Agreements + visual schedule</em> — Brio walks the schedule; agreements stay therapist-led <span class="tag tag-road">Roadmap</span></li>
+          <li><em>Feelings check-in</em> — every child acts: tap a feeling or say it <span class="tag tag-road">Roadmap</span></li>
+          <li><em>Structured exercise</em> — the prototype, end to end: the therapist introduces Brio and opens the round; the talking stick moves on evidence, tap-acts count alongside speech, draw-outs climb the pressure ladder, interruptions get blocked, the acts ledger fills live. Every voiced action previews first; the therapist cues, blocks, or holds the round <span class="tag tag-v0">Prototype</span></li>
+          <li><em>Closing check + points + dismissal ritual</em> — the day's deltas made visible <span class="tag tag-road">Roadmap</span></li>
+        </ul>
+      </div>
+      <div class="flow-col later">
+        <div class="flow-head"><h3>After</h3><span class="tag tag-part">Partial</span></div>
+        <ul>
+          <li><em>Per-child note drafts + session review</em> — in the prototype: drafts from the evidence log, plus a replayable timeline of transcript, acts, and every Brio decision</li>
+          <li>Therapist review, edit, sign-off — minimal in v0, never skipped</li>
+          <li>Parent follow-up, missions, next-session prep — roadmap, with the parallel parent loop</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 BUILD ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">05 · The prototype</p>
+      <h2>Every feature answers a documented pain</h2>
+      <p class="read">Seven features, none decorative. Each maps to a finding in the field research or to AI Fund's own user survey — the build and the evidence tell one story. Of the brief's named depth areas, this build goes deepest on two: therapist control UX and safety boundaries.</p>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <caption>Pain → product mapping</caption>
+        <thead>
+          <tr><th style="width:34%">The pain</th><th style="width:44%">The product answer</th><th>Where it lives</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Quiet children get skipped</strong><span class="small">"Drawing out" is a named clinical move, done manually, when the therapist notices</span></td>
+            <td>An <strong>evidence-based talking stick</strong>: the facilitation engine tracks each child's participation deficit against their own baseline and hands the floor accordingly. Draw-outs climb a pressure ladder — ambient group cue first, then a private on-screen nudge, and only last a voiced invitation that always carries a pass option</td>
+            <td class="mono">Facilitation engine · kid view</td>
+          </tr>
+          <tr>
+            <td><strong>Rewarding talk-time punishes the anxious child</strong><span class="small">The child the group exists to help physically can't win a speech-seconds contest</span></td>
+            <td><strong>Participation acts, not seconds.</strong> Tapping a feeling, reacting, choosing, taking a turn — all count. Each child's session pet gains energy from <em>acts</em>; monopolizing the floor tires it. A token economy with clinical lineage, pointed at the right behavior</td>
+            <td class="mono">Acts model · pet meter</td>
+          </tr>
+          <tr>
+            <td><strong>One person can't watch tone and count turns</strong><span class="small">The analyst-interpreter half of a two-person job</span></td>
+            <td>The <strong>therapist panel</strong>: live equity display, pacing against the exercise plan — and command of Brio itself. Every planned action previews as an intent card before it fires, one tap blocks it, and the named clinical moves — <em>Draw out · Block · Cut off · Link</em> — double as buttons that aim Brio manually</td>
+            <td class="mono">Therapist panel</td>
+          </tr>
+          <tr>
+            <td><strong>An AI talking to children is a trust cliff</strong><span class="small">Clinicians, parents, and regulators all need the same guarantee</span></td>
+            <td>A <strong>constrained co-facilitator</strong>: Brio's voice only renders intents the deterministic engine selected from a closed facilitation set, in age-appropriate language — and it announces before it acts, giving the therapist a veto window on everything voiced. Mute Brio silences all action while sensing continues. Every utterance is logged and reviewable</td>
+            <td class="mono">Safety envelope</td>
+          </tr>
+          <tr>
+            <td><strong>Notes eat the evening</strong><span class="small">A group note requires an individualized portion per child — participation, response, progress</span></td>
+            <td><strong>The record writes itself from evidence.</strong> The same acts ledger that drives facilitation becomes each child's draft note in compliance shape, marked draft until the clinician signs. Tracking and documentation are one feature seen from two ends</td>
+            <td class="mono">Note generator</td>
+          </tr>
+          <tr>
+            <td><strong>Some words can't wait for the note</strong><span class="small">Risk screening is standard clinical practice; a group's worst failure is a missed signal</span></td>
+            <td>The <strong>distress path</strong>: when a child's words suggest harm — to self, from others, acute distress — Brio never responds in voice. The line is flagged, pinned with its exact transcript and timestamp, and surfaced privately and unmissably to the therapist, who owns every next step</td>
+            <td class="mono">Distress watchlist · panel</td>
+          </tr>
+          <tr>
+            <td><strong>You can't ethically test on children in 48 hours</strong><span class="small">And a reviewer can't recruit eight kids to run a demo</span></td>
+            <td>A <strong>simulated cohort</strong>: scripted personas — the dominator, the silent one, the tangent-chaser, the eager helper — join the same live session as real participants. The same harness demos the product and runs its evaluations</td>
+            <td class="mono">Sim harness · evals</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:.6rem">
+      <p class="eyebrow">The heads-up loop</p>
+      <h3 style="margin-top:.4rem;font-size:1.35rem">Brio asks the room's owner first</h3>
+      <p class="read" style="margin-top:.55rem;color:var(--ink-2)">Brio never surprises the therapist. Every planned action surfaces on the panel as a concise intent card — what, to whom, why ("Draw out Maya · quietest 8 min · low-pressure invite") — and fires only when its veto window lapses. Actions come in three classes: ambient, reversible cues (pet animations, captions, timers) act instantly; anything voiced waits out the window; anything referencing a child's own words needs an explicit tap. An autonomy dial shifts these defaults — week one runs suggest-only; trust earns announce-then-act. Brio enters the room the way therapy puppets always have — introduced by the therapist in her own words ("she helps us take turns, and she makes mistakes sometimes"), summonable on cue — but with her own eyes on the room.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <p class="eyebrow">Control over Brio</p>
+        <ul style="margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem">
+          <li><strong>Intent cards</strong> — block or fire-now on anything Brio proposes, before the room hears it</li>
+          <li><strong>Mute Brio</strong> — silences every action; sensing continues, so captions, flags and the ledger keep flowing</li>
+          <li><strong>Hold the round</strong> — the exercise clock stops, and proposals stop with it, while she takes the room</li>
+          <li><strong>Autonomy dial</strong> — suggest-only ↔ announce-then-act, set per action class</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Control through Brio</p>
+        <ul style="margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem">
+          <li><strong>Cue Brio</strong> — one tap summons a contribution: Brio speaks its most useful observation, now</li>
+          <li><strong>Named moves as buttons</strong> — Draw out, Block, Cut off, Link, aimed at a child, delivered in Brio's warm voice</li>
+          <li><strong>Per-child quiet setting</strong> — "no prompts for Leo today," for the kid having a hard week</li>
+          <li><strong>Rest a pet</strong> — soften a dominant streak without a public call-out</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:.6rem">
+      <p class="eyebrow">The child's side of the screen</p>
+      <h3 style="margin-top:.4rem;font-size:1.35rem">Play, kept small and in service of participation</h3>
+      <p class="read" style="margin-top:.55rem;color:var(--ink-2)">The engagement layer is deliberately modest and clinically derived — token economies and gamified programs like Secret Agent Society are already in the evidence base. One governing rule: mechanics point at regulation and participation, never at competition between children. No leaderboards; each child plays only against their own baseline.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem"><p class="eyebrow">Session pet + shared points</p><span class="tag tag-v0">Prototype</span></div>
+        <p>Each child's pet gains energy from participation acts — any act, not just speech — and grows sleepy when one voice dominates; the therapist can rest any pet. Group points tally as the exercise wraps, earned together, never ranked.</p>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem"><p class="eyebrow">Cohort progression + missions</p><span class="tag tag-road">Roadmap</span></div>
+        <p>A pet chosen in week one and decorated across the 12–16-week cohort — a reason to want next week, aimed at the dropout curve — and Secret Agent Society-style missions between sessions, feeding the next review block.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 SAFETY ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">06 · The boundary</p>
+      <h2>The line Brio never crosses</h2>
+      <p class="read">The safety model is a product surface, not fine print — it's what a clinician evaluates before anything else, and it's enforced in architecture rather than in a prompt. The engine chooses from a closed set of facilitation intents; the language model only phrases the chosen intent for an eight-year-old ear. What isn't in the set cannot be said. Mechanism in the TDD.</p>
+    </div>
+
+    <div class="bounds">
+      <div class="bound never">
+        <p class="eyebrow" style="color:var(--z-red)">Brio never</p>
+        <ul>
+          <li>Diagnoses, assesses, or labels a child — no clinical language about any child, ever</li>
+          <li>Gives therapeutic interpretation or advice</li>
+          <li>Acts while muted or while the round is held, or against a therapist instruction</li>
+          <li>Speaks to a child outside the therapist-visible, logged channel</li>
+          <li>Controls a child's microphone — it may suggest a mute; muting stays a therapist-only power</li>
+          <li>Makes membership, escalation, or safety-response decisions — it flags, the clinician decides</li>
+        </ul>
+      </div>
+      <div class="bound always">
+        <p class="eyebrow">Brio always</p>
+        <ul>
+          <li>Announces before acting — every voiced action previews on the panel inside a veto window</li>
+          <li>Yields instantly — therapist mute, hold, block or redirect pre-empts any queued action</li>
+          <li>Speaks only from the closed facilitation-intent set, in warm, low-pressure language</li>
+          <li>Logs every utterance and every intervention decision for clinician review</li>
+          <li>Degrades to silence — when uncertain (garbled audio, ambiguous state), it does nothing and lets the human lead</li>
+          <li>Stays visible — introduced by name by the therapist, and children and parents are told what Brio is and what it will never do</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>The distress path, concretely.</strong> A conservative watchlist runs over every transcript line. On a hit, nothing changes in the children's rooms: Brio stays silent, the panel raises a private, unmissable flag pinned to the exact words and moment, and the therapist decides what happens next. v0's detector is deliberately simple and errs toward flagging; its limits are documented, and tuning it — vocabulary, thresholds, the escalation protocol behind it — is week-one work with the clinical partner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 EVIDENCE ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">07 · Evidence</p>
+      <h2>What shaped the build — and what's still unvalidated</h2>
+      <p class="read">Direct user testing with children inside a 48-hour window would be neither possible nor ethical, so v0 is shaped by credible proxy evidence: published treatment manuals (PEERS, Secret Agent Society, Incredible Years), the one peer-reviewed account of moving a children's group program to telehealth, group-note and billing documentation, and AI Fund's own parent survey and info-session findings. Three build decisions trace straight to it: <strong>acts-not-seconds</strong> (from the drawing-out and token-economy literature), the <strong>digital talking stick</strong> (a documented device — we automate the handoff, on evidence), and <strong>notes-from-evidence</strong> (the group note's per-child compliance shape).</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <p class="eyebrow" style="color:var(--z-yellow)">Explicitly unvalidated</p>
+        <ul style="margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem">
+          <li>Whether children accept and respond to an AI voice in a live group</li>
+          <li>Whether clinicians trust the equity display enough to change their facilitation</li>
+          <li>Whether act-based reinforcement transfers to genuine engagement, not gaming</li>
+          <li>Child speech recognition reliability in real home acoustics</li>
+          <li>State-by-state telehealth, consent, and minors' data rules; payer mechanics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Week-one discovery plan</p>
+        <ol class="disco" style="max-width:none">
+          <li>Co-design sessions with the therapist-in-residence: walk the panel against a real session plan, rename anything that isn't her language</li>
+          <li>Replay 2–3 recorded group sessions; hand-score participation and compare the engine's ledger against clinician judgment</li>
+          <li>Run one full mock cohort — clinician at the panel, adults role-playing the children — and let it change the intervention thresholds</li>
+          <li>Five parent interviews on AI-in-the-room consent language and the pet mechanic</li>
+          <li>Legal review: California telehealth for minors, session recording, and data handling</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 PATH ================= -->
+<section>
+  <div class="wrap stack">
+    <div class="sec-head">
+      <p class="eyebrow">08 · The path</p>
+      <h2>From pilot partnerships to an AI-native provider</h2>
+      <p class="read">Each phase has an exit test. The through-line: prove the second chair with partner clinicians, then become the practice that employs them.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="rung">
+        <div class="rung-head"><h3>Phase 0 · Clinical co-design</h3><span class="tag tag-v0">Residency wks 1–4</span></div>
+        <p>Therapist-in-residence shapes the protocol fit; mock cohorts harden the safety envelope and intervention thresholds; discovery plan above executes.</p>
+        <p class="exit"><b>Exit</b>A licensed clinician agrees to run a real group on it.</p>
+      </div>
+      <div class="rung">
+        <div class="rung-head"><h3>Phase 1 · Supervised pilots</h3><span class="tag tag-v0">Residency wks 5–12</span></div>
+        <p>Two to three partner therapists run real closed cohorts under their own licenses in California, with Brio strictly in the second chair. Sessions are billable — revenue inside the 12 weeks. We measure airtime equity against hand-scored baseline, note-minutes returned, cohort completion, and whether the clinician re-books.</p>
+        <p class="exit"><b>Exit</b>Equity and retention beat the solo baseline; clinicians say the load dropped and choose to continue.</p>
+      </div>
+      <div class="rung future">
+        <div class="rung-head"><h3>Phase 2 · The practice</h3><span class="tag tag-road">Post-funding</span></div>
+        <p>BrioCare employs therapists and delivers care end-to-end — intake, cohort, documentation — direct to families and through schools. Breakout rooms land here: parallel airtime lets groups reach 10–12 children with per-child talk time held, the scale case a human second chair can't match. Parent loop and booster sessions extend the relationship.</p>
+        <p class="exit"><b>Exit</b>Full cohorts run by BrioCare clinicians at target unit economics, waitlist-to-start under two weeks.</p>
+      </div>
+      <div class="rung future">
+        <div class="rung-head"><h3>Phase 3 · AI-native provider</h3><span class="tag tag-road">Scale</span></div>
+        <p>Own the whole journey: referral, matching and group composition, the parent curriculum, outcome measurement across cohorts, expansion to Texas and New York. The compounding asset is longitudinal, consented, per-child participation and outcome evidence — data nobody can buy and the basis for composing better groups than anyone else can.</p>
+      </div>
+    </div>
+
+    <div class="grid g4" style="margin-top:1.6rem">
+      <div class="stat"><span class="num">&lt;14 d</span><span class="lab">referral to first session — against a 3-month status quo</span></div>
+      <div class="stat"><span class="num">Equity</span><span class="lab">per-child airtime balance, per session and per cohort — the quality metric parents feel</span></div>
+      <div class="stat"><span class="num">Completion</span><span class="lab">cohorts finished, against 28–75% premature termination</span></div>
+      <div class="stat"><span class="num">2×</span><span class="lab">families served per clinician-week, documentation hours returned to care</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>BrioCare PRD v0.5 · Milton Ren · 29 August 2026. Written for the AI Fund build challenge; the PRD and the prototype tell one story. Companions: <span class="mono">docs/tdd.html</span> (technical design) and <span class="mono">research/pediatric-group-therapy.html</span> (field research — every sourced figure above traces to its citation list). Working name "Brio" and all metrics are proposals for the clinical partner to challenge.</p>
+  </div>
+</footer>
+
+</main>
+
+</body>
+</html>

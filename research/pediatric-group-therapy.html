@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inside the Therapy Circle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============ TOKENS: light (complete palette) ============ */
+:root{
+  --ground:#EFF1EE;
+  --surface:#FAFBF9;
+  --surface-2:#E7EAE5;
+  --ink:#161C19;
+  --ink-2:#3E4A44;
+  --ink-3:#6A7871;
+  --rule:#D3D9D2;
+  --rule-soft:#E2E7E0;
+
+  --green:#1F6F5C;      /* accent — the "green zone": regulated, ready to learn */
+  --green-deep:#134B3E;
+  --green-wash:#E2EDE8;
+
+  /* Zones palette — used semantically only, drawn from the domain's own language */
+  --z-blue:#3E6E9C;
+  --z-yellow:#B07A12;
+  --z-red:#A63F35;
+
+  --shadow:0 1px 2px rgba(19,40,33,.05), 0 8px 24px -12px rgba(19,40,33,.14);
+  --maxw:73rem;
+  --read:66ch;
+}
+/* ============ TOKENS: dark via system preference ============ */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1513;
+    --surface:#141D1A;
+    --surface-2:#1C2724;
+    --ink:#E6EBE7;
+    --ink-2:#B3BEB8;
+    --ink-3:#7E8D86;
+    --rule:#2A3733;
+    --rule-soft:#212C29;
+
+    --green:#5FBFA2;
+    --green-deep:#8ED8BE;
+    --green-wash:#17302A;
+
+    --z-blue:#7FAAD4;
+    --z-yellow:#D9AA4E;
+    --z-red:#D97F72;
+
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+/* ============ TOKENS: dark via explicit toggle ============ */
+:root[data-theme="dark"]{
+  --ground:#0E1513;
+  --surface:#141D1A;
+  --surface-2:#1C2724;
+  --ink:#E6EBE7;
+  --ink-2:#B3BEB8;
+  --ink-3:#7E8D86;
+  --rule:#2A3733;
+  --rule-soft:#212C29;
+
+  --green:#5FBFA2;
+  --green-deep:#8ED8BE;
+  --green-wash:#17302A;
+
+  --z-blue:#7FAAD4;
+  --z-yellow:#D9AA4E;
+  --z-red:#D97F72;
+
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--green);color:var(--ground)}
+a{color:var(--green);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem)}
+.read{max-width:var(--read)}
+
+/* ---------- type scale ---------- */
+h1,h2,h3,h4{font-family:Newsreader,Georgia,"Times New Roman",serif;text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.012em}
+h1{font-size:clamp(2.5rem,6.2vw,4rem);line-height:1.04;letter-spacing:-.028em}
+h2{font-size:clamp(1.75rem,3.4vw,2.35rem);line-height:1.14}
+h3{font-size:1.22rem;line-height:1.28;font-weight:600}
+h4{font-size:1rem;line-height:1.35;font-weight:600}
+p{margin:0}
+.lede{font-size:clamp(1.08rem,1.9vw,1.24rem);line-height:1.56;color:var(--ink-2)}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--green);
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- header ---------- */
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-top:clamp(2.6rem,7vw,4.6rem);padding-bottom:clamp(2rem,5vw,3.2rem);display:flex;flex-direction:column;gap:1.5rem}
+.mast-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;align-items:baseline;border-top:1px solid var(--rule-soft);padding-top:1.1rem;font-size:.8rem;color:var(--ink-3)}
+.mast-meta .mono{color:var(--ink-2)}
+
+/* ---------- section rhythm ---------- */
+section{padding:clamp(3rem,7vw,5rem) 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.2rem}
+.sec-head p{color:var(--ink-2)}
+.stack{display:flex;flex-direction:column;gap:1.05rem}
+.stack-lg{display:flex;flex-direction:column;gap:2rem}
+
+/* ---------- verdict block ---------- */
+.verdict{
+  background:var(--green-wash);border:1px solid var(--rule);border-left:4px solid var(--green);
+  border-radius:3px;padding:clamp(1.3rem,3vw,2rem);display:flex;flex-direction:column;gap:1rem;
+}
+.verdict h3{font-size:1.45rem}
+
+/* ---------- cards & grids ---------- */
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(12rem,1fr))}
+.card{
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:1.25rem 1.35rem;display:flex;flex-direction:column;gap:.6rem;box-shadow:var(--shadow);
+}
+.card h4{color:var(--ink)}
+.card p,.card li{font-size:.925rem;color:var(--ink-2);line-height:1.55}
+
+/* stat tiles */
+.stat{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:1.15rem 1.2rem;display:flex;flex-direction:column;gap:.3rem}
+.stat .num{font-family:Newsreader,Georgia,serif;font-size:2.1rem;line-height:1;font-weight:600;color:var(--green);font-variant-numeric:tabular-nums}
+.stat .lab{font-size:.85rem;color:var(--ink-2);line-height:1.4}
+.stat .src{font-size:.68rem;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+
+/* ---------- the session strip (visual schedule) ---------- */
+.strip{display:flex;flex-direction:column;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--surface)}
+.step{display:grid;grid-template-columns:5.4rem 1fr;gap:0;border-bottom:1px solid var(--rule-soft)}
+.step:last-child{border-bottom:0}
+.step-time{
+  padding:1.05rem .75rem;background:var(--surface-2);border-right:1px solid var(--rule-soft);
+  display:flex;flex-direction:column;align-items:center;gap:.15rem;text-align:center;
+}
+.step-time .t{font-family:"IBM Plex Mono",monospace;font-size:.9rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.step-time .d{font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--ink-3)}
+.step-body{padding:1.05rem 1.25rem;display:flex;flex-direction:column;gap:.5rem}
+.step-body h4{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.step-body p{font-size:.93rem;color:var(--ink-2);line-height:1.55}
+.says{
+  border-left:2px solid var(--green);padding:.3rem 0 .3rem .75rem;
+  font-family:Newsreader,Georgia,serif;font-style:italic;font-size:1rem;color:var(--ink-2);
+}
+
+/* ---------- tags ---------- */
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.07em;
+  text-transform:uppercase;padding:.16rem .42rem;border-radius:2px;border:1px solid var(--rule);
+  color:var(--ink-3);background:var(--surface-2);white-space:nowrap;vertical-align:middle;
+}
+.tag-src{color:var(--green);border-color:var(--green);background:transparent}
+.tag-infer{color:var(--z-yellow);border-color:var(--z-yellow);background:transparent}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:52rem;font-size:.875rem}
+caption{text-align:left;padding:.9rem 1rem;color:var(--ink-3);font-size:.8rem;border-bottom:1px solid var(--rule-soft)}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.45}
+thead th{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;background:var(--surface-2);position:sticky;top:0;
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+td strong{color:var(--ink);font-weight:600}
+
+/* ---------- phase arc ---------- */
+.arc{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:0;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--surface)}
+.phase{padding:1.1rem 1.15rem;border-right:1px solid var(--rule-soft);display:flex;flex-direction:column;gap:.5rem}
+.phase:last-child{border-right:0}
+.phase .bar{height:4px;border-radius:2px;background:var(--green);opacity:.28}
+.phase.p2 .bar{opacity:.45}.phase.p3 .bar{opacity:.62}.phase.p4 .bar{opacity:.85}.phase.p5 .bar{opacity:1}
+.phase .n{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink-3);letter-spacing:.1em}
+.phase h4{font-size:.98rem}
+.phase p{font-size:.85rem;color:var(--ink-2);line-height:1.5}
+
+/* ---------- loops ---------- */
+.loop{background:var(--surface);border:1px solid var(--rule);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
+.loop-head{padding:.85rem 1.15rem;background:var(--surface-2);border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.loop-head h4{font-size:1.02rem}
+.loop ol{margin:0;padding:1rem 1.15rem 1.15rem 2.4rem;display:flex;flex-direction:column;gap:.65rem}
+.loop li{font-size:.9rem;color:var(--ink-2);line-height:1.5}
+.loop li strong{color:var(--ink)}
+
+/* ---------- callout ---------- */
+.note{border:1px solid var(--rule);border-left:3px solid var(--z-yellow);background:var(--surface);border-radius:3px;padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:.55rem}
+.note.warn{border-left-color:var(--z-red)}
+.note.info{border-left-color:var(--z-blue)}
+.note h4{font-size:.95rem;display:flex;align-items:center;gap:.55rem}
+.note p{font-size:.91rem;color:var(--ink-2);line-height:1.55}
+
+/* ---------- arithmetic panel ---------- */
+.math{background:var(--surface-2);border:1px solid var(--rule);border-radius:3px;padding:1.2rem 1.35rem;display:flex;flex-direction:column;gap:.8rem}
+.math-row{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;font-size:.9rem;padding-bottom:.5rem;border-bottom:1px dashed var(--rule)}
+.math-row:last-of-type{border-bottom:0}
+.math-row span:first-child{color:var(--ink-2)}
+.math-row span:last-child{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink);white-space:nowrap}
+.math-out{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;padding-top:.3rem;border-top:2px solid var(--green)}
+.math-out span:first-child{font-weight:600;font-size:.93rem}
+.math-out span:last-child{font-family:"IBM Plex Mono",monospace;font-size:1.35rem;font-weight:600;color:var(--green);font-variant-numeric:tabular-nums}
+
+/* ---------- lists ---------- */
+ul.tick{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+ul.tick li{position:relative;padding-left:1.1rem;font-size:.925rem;color:var(--ink-2);line-height:1.55}
+ul.tick li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--green)}
+ul.plain{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.45rem}
+
+/* ---------- sources ---------- */
+.srclist{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
+.srclist a{display:block;font-size:.85rem;line-height:1.45;padding:.6rem .8rem;border:1px solid var(--rule-soft);border-radius:3px;background:var(--surface);text-decoration:none;color:var(--ink-2)}
+.srclist a:hover{border-color:var(--green);color:var(--ink)}
+.srclist a span{display:block;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:.66rem;margin-top:.2rem;word-break:break-all}
+
+footer{padding:2.5rem 0 4rem;color:var(--ink-3);font-size:.83rem}
+
+@media (max-width:640px){
+  .step{grid-template-columns:1fr}
+  .step-time{flex-direction:row;justify-content:flex-start;gap:.6rem;border-right:0;border-bottom:1px solid var(--rule-soft);padding:.6rem 1.25rem}
+  .phase{border-right:0;border-bottom:1px solid var(--rule-soft)}
+  .phase:last-child{border-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="eyebrow">Field research · Clinical ground truth</span>
+    <h1>Inside the<br>Therapy Circle</h1>
+    <p class="lede read">How pediatric group therapy actually runs — the cohort structure, the minute-by-minute session protocol, the facilitation moves therapists make, and the invisible work between sessions. Assembled from published treatment manuals, clinic program pages, peer-reviewed protocol papers, and billing documentation.</p>
+    <div class="mast-meta">
+      <span>Compiled <span class="mono">29 Aug 2026</span></span>
+      <span>For <span class="mono">BrioCare</span> — AI co-facilitator for clinician-supervised pediatric group therapy</span>
+      <span><span class="tag tag-src">sourced</span> claims trace to a citation · <span class="tag tag-infer">inference</span> marks my own reasoning</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. THE ANSWER ============ -->
+<section id="answer">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">01 · The headline question</span>
+      <h2>Does a child stay with the same therapist and the same group?</h2>
+    </div>
+
+    <div class="verdict">
+      <h3>Yes — by design. The dominant model is a closed cohort.</h3>
+      <p>Nearly every evidence-based pediatric group program is a <strong>fixed-length, closed-enrollment cohort</strong>: the same children start together, run a manualized curriculum week by week, and finish together, led by the same one or two facilitators throughout. This is not incidental — it is the mechanism the treatment depends on.</p>
+      <p>Closed groups develop <strong>phase-dependent cohesion</strong> that deepens over the life of the group, whereas open groups with rolling membership maintain flatter, more constant, less intense cohesion and tend to stall in the early stages of group development because turnover keeps resetting the process. Stability of membership is itself a driver of cohesion.</p>
+      <p class="mono" style="font-size:.78rem;color:var(--ink-3)">Am J Psychotherapy systematic review (open vs. closed groups) · Yalom &amp; Leszcz, <em>Theory and Practice of Group Psychotherapy</em>, 2020</p>
+    </div>
+
+    <div class="note warn">
+      <h4>But the designed model and the delivered model are not the same thing</h4>
+      <p>Continuity is the intended structure; in routine care it is fragile. A meta-analytic review of child and adolescent outpatient mental health care found that <strong>28% to 75% of treatments end in premature termination</strong>. Youth in routine outpatient settings attend a mean of roughly <strong>three sessions</strong> — against the ~12 sessions typical of the empirically tested protocols. Among dropouts in one anxiety-clinic sample, the median was six sessions.</p>
+      <p>Families' own stated reasons: logistics (transport, childcare), a belief that treatment was not progressing fast enough, frustration at time already spent on waitlists, and dislike of the treatment approach itself.</p>
+    </div>
+
+    <div class="grid g4">
+      <div class="stat"><span class="num">16 wk</span><span class="lab">PEERS and UP-C cohort length</span><span class="src">UCLA PEERS · Lurie Children's</span></div>
+      <div class="stat"><span class="num">18–22</span><span class="lab">Weekly sessions, Incredible Years Dinosaur small-group treatment</span><span class="src">incredibleyears.com</span></div>
+      <div class="stat"><span class="num">6</span><span class="lab">Children per group in the Dinosaur treatment protocol</span><span class="src">incredibleyears.com</span></div>
+      <div class="stat"><span class="num">≤12</span><span class="lab">Participants allowed under CPT 90853, not from the same family</span><span class="src">AMA CPT / AAPC</span></div>
+    </div>
+
+    <p class="read" style="color:var(--ink-2)">So the honest framing for a product: <strong>the cohort is a 3–5 month relationship, not a series of appointments.</strong> A child who has a bad first session does not churn out of one booking — they churn out of a curriculum that was built to accumulate, and they take a seat with them that the group's cohesion was partly built on.</p>
+  </div>
+</section>
+
+<!-- ============ 2. THE COHORT ARC ============ -->
+<section id="arc">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">02 · The long arc</span>
+      <h2>What changes across a cohort</h2>
+      <p class="read">A closed group moves through recognized developmental phases. The therapist's job is different in each one, which means an assistant that behaves identically in week 2 and week 14 is wrong in both.</p>
+    </div>
+
+    <div class="arc">
+      <div class="phase p1">
+        <div class="bar"></div><span class="n">WEEK 1–2</span>
+        <h4>Forming</h4>
+        <p>Dependence on the leader. Members rely on safe, patterned behavior and look to the facilitator for direction. Group agreements are co-created here.</p>
+      </div>
+      <div class="phase p2">
+        <div class="bar"></div><span class="n">WEEK 2–5</span>
+        <h4>Storming</h4>
+        <p>Anxiety, ambiguity and conflict surface as members test each other and define norms. Members need to feel free to disagree.</p>
+      </div>
+      <div class="phase p3">
+        <div class="bar"></div><span class="n">WEEK 5–9</span>
+        <h4>Norming</h4>
+        <p>Conflicts resolve, behavioral norms settle, trust builds. Cohesion becomes the working medium.</p>
+      </div>
+      <div class="phase p4">
+        <div class="bar"></div><span class="n">WEEK 9–14</span>
+        <h4>Performing</h4>
+        <p>Highest functioning. Members work toward goals together, support each other, and handle conflict constructively.</p>
+      </div>
+      <div class="phase p5">
+        <div class="bar"></div><span class="n">FINAL WEEKS</span>
+        <h4>Adjourning</h4>
+        <p>Termination. Strong bonds make ending hard; the facilitator's job shifts to preparing members for the end and reflecting on progress.</p>
+      </div>
+    </div>
+
+    <div class="note info">
+      <h4>Boosters extend the relationship past the curriculum</h4>
+      <p>Several programs deliberately stretch the tail. The Secret Agent Society small-group program runs its 9 core modules weekly, then spreads <strong>2–4 booster sessions across a following six-month period</strong>. FRIENDS runs 10 weekly sessions plus two boosters. So the real relationship window for an 8–12 year-old can be closer to <strong>nine months</strong> than to a school term.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. BEFORE SESSION ONE ============ -->
+<section id="intake">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">03 · Upstream</span>
+      <h2>Everything that happens before session one</h2>
+      <p class="read">By the time a child appears on a call, a substantial pipeline has already run. Each stage is a place where the cohort is either well-composed or quietly set up to fail.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h4>Referral and the waitlist</h4>
+        <p>The bottleneck is structural, not administrative. There are roughly <strong>5.4 clinical child and adolescent psychologists per 100,000 children</strong> in the US, and as of December 2025, <strong>40% of the population (137 million people) lived in a Mental Health Professional Shortage Area</strong>. Many child specialists have waitlists closed to new patients entirely.</p>
+        <p class="mono" style="font-size:.7rem;color:var(--ink-3)">Children's Hospital Association · HRSA Behavioral Health Workforce Brief 2025</p>
+      </div>
+
+      <div class="card">
+        <h4>The pre-group interview</h4>
+        <p>A screening conversation with two jobs: confirm the child's issues and goals actually match <em>this group's</em> goals, and assess their interpersonal style and likelihood of succeeding in a group format. Procedural facts — when the group meets, where, for how long — are disclosed up front.</p>
+        <p>APA practice guidance additionally recommends risk screening at every intake: suicidal ideation, homicidal ideation, self-harm history, substance use, domestic violence.</p>
+      </div>
+
+      <div class="card">
+        <h4>Composition and consent</h4>
+        <p>Groups are age-banded (the programs below cluster at 3–6, 7–10, 8–12, 12–17). Billing rules constrain the rest: CPT 90853 caps a group at <strong>12 participants</strong>, who must not be members of the same family.</p>
+        <p>Parent informed consent is obtained in advance, typically by phone conversation plus written forms, with parents positioned from the outset as active collaborators who will practice skills at home.</p>
+      </div>
+
+      <div class="card">
+        <h4>The telehealth readiness check <span class="tag tag-src">SAS 2020</span></h4>
+        <p>When one clinic moved an established children's group program online, clinicians ran a structured phone screen per family covering: parental employment demands, home-schooling load, sibling care, <strong>Wi-Fi stability, device capability, available household space, and confidentiality</strong>.</p>
+        <p>They then produced a written teletherapy guide, wrote a <strong>social story</strong> explaining the change in format to the children, mailed physical therapy props to each home, ran a technology practice call before session one, and pre-agreed a phone fallback if video failed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. INSIDE ONE SESSION ============ -->
+<section id="session">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">04 · The core loop</span>
+      <h2>Inside a single session, minute by minute</h2>
+      <p class="read">The same skeleton recurs across otherwise unrelated protocols: <strong>ritual opening → agreements and schedule → regulation and feelings check → review of last week's practice → teach → model → rehearse with coaching → closing check → ritual dismissal</strong>. Below is a composite 60-minute session; each row names the protocol it is drawn from. Durations vary by program (45–120 min); the <em>order</em> is remarkably stable.</p>
+    </div>
+
+    <div class="strip">
+      <div class="step">
+        <div class="step-time"><span class="t">00:00</span><span class="d">3 min</span></div>
+        <div class="step-body">
+          <h4>Tech check and arrival ritual <span class="tag tag-src">SAS teletherapy · Whole Child</span></h4>
+          <p>Online sessions open with a brief tech check before anything therapeutic starts. The arrival ritual is deliberately identical every week — one published example has children "press pause": hands on bellies, a slow breath in and out, then entering slowly to choose a cushion.</p>
+          <p class="says">"Smell the flower… and blow out the candle."</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:03</span><span class="d">3 min</span></div>
+        <div class="step-body">
+          <h4>Group agreements and the visual schedule <span class="tag tag-src">Whole Child Counseling</span></h4>
+          <p>Agreements are <em>co-created with the children in session one</em>, not imposed by the facilitator, then reviewed at each session. Typical set: confidentiality; being safe, kind and respectful; one person talks at a time; staying on topic; only doing what feels good for your body.</p>
+          <p>A visual schedule is then walked through so children know what is coming — this is explicitly framed as reducing anxiety and smoothing transitions, not as decoration.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:06</span><span class="d">5 min</span></div>
+        <div class="step-body">
+          <h4>Mindful moment and feelings check-in <span class="tag tag-src">Whole Child · Zones of Regulation</span></h4>
+          <p>A guided relaxation read slowly, with pauses, using <strong>invitational language</strong> ("you might notice…", "if it feels okay…") to stay trauma-sensitive. It is followed by a feelings check in which all emotions are validated non-judgmentally.</p>
+          <p>Common instruments: the Zones of Regulation four-color model (blue = low, green = regulated and ready, yellow = heightened, red = out of control) and a feelings thermometer that separates <em>which</em> feeling from <em>how big</em> the feeling is.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:11</span><span class="d">10 min</span></div>
+        <div class="step-body">
+          <h4>Homework / mission review <span class="tag tag-src">PEERS · Secret Agent Society</span></h4>
+          <p>The first content block is always looking backward. In PEERS, participants report on the real-world socialization assignment given the previous week. In Secret Agent Society, children have completed weekly "missions" — gamified online modules, real-life skills practice, and a reflection journal — and report on those.</p>
+          <p>This is the load-bearing block for generalization: the group exists to change behavior outside the group.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:21</span><span class="d">12 min</span></div>
+        <div class="step-body">
+          <h4>Didactic lesson <span class="tag tag-src">PEERS · Incredible Years</span></h4>
+          <p>The week's skill is taught as <strong>concrete rules and steps</strong>, not general principles — PEERS is explicit that skills must be "ecologically valid," i.e. what socially successful children actually do rather than what adults imagine they do. PEERS allocates a full 30 minutes to this within its longer session.</p>
+          <p>Delivery vehicles for younger children include puppet storytelling and video modeling (Incredible Years Dinosaur), followed by group discussion.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:33</span><span class="d">8 min</span></div>
+        <div class="step-body">
+          <h4>Role-play demonstration <span class="tag tag-src">PEERS</span></h4>
+          <p>Facilitators model the skill — and critically, model <strong>both the appropriate and the inappropriate version</strong> — then run perspective-taking questions against what the children just watched ("What do you think that felt like for them?").</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:41</span><span class="d">12 min</span></div>
+        <div class="step-body">
+          <h4>Behavioral rehearsal with live coaching <span class="tag tag-src">PEERS · IY Dinosaur</span></h4>
+          <p>Children practise the skill with each other in a structured socialization activity while facilitators give <strong>performance feedback in vivo</strong> — correcting mid-attempt rather than debriefing afterward. PEERS allocates 30 minutes to this block. Clinicians run turn-taking drills, scaffold conversation starters, and model repair strategies.</p>
+          <p>This is the densest and most facilitation-intensive part of the session, and the part with the widest gap between children who volunteer and children who do not.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:53</span><span class="d">4 min</span></div>
+        <div class="step-body">
+          <h4>Closing mindful moment and second feelings check <span class="tag tag-src">Whole Child Counseling</span></h4>
+          <p>A second guided relaxation and a second feelings check. The pairing is intentional: the opening and closing checks bracket the session so change within it is visible to the child and to the clinician.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-time"><span class="t">00:57</span><span class="d">3 min</span></div>
+        <div class="step-body">
+          <h4>Points tally, next mission, dismissal ritual <span class="tag tag-src">Token economy · Whole Child</span></h4>
+          <p>Tokens or points earned are totalled against a visible board, the coming week's home practice is assigned, and children are dismissed by an identical ritual each week — each child called individually by name, materials put away.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note info">
+      <h4>Session length is bounded by attention, not by curriculum</h4>
+      <p>Real durations: <span class="mono">45–60 min</span> is the standard billed group session under CPT 90853. Clinic social skills groups commonly run <span class="mono">45 min weekly</span>; school-based versions <span class="mono">30 min twice weekly</span>. Secret Agent Society offers <span class="mono">11 × 90 min</span> or <span class="mono">22 × 45 min</span> as equivalent routes through the same content. Incredible Years Dinosaur small-group treatment runs <span class="mono">2 hours weekly</span> — or <span class="mono">2 × 1 hour</span> in schools.</p>
+      <p>When one team moved a 90-minute children's group online, they cut sessions to <strong>approximately 45 minutes specifically to match children's concentration and motivation levels on screen</strong>. That is the single most transferable number in this document for a telehealth product.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. FACILITATION MECHANICS ============ -->
+<section id="facilitation">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">05 · How the therapist actually steers</span>
+      <h2>The facilitation moves, named</h2>
+      <p class="read">Group therapy has a formal vocabulary for the interventions a leader makes on the <em>process</em> rather than the content. These are the concrete behaviors an AI co-facilitator would be either assisting or replacing.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Named group-leadership techniques and how they appear in a children's group</caption>
+        <thead>
+          <tr><th style="min-width:9rem">Move</th><th>What it is</th><th>What it looks like with 6–12 year-olds</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Drawing out</strong></td>
+            <td>Bringing in a member who is not participating. Documented techniques include direct invitation, strategic use of silence, random-selection tools, breaking into smaller groups, pre-surveys, reframing quietness rather than pathologizing it, and inclusive language.</td>
+            <td>The core problem this product exists for. Note the recommendation that <em>learning about the participant in advance</em> is itself a drawing-out technique — the work starts before the session.</td>
+          </tr>
+          <tr>
+            <td><strong>Blocking</strong></td>
+            <td>Intervening — verbally or non-verbally — to stop counterproductive behavior, protect vulnerable members, and prevent one interaction from derailing the therapeutic process.</td>
+            <td>Interrupting a dominant child, shutting down teasing, stopping a tangent. Non-verbal blocking is much harder over video, where the therapist has no proximity or gesture.</td>
+          </tr>
+          <tr>
+            <td><strong>Linking</strong></td>
+            <td>Pointing out that two members share a concern and encouraging them to work together.</td>
+            <td>Requires holding what every child said across many weeks simultaneously — the technique most obviously bounded by human working memory in a 12-child, 16-week cohort.</td>
+          </tr>
+          <tr>
+            <td><strong>Cutting off</strong></td>
+            <td>Ending a contribution that has run long or gone off-purpose, without shaming the speaker.</td>
+            <td>Directly in tension with drawing out: cutting off the talkative child is what creates the airtime the quiet child needs.</td>
+          </tr>
+          <tr>
+            <td><strong>Process / content toggle</strong></td>
+            <td>The leader continuously switches between running the exercise and illuminating here-and-now group dynamics, encouraging feedback loops and handling conflict constructively.</td>
+            <td>The dual-attention load that makes solo facilitation hard, and that co-facilitation exists to split.</td>
+          </tr>
+          <tr>
+            <td><strong>Turn-taking device</strong></td>
+            <td>A physical object — a "talking stick" — held by the speaker and passed on, giving a <em>visual</em> cue for whose turn it is. Children practise speaking while holding it and waiting while not.</td>
+            <td>Already standard practice. A child quoted in one write-up: <span style="font-style:italic">"it teaches us how not to speak over people."</span> The mechanic has clinical lineage, not just game-design appeal.</td>
+          </tr>
+          <tr>
+            <td><strong>Token economy</strong></td>
+            <td>Immediate delivery of a conditioned reinforcer (token, point, sticker) after a defined target behavior, tracked on a visible board, exchanged later for a backup reinforcer from a pre-agreed reward menu. Works for an individual child or a whole group.</td>
+            <td>Explicitly credited with building delayed gratification and with letting children <em>visualize progress</em>. Secret Agent Society layers a "Skill Tracker" for daily motivation plus an espionage-themed gadget pack of visual reminders released progressively.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h4>The co-facilitator split — and why it matters here</h4>
+        <p>Two-leader groups are standard; the Secret Agent Society program specifies two facilitators. The literature splits their roles as a <strong>dynamic-administrator</strong> (sets up the group, establishes norms and boundaries, maintains safety) and an <strong>analyst-interpreter</strong> (observes, listens, understands, interprets).</p>
+        <p>Put operationally: <em>"one facilitator may be tracking the emotional tone of the room while the other notices who has gone quiet, who may need support, or where tension is starting to build."</em></p>
+        <p><span class="tag tag-infer">inference</span> That second role is a near-exact description of the product surface. The AI is not replacing the therapist; it is restoring the co-therapist that a scaled telehealth economy cannot afford to staff.</p>
+      </div>
+      <div class="card">
+        <h4>What is genuinely hard on video <span class="tag tag-src">SAS teletherapy</span></h4>
+        <p>The clinicians who moved an established children's group online named their barriers plainly:</p>
+        <ul class="tick">
+          <li>Difficulty perceiving <strong>subtle emotional shifts</strong> through a screen</li>
+          <li>Loss of <strong>peer role modeling and group social dynamics</strong></li>
+          <li>Heavy reliance on parents to act as co-therapist in the room</li>
+          <li>Bandwidth and connectivity failure</li>
+          <li>Schools closed, so the teacher arm of the program stopped entirely</li>
+        </ul>
+        <p>Their response was drastic: <strong>they abandoned the group format</strong> and delivered individualized child–parent–clinician triads instead. That is the single most sobering finding in this research — the group was the first casualty of going online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BETWEEN SESSIONS ============ -->
+<section id="between">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">06 · The invisible half</span>
+      <h2>What happens between sessions</h2>
+      <p class="read">Three loops run in parallel between every pair of sessions — clinician, child, and parent — plus a school loop where the program reaches into the classroom. The clinician loop is where the documented burden sits.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="loop">
+        <div class="loop-head"><h4>Clinician loop</h4><span class="tag">highest burden</span></div>
+        <ol>
+          <li><strong>Group progress note.</strong> Opens with a group-level summary — topic, interventions delivered, attendance.</li>
+          <li><strong>An individualized portion for every single child.</strong> This is mandatory, not optional: each client's own participation, their response to the service, <em>how the group met that specific client's needs</em>, and their progress. Written in one of SOAP / DAP / GIRP / BIRP format.</li>
+          <li><strong>Billing fields.</strong> Date, start time, end time, purpose and structure of the session, and <strong>medical necessity established per client</strong> against their individual diagnosis and treatment plan.</li>
+          <li><strong>Parent contact.</strong> Follow-up with families; in some protocols a scheduled parent consultation every 3–5 sessions.</li>
+          <li><strong>Fidelity consultation.</strong> The teletherapy team ran <em>weekly consultation meetings across providers</em> to keep delivery consistent, working from session checklists merged with the program materials.</li>
+          <li><strong>Prep for next week</strong> — materials, activity setup, and any adjustment to a child's plan.</li>
+        </ol>
+      </div>
+
+      <div class="loop">
+        <div class="loop-head"><h4>Child loop</h4><span class="tag">generalization</span></div>
+        <ol>
+          <li><strong>Real-world assignment.</strong> PEERS gives explicit socialization homework to be attempted in actual life, reported back at the next session.</li>
+          <li><strong>Gamified practice.</strong> Secret Agent Society children complete weekly online gamified learning modules between meetings.</li>
+          <li><strong>Reflection journal.</strong> Written self-report on how the week's missions went.</li>
+          <li><strong>Skill tracker.</strong> A short-term daily motivation tool distinct from the in-session token board.</li>
+          <li><strong>Take-home activities</strong> — workbook pages and coping-skill work, sometimes explicitly moved home when session time is short.</li>
+        </ol>
+      </div>
+
+      <div class="loop">
+        <div class="loop-head"><h4>Parent loop</h4><span class="tag">parallel curriculum</span></div>
+        <ol>
+          <li><strong>A parallel parent group running the same curriculum.</strong> In PEERS, parents meet separately with a <em>different clinician</em> and learn the same skill their child is learning that week, so they can coach it at home.</li>
+          <li><strong>Scheduled cadence.</strong> Secret Agent Society: a 2-hour parent information session before the children start, then parent meetings typically held straight after each child meeting, without children present — 11 × 45 min, 22 × 30 min, or 4 × 2 hr.</li>
+          <li><strong>Coaching feedback.</strong> Parents are given feedback on their own social coaching, not just on the child.</li>
+          <li><strong>Running the reinforcement at home.</strong> Parents implement the token system, manage the visual schedule, and supervise practice.</li>
+          <li><strong>Some programs put the parent in the session.</strong> At Lurie Children's, school-age children participate for the first 25–30 minutes and then parents join for the remaining 60–65.</li>
+        </ol>
+      </div>
+
+      <div class="loop">
+        <div class="loop-head"><h4>School loop</h4><span class="tag">where it exists</span></div>
+        <ol>
+          <li><strong>Weekly teacher tip sheets</strong> summarizing the skill just taught.</li>
+          <li><strong>Teacher access to the child's skill tracker.</strong></li>
+          <li><strong>Consultation and optional school visits</strong>, plus staff presentations.</li>
+          <li><strong>Curriculum mapping</strong> so the content aligns with what the school is already required to teach.</li>
+          <li>Note: this arm collapsed entirely when schools closed during the teletherapy adaptation — it depends on an institution the clinic does not control.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h3>The documentation burden, in numbers</h3>
+      <div class="grid g4">
+        <div class="stat"><span class="num">20–30<span style="font-size:1rem"> min</span></span><span class="lab">Note-writing after a single 50-minute session</span><span class="src">Healthcare IT Today, 2026</span></div>
+        <div class="stat"><span class="num">1–2 hr</span><span class="lab">Charting per hour of direct care, across behavioral health</span><span class="src">Healthcare IT Today, 2026</span></div>
+        <div class="stat"><span class="num">5–10 hr</span><span class="lab">Per week on documentation alone</span><span class="src">multiple practice surveys</span></div>
+        <div class="stat"><span class="num">60–70%</span><span class="lab">Of clinicians regularly documenting outside work hours — "pajama time"</span><span class="src">behavioral health surveys</span></div>
+      </div>
+      <p class="read" style="color:var(--ink-2)">Documentation burden is named as a leading contributor to clinician burnout, with burnout rates of <strong>40–60%</strong> reported among mental health professionals, and cited as a top reason clinicians cut caseloads or leave the field. In a group setting the load scales with headcount, because the individualized portion must be written <em>per child</em> — so moving a group from 8 children to 12 does not hold documentation constant, it raises it by half.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. PROGRAM SPECIMENS ============ -->
+<section id="programs">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">07 · Real programs, real numbers</span>
+      <h2>What is actually being run</h2>
+      <p class="read">Eight established programs, with the parameters a product has to fit inside. Blank cells are where the public source did not state a figure — not zero.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Manualized pediatric group programs and their delivery parameters</caption>
+        <thead>
+          <tr>
+            <th style="min-width:13rem">Program</th>
+            <th class="num">Ages</th>
+            <th class="num">Group size</th>
+            <th class="num">Duration</th>
+            <th class="num">Session length</th>
+            <th style="min-width:14rem">Parent component</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PEERS</strong><br><span style="color:var(--ink-3);font-size:.8rem">UCLA Semel Institute — social skills</span></td>
+            <td class="num">4–6<br>12–17<br>18+</td><td class="num">small group</td><td class="num">16 weeks</td><td class="num">weekly</td>
+            <td>Separate weekly caregiver group with its own clinician, teaching the same skill in parallel; caregivers coach the homework</td>
+          </tr>
+          <tr>
+            <td><strong>Secret Agent Society</strong><br><span style="color:var(--ink-3);font-size:.8rem">Emotion regulation + social communication</span></td>
+            <td class="num">8–12</td><td class="num">~6</td><td class="num">9 modules<br>+2–4 boosters</td><td class="num">11 × 90 min<br>or 22 × 45 min</td>
+            <td>2-hr info session up front, then 11 × 45 min / 22 × 30 min / 4 × 2 hr, usually right after the child meeting</td>
+          </tr>
+          <tr>
+            <td><strong>Incredible Years Dinosaur</strong><br><span style="color:var(--ink-3);font-size:.8rem">Small-group treatment — conduct, ADHD, internalizing</span></td>
+            <td class="num">3–8</td><td class="num">6</td><td class="num">18–22 weeks</td><td class="num">2 hr weekly<br>or 2 × 1 hr</td>
+            <td>Designed to run alongside the IY parent program group sessions</td>
+          </tr>
+          <tr>
+            <td><strong>Unified Protocol for Children (UP-C)</strong><br><span style="color:var(--ink-3);font-size:.8rem">Lurie Children's — mood and anxiety</span></td>
+            <td class="num">8–11</td><td class="num">—</td><td class="num">16 weeks</td><td class="num">—</td>
+            <td>Parent component available</td>
+          </tr>
+          <tr>
+            <td><strong>Parent Management Training, school age</strong><br><span style="color:var(--ink-3);font-size:.8rem">Lurie Children's — FAST-B curriculum, virtual</span></td>
+            <td class="num">7–10</td><td class="num">8–12</td><td class="num">8 weeks</td><td class="num">90 min</td>
+            <td>Children alone for the first 25–30 min, then parents join for 60–65 min</td>
+          </tr>
+          <tr>
+            <td><strong>Parent Management Training, preschool</strong><br><span style="color:var(--ink-3);font-size:.8rem">Lurie Children's — BBI curriculum, virtual</span></td>
+            <td class="num">3–6</td><td class="num">8–12</td><td class="num">8 weeks</td><td class="num">90 min</td>
+            <td>Children alone for the first 15–20 min, then parents join for 70–75 min</td>
+          </tr>
+          <tr>
+            <td><strong>Child-Centered Group Play Therapy</strong><br><span style="color:var(--ink-3);font-size:.8rem">CEBC-listed</span></td>
+            <td class="num">—</td><td class="num">—</td><td class="num">clinic 16–20 wk<br>school 8 wk</td><td class="num">clinic 45 min/wk<br>school 30 min ×2/wk</td>
+            <td>Structured parent consultation every 3–5 sessions</td>
+          </tr>
+          <tr>
+            <td><strong>FRIENDS</strong><br><span style="color:var(--ink-3);font-size:.8rem">Child anxiety CBT</span></td>
+            <td class="num">7–12</td><td class="num">—</td><td class="num">10 sessions<br>+2 boosters</td><td class="num">weekly</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note info">
+      <h4>The five components every child-anxiety CBT group contains</h4>
+      <p>Whatever the brand name, expert consensus identifies the same five ingredients: <strong>psychoeducation, somatic management skills training, cognitive restructuring, exposure methods, and contingency management</strong> (the token economy). If a session activity does not map to one of those five, it is scaffolding, not treatment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. IMPLICATIONS ============ -->
+<section id="implications">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">08 · Reading across</span>
+      <h2>What this means for BrioCare</h2>
+      <p class="read">Everything in this section is my reasoning from the evidence above, not a sourced clinical claim. Treated separately on purpose.</p>
+    </div>
+
+    <div class="stack">
+      <h3>The airtime arithmetic is the whole product thesis</h3>
+      <p class="read" style="color:var(--ink-2)">Your notes propose lifting group size from 6–8 to 10–12 to increase throughput. That is the right commercial instinct, and the research says something uncomfortable about it. Work the numbers on a 45-minute telehealth session — the length the one team that actually did this chose for attention reasons.</p>
+
+      <div class="grid g2">
+        <div class="math">
+          <div class="math-row"><span>Session length</span><span>45 min</span></div>
+          <div class="math-row"><span>Ritual, agreements, feelings checks, dismissal</span><span>−13 min</span></div>
+          <div class="math-row"><span>Didactic + role-play demo (facilitator-led)</span><span>−16 min</span></div>
+          <div class="math-row"><span>Remaining child-talk time</span><span>≈16 min</span></div>
+          <div class="math-out"><span>Per child at n=8</span><span>2.0 min</span></div>
+          <div class="math-out" style="border-top:0;padding-top:.2rem"><span>Per child at n=12</span><span>1.3 min</span></div>
+        </div>
+        <div class="stack">
+          <div class="note warn">
+            <h4>The implication</h4>
+            <p>At twelve children, perfectly even distribution gives each child under ninety seconds of speaking time. Parents are described in your own research as <em>highly sensitive</em> to uneven participation. At n=12, uneven participation is not a facilitation failure — it is arithmetic. One child speaking for four minutes consumes three other children's entire allocation.</p>
+            <p>So the throughput hypothesis only survives if the product creates <em>more parallel airtime</em>, not better-refereed serial airtime. That is a direct argument for breakout rooms being the load-bearing feature rather than a nice-to-have — and it is the one place where an AI facilitator buys something a human co-therapist cannot, because it can be in every breakout at once.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h4>Your pet-energy mechanic is a token economy — with one dangerous edge</h4>
+        <p>Reinforcing behavior with a visible, immediately-updating progress display is exactly what the evidence base already does, and does well. The mechanic has real clinical grounding.</p>
+        <p>The risk is in what you reinforce. If the pet gains energy <em>when the child talks</em>, you have built a system that mathematically penalizes the socially anxious child the group exists to help, and rewards the child who already dominates. The "too much talking makes the pet tired" counterweight partially fixes this, but the floor matters more than the ceiling: reinforce <em>participation acts</em> the anxious child can actually perform — reacting, choosing, drawing, agreeing, taking a turn holding the object — not speech duration.</p>
+      </div>
+
+      <div class="card">
+        <h4>The talking-bottle idea has clinical lineage — use the real name</h4>
+        <p>The talking stick is documented practice: a physical object that provides a <em>visual</em> cue for whose turn it is, which children practise both speaking with and waiting without. Your instinct is right, and it will land better with clinical partners if you position it as a digital talking stick rather than as a novel game mechanic.</p>
+        <p>The genuinely new capability is that a digital one can be <em>handed by the AI on evidence</em> — passed toward the child whose airtime is furthest below their own baseline, rather than to whoever grabs it.</p>
+      </div>
+
+      <div class="card">
+        <h4>Linking is the feature only software can do</h4>
+        <p>Of the named facilitation moves, <strong>linking</strong> — surfacing that two members share a concern — is the one bounded purely by memory rather than by judgment. Across 12 children and 16 sessions no human holds that surface. A system that can say "Maya said something close to this in week 4" is doing recognized clinical technique, not inventing one, and it stays firmly inside facilitation rather than diagnosis.</p>
+      </div>
+
+      <div class="card">
+        <h4>The note is not a summary — it is a per-child compliance artifact</h4>
+        <p>A group note requires an individualized portion for <em>each</em> participant covering their participation, their response, how the group met <em>their</em> needs, and their progress — plus medical necessity tied to their own diagnosis and treatment plan. A single elegant session summary does not satisfy this.</p>
+        <p>Which means the participation tracking and the documentation output are the same feature, viewed from two ends. Per-child evidence captured live is what makes the note both writable and defensible — and note-writing is 20–30 minutes per session that clinicians are currently doing at night.</p>
+      </div>
+
+      <div class="card">
+        <h4>Design for the phase, not just the session</h4>
+        <p>A closed cohort in week 2 (forming: dependent on the leader, needs structure) is a different room from week 10 (performing: members support each other and handle conflict themselves). An assistant that prompts identically in both is over-facilitating the mature group and under-supporting the new one. Phase should be an explicit variable in how assertively the AI intervenes.</p>
+      </div>
+
+      <div class="card">
+        <h4>The first session is where the business is won or lost</h4>
+        <p>Premature termination runs 28–75%, families cite waitlist frustration and slow perceived progress, and your own research says a bad early experience drives dropout. In a closed cohort, one child leaving in week 3 does not just cost that revenue — it removes a peer from a group whose treatment mechanism is peer interaction. Onboarding, the pre-session tech check, and session one are disproportionately valuable surfaces.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <h4>The one finding to take most seriously</h4>
+      <p>When experienced clinicians moved an established, well-manualized children's group program online, they did not deliver a worse group. <strong>They stopped delivering a group at all</strong> and switched to individual child–parent–clinician triads, citing loss of peer role modeling and difficulty reading subtle emotional shifts on screen. Their stated barrier list is, almost line for line, the problem statement for this product. That is encouraging for the wedge — and a warning that "run a real therapeutic group over video" is the hard part, not the given.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section id="sources">
+  <div class="wrap stack-lg">
+    <div class="sec-head">
+      <span class="eyebrow">Sources</span>
+      <h2>Where this came from</h2>
+      <p class="read">Primary protocol papers, program manuals and clinic pages, billing documentation, and workforce data. Every sourced claim above traces to one of these.</p>
+    </div>
+    <div class="srclist">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7653222/">Adapting an emotional regulation and social communication skills group programme to teletherapy (Secret Agent Society), PMC<span>pmc.ncbi.nlm.nih.gov/articles/PMC7653222/</span></a>
+      <a href="https://psychiatryonline.org/doi/10.1176/appi.psychotherapy.20230026">Differential Effectiveness of Open Versus Closed Psychotherapy Groups: A Systematic Review — American Journal of Psychotherapy<span>psychiatryonline.org/doi/10.1176/appi.psychotherapy.20230026</span></a>
+      <a href="https://www.wholechildcounseling.com/post/how-to-structure-group-counseling-sessions-with-children">How to Structure Group Counseling Sessions with Children — Whole Child Counseling<span>wholechildcounseling.com</span></a>
+      <a href="https://www.uclahealth.org/medical-services/psychiatry/child-and-adolescent/ucla-peersr-clinic">UCLA PEERS® Clinic — UCLA Health<span>uclahealth.org</span></a>
+      <a href="https://www.bostonpeers.com/peers">About PEERS® — Boston PEERS Social Skills Program<span>bostonpeers.com/peers</span></a>
+      <a href="https://www.secretagentsociety.com/sas-small-group-program-0">SAS Small Group Program — Secret Agent Society<span>secretagentsociety.com</span></a>
+      <a href="https://www.incredibleyears.com/early-intervention-programs/child">Incredible Years — Child Dinosaur small group treatment programs<span>incredibleyears.com</span></a>
+      <a href="https://www.luriechildrens.org/en/specialties-conditions/treatment-groups-for-children-with-mental-health-conditions/">Treatment Groups for Children with Mental Health Conditions — Lurie Children's<span>luriechildrens.org</span></a>
+      <a href="https://www.cebc4cw.org/program/child-centered-group-play-therapy-ccgpt/">Child-Centered Group Play Therapy — California Evidence-Based Clearinghouse<span>cebc4cw.org</span></a>
+      <a href="https://www.aipc.net.au/articles/skills-and-role-of-the-group-therapist/">Skills and Role of the Group Therapist — blocking, linking, process work<span>aipc.net.au</span></a>
+      <a href="https://voltagecontrol.com/articles/how-to-engage-quiet-participants-techniques-for-facilitators/">How to Engage Quiet Participants: Techniques for Facilitators<span>voltagecontrol.com</span></a>
+      <a href="https://www.apadivisions.org/division-49/publications/newsletter/group-psychologist/2013/04/co-therapist">The co-therapist model in groups — APA Division 49<span>apadivisions.org</span></a>
+      <a href="https://getzestlife.com/blog/co-facilitating-therapy-groups">How to Co-Facilitate a Therapy Group Effectively<span>getzestlife.com</span></a>
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0272735813000688">A meta-analytic review on treatment dropout in child and adolescent outpatient mental health care<span>sciencedirect.com</span></a>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3145079/">Predictors of Treatment Attrition Among an Outpatient Clinic Sample of Youths With Clinically Significant Anxiety<span>pmc.ncbi.nlm.nih.gov/articles/PMC3145079/</span></a>
+      <a href="https://www.aapc.com/codes/cpt-codes/90853">CPT® Code 90853 — group psychotherapy, participant cap and session length<span>aapc.com/codes/cpt-codes/90853</span></a>
+      <a href="https://media.api.sf.gov/documents/Group_Notes_Tip_Sheet_2024.cleaned.pdf">Group Therapy Notes Tip Sheet — San Francisco Dept. of Public Health<span>media.api.sf.gov</span></a>
+      <a href="https://www.icanotes.com/2018/04/25/how-to-create-a-group-therapy-note/">Group Therapy Notes: templates and required individualized portion<span>icanotes.com</span></a>
+      <a href="https://www.healthcareittoday.com/2026/04/22/the-documentation-burden-no-one-talks-about-why-behavioral-health-clinicians-spend-more-time-on-notes-than-any-other-specialty/">The Documentation Burden No One Talks About — Healthcare IT Today, Apr 2026<span>healthcareittoday.com</span></a>
+      <a href="https://www.childrenshospitals.org/content/public-policy/policy-position/take-action-to-boost-the-pediatric-behavioral-health-workforce-now">Pediatric behavioral health workforce shortage — Children's Hospital Association<span>childrenshospitals.org</span></a>
+      <a href="https://bhw.hrsa.gov/sites/default/files/bureau-health-workforce/data-research/Behavioral-Health-Workforce-Brief-2025.pdf">Behavioral Health Workforce Brief 2025 — HRSA<span>bhw.hrsa.gov</span></a>
+      <a href="https://www.carepatron.com/guides/token-economy-in-therapy">Token Economy in Therapy — mechanics, boards, backup reinforcers<span>carepatron.com</span></a>
+      <a href="https://www.aipc.net.au/articles/group-development-stages/">Group Development Stages — forming, storming, norming, performing, adjourning<span>aipc.net.au</span></a>
+      <a href="https://www.theraplatform.com/blog/360/social-skills-activities-through-telehealth">Social skills activities through telehealth — structure and engagement<span>theraplatform.com</span></a>
+      <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2023.1067047/full">Adapting CBT for youth anxiety: flexibility within fidelity — Frontiers in Psychiatry<span>frontiersin.org</span></a>
+      <a href="https://www.weareteachers.com/zones-of-regulation-activities/">Zones of Regulation — check-in practice and feelings thermometer<span>weareteachers.com</span></a>
+    </div>
+
+    <footer>
+      <p>Compiled for BrioCare, 29 August 2026. Claims marked <span class="tag tag-src">sourced</span> trace to the list above; the implications section is analysis, not clinical guidance. Session timings in section 04 are a composite drawn from multiple protocols and are labelled per row — no single published manual prescribes exactly this sequence at exactly these durations.</p>
+    </footer>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
