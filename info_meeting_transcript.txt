@@ -1,0 +1,1590 @@
+0:05
+like the customer signed and started working for two and now we are
+0:11
+>> just going to have you here one minute we'll get started
+0:21
+>> I don't know your name though you
+0:25
+>> know like my face like it's the only thing I've eaten all day so I'm kind of
+0:29
+like Yeah.
+0:54
+>> I'm ready to get started. Hey everyone. So, welcome. Really glad you could join
+0:58
+us. lunch here today. So, um there's an idea
+1:04
+that I personally and the broader AI fun team has excited about that we want to
+1:09
+share with you today that relates to AI and mental health care. Maybe quick
+1:14
+before we dive into specifics of the idea, I want to share with you some
+1:19
+broader context about how AI fund operates and why I want to invite all of
+1:22
+you to join us for lunch. So, Airun is a venture studio and what that means is um
+1:29
+we partner with entrepreneurs uh that are always DP technical. We only work
+1:34
+with DV technical founders. We partner with entrepreneurs to build exciting
+1:38
+startups in areas that we think are meaningful um good for the world and
+1:43
+could be fantastic businesses. So, as you can imagine, we come across a very
+1:49
+large number of startup ideas, right? We work with we work close to about a dozen
+1:52
+companies. Uh each of which sends us maybe you know three to maybe three to
+1:58
+500 ideas is one median per year. Uh our friends share as many ideas. Our
+2:03
+internal team sees a lot has a lot of internal ideas and so we see you know
+2:07
+maybe like I don't know 10,000 ideas a year or something. Um and what we do is
+2:11
+we take that 10,000 ideas and winnow it down to a small subset that we build
+2:17
+prototypes for um and show to prospect to customers local ourselves. That
+2:21
+further kills a lot of ideas and that results in a very small number of ideas
+2:28
+that survive that we get excited about and that we um try to invite in
+2:34
+engineers that we like and respect to try to have a conversation around to
+2:38
+share what we learn and hope is interesting to you. Hopefully also learn
+2:42
+from you. So the conversation maybe benefits everyone and then if you know
+2:46
+any of you are so moved to work with us on this that that that would be
+2:50
+fantastic too and what we spend a lot of time doing is um uh I I I feel I'm not
+2:56
+interested in building startups that do not demonstrate technical excellence. So
+3:00
+I think that engine technicians is super important and a lot of what we do is uh
+3:05
+sp spend the time thinking how to work with amazing engineers amazing AI
+3:10
+engineers and support them to be amazing founders and and hopefully CEO if that's
+3:17
+so so I want to share with you a little bit about the specific idea that I'm
+3:21
+actually very excited about. So um uh one of the first companies that AI fund
+3:26
+have worked on is um robot digital mental healthcare company and so uh over
+3:31
+the years I've actually personally learned a lot about mental health
+3:34
+because I was on the board of robot closely involved in that company um but
+3:39
+separately from Walmart which is taking a different direction I think there's an
+3:42
+opportunity to change mental health care and um in particular in definitely in
+3:49
+this area but also really around the United States um and some many parts of
+3:54
+the world there's a shortage of mental health care providers. Uh so we know for
+3:59
+example at university campuses you know unless you have an acute mental health
+4:04
+care need such as risk of harm to self or others um often there's like a three
+4:09
+month waiting list before you even get to talk to human right um in Silicon
+4:14
+Valley if you have uh if you have the vertical to look at a lot of
+4:19
+opportunities we decided to focus on pediatric mental health care and it
+4:23
+turns out that if any of you have children you want to get them to see a
+4:26
+therapist is it's like boy they're all really busy. It's almost impossible to
+4:30
+find someone to to to see your kids and it's not just true for pediatric mental
+4:34
+health broadly for a lot of sectors of mental health care. But after um one of
+4:39
+the team members Jill who's not here and Alfredo did a lot of work looking at
+4:44
+different sectors we looked at pediatrics looked at teenagers also
+4:47
+looked at elderly for various reasons we think that pediatric may be the most
+4:52
+promising place to focus on and and and actually because I actually know you
+4:57
+know I'm not a therapist but actually know much more than oh something you
+5:02
+probably won't know when I went to college my number one career choice was
+5:06
+computer science AI So I did that. Um what most people don't know is I
+5:10
+actually had a second choice of career. It was a very distinct second choice
+5:14
+that I did not do which is uh my second choice of career was I thought I could
+5:18
+become a therapist which I did not do. I'm glad I became a computer scientist
+5:22
+but actually probably has spent a lot more time you know thinking about
+5:26
+therapy uh than than most of you would guess. And I'm I'm not in therapy. My
+5:32
+mind is fine actually for a long time. And um uh so it turns
+5:40
+out that for a lot of healthcare businesses the go to market is really
+5:44
+complicated by the FDA go to market. So frankly FDA approval I don't know yeah
+5:50
+let's raise 50 million bucks and plan to spend three years and maybe we'll get it
+5:53
+after that right and I've I've definitely worked on business a bit
+5:56
+because we did spend 50 million bucks and then we did not get it and boy that
+6:00
+was not fun. Um so what um we've been working on is how to carve out an
+6:08
+approach to mental health care that is legal, ethical, responsible and allows
+6:14
+us to go to market without this like 50 million bucks three year waiting
+6:18
+process. And we think that um there is a path of working with therapists and
+6:24
+operating under their license to help them scale to see many more patients by
+6:31
+helping them uh uh execute and facilitate effective group therapy. It
+6:38
+turns out that many people don't like group therapy because you kind of have
+6:41
+you know let's say dozen children see one therapist at a time and frankly it's
+6:45
+a juggle like you know talking to one patient is hard enough to 12 at the same
+6:49
+time group setting boy that's really tough but it turns out that therapists
+6:53
+in group therapy they will do things like hey everyone here's a journal you
+6:57
+know write in the journal about something that made you happy or here's
+7:00
+a little toy play with the toy uh for just reconvene. So therapists do use
+7:05
+tools to scale group therapy. And what we've been exploring building out is an
+7:11
+AI tool that lets a therapist execute motions like hey everyone I want you
+7:17
+under my direction as a therapist. I'm not a therapist under the therapist
+7:21
+direction to talk for five minutes to this AI avatar about something that made
+7:25
+you happy over the last week. Something you feel drast grateful for. And then
+7:29
+with AI transcribing, synthesizing, summarizing, I think this allows either
+7:36
+a software product that's a therapist tool of build a therapeutic bond with
+7:41
+the patient also synthesized data for the therapist to let them much more
+7:47
+effectively create a group therapy setting which fortunately is
+7:52
+insuranceable as well which is important economic consideration for helping
+7:56
+people at scale but also making sure that this is survival.
+7:59
+Um look at a few look at a few uh quite a few places. I think California is
+8:05
+promising for small scale. California is is not bad but also doesn't have
+8:09
+friendliest regulations for AI. Look seriously at the rectory landscape in
+8:13
+Texas and New York. I think there are a few geos we could go to but I think this
+8:17
+should promise a bit smaller to be built out that will hold patients is the most
+8:20
+important thing but also allow us to build a new type of clinical practice
+8:26
+kind of ser um services and software and start generating revenue relatively
+8:30
+quickly to deliver lower costs but higher um you know charge rate because
+8:36
+it could hold multiple people um uh therapy um uh and and grower
+8:44
+promise business right um I'm not a lawyer not a doctor all of the things we
+8:49
+do we are trying to be careful to double check with clinicians uh that we want to
+8:54
+operate under their guidance as well as lawyers will double check any of the
+8:57
+regry landscapes make firm decision on that from the research we've done and
+9:01
+the prototyping that our friends are doing this actually looks very promising
+9:04
+to me oh by the way our team will tell you I don't spend this much time
+9:07
+pitching those ideas usually you know like usually a team frankly drives this
+9:11
+much more ones I've actually been personally quite close doing quite very
+9:14
+very given you know my personal kind of affinity
+9:22
+some a lot of friends that are therapists I actually end up talking
+9:25
+with my friends about this too my friends are professional therapists so
+9:28
+far they universally like it uh and some have uh yeah some of them now work for
+9:35
+other they they've actually exited therapy and much better paid jobs but
+9:39
+one of my friends here they said yeah if I was still a therapist I'd love to sign
+9:42
+and try this but she now works at But so so I think it's exciting
+9:48
+conversation. So um my apologies I have to jump to another thing. Uh but I think
+9:53
+Alfredo is doing a ton of work on this. So I'll hand over to share more details
+9:58
+and really eager you know to to get people's collective feedback and see if
+10:02
+there's something big of it. But I think this is one that um uh I think could I I
+10:08
+think this one has a lot of potential and I'm really eager to um really you
+10:14
+know partner with the right engineer to go build out this product and we'll find
+10:18
+a therapist to work on us as well. But I think this is a lot of potential. This
+10:23
+is the kind of thing frankly a lot of startups you build it for you know two
+10:27
+years and then maybe you get a customer right this is one where I think if we
+10:31
+build it I'd love to be revenue generating within 12 weeks right so so
+10:36
+not not that not that revenue is the most important thing but it is I think I
+10:40
+hope we can build something and really demonstrate traction really in like
+10:45
+short time
+10:48
+>> thanks no wonder um he's right he particularly early and all of us are
+10:54
+very excited about this this idea. Couple things about what Andrew
+10:57
+mentioned I would like to highlight. It also helps clarify a little bit the idea
+11:01
+mostly also we would like to hear what do you think your question you have the
+11:05
+feedback but three points the first one is are very excited about this concept
+11:10
+that with AI have been popularized more of services as a software the idea here
+11:16
+is to not be a software provider to a clinic or to a therapist. The broader
+11:20
+idea of this startup would be to partner with a licensed therapist for us the the
+11:26
+startup to be able to provide this service of therapy. It also goes to the
+11:31
+second point which I believe is perhaps the most important one. This is not AI
+11:35
+therapy. That is a a concept that can be a little bit um ambiguous objective and
+11:41
+based on our research. There's also polarizing point of views if it's like
+11:45
+receiving therapy from artificial intelligence. That's definitely
+11:48
+something we want to be very careful and explicit that we are not aiming to do
+11:52
+that. This is therapy provided by a therapist but it's enabled and it's
+11:58
+enhanced by technology in this case of course artificial intelligence. So
+12:02
+mostly how we are also seeing it is using the assistance of AI to manage the
+12:07
+mechanics what Andrew was telling us the juggling. Imagine right now if you're
+12:11
+moderating a meeting with adults that everybody's in person. Now imagine the
+12:15
+complexities of when you're doing it with not even like 10 like say four or
+12:19
+five kids tele health remotely that's complex and that's one of the biggest
+12:24
+challenges that therapists face right now. We also believe that when we assist
+12:29
+therapists with these kind of mechanics and a lot of the administrative process
+12:33
+they have to go like for example making sure everybody's online then the
+12:36
+reporting making sure they follow up with the parents we can als we can allow
+12:40
+and enhance therapies to also scale because right now they really cannot
+12:45
+treat more patients and as was telling that's a bottleneck but then maybe we
+12:48
+can start thinking of um group therapy in groups that are are more than six to
+12:54
+eight groups we could even start thinking something more of like 10 to of
+12:57
+children eventually. And I think the last point that um we feel strongly
+13:03
+about is initially we would like to test this as telly health. One of also the
+13:08
+biggest challenges is making sure everybody gets to the same place at the
+13:12
+same time and also sometimes it can be intimidating for a kid to get outside of
+13:17
+their natural or their normal um ecosystem and going into into a therapy
+13:22
+room. So these three points are things where we feel strongly but it's also
+13:26
+important to highlight that we don't have all the answers and that's also
+13:30
+going to be part of the program. H there's so many questions that we need
+13:34
+to be validating all of these right now it's based on our initial research and
+13:37
+prototyping but that's mainly also the goal of today's sessions. So now let's
+13:42
+go into like the really interesting part of it. Would love to hear your initial
+13:45
+reactions, your questions. what do you think about the this opportunity and
+13:49
+let's try to make sure this is a collaborative discussion because you
+13:52
+ultimately will be building this together with you. So
+13:56
+let's start.
+13:57
+>> What are the technical challenges that that you're
+14:01
+you're actually working on for this?
+14:05
+>> There are several technical challenges. I can't even imagine. And you are the
+14:08
+you're going to be the technical expert at least really like answering
+14:11
+concretely on my side building the prototype
+14:15
+this is a multi like ideally if you think about the dynamic this is a
+14:18
+multiplayer setting. So most of the AI that we're maybe used to be doing it's a
+14:25
+single player and it's someone interacting with system or a software in
+14:29
+here because of different reasons but also because one of the biggest
+14:33
+challenges that kids face is social anxiety having multiple players or
+14:38
+multiple in this case kids interacting and therapist at the same time to me has
+14:42
+been a a challenge. So there's like this complexity of managing multiple
+14:46
+sessions, multiple states, making sure everyone is engaged. I think yesterday
+14:50
+we were trying the prototype with the team and I really asked the team and
+14:53
+everybody was like seeing something different in their screen. So
+14:56
+technically I think that's a little bit different than other types of of
+14:59
+prototypes and again all the complexities of technically making sure
+15:03
+that we do accurate management of the personal data information. We are going
+15:06
+to be dealing with information. This is also particular use uh user that is
+15:11
+kids. So I think also their governance is relevant but being fully transparent
+15:15
+right now we've been mostly focused on the idea problem and validation I think
+15:19
+the technical challenges that's also the part where we're hoping that and you can
+15:22
+help us also.
+15:23
+>> Yes sir.
+15:24
+>> Yeah. So uh is it fair to say that the ultimate northstar of this potential
+15:30
+company is pediatric behavioral therapy.
+15:34
+>> I missed the second part of the question there.
+15:37
+>> What's the northstar of this idea? I said it's that
+15:40
+>> yeah it it's limited to pediatric behavioral therapy of some kind.
+15:45
+>> That's our initial
+15:46
+>> that's the it's the first wedge product.
+15:49
+>> Yes.
+15:49
+>> I I'm not sure if it's behavioral. I'm not a therapist.
+15:52
+>> Okay.
+15:53
+>> But yes, right now the initial scope and wedge because it's also we have found
+15:57
+with the research the opportunity also larger than is pediatric group therapy.
+16:04
+We would be partnering and it's part of this project to hire and to partner with
+16:08
+a therapist to find out to figure out and for them an expert to decide what's
+16:12
+the right type of therapy. I know there's multiple types of therapy. It's
+16:17
+behavioral, it's psychoactual and that's really something that I'm not an expert.
+16:21
+Um
+16:22
+>> so so eventually does it expand into a mental health company? Is that the idea?
+16:28
+I believe the idea is we're building a startup and a big startup being fully
+16:33
+transparent. Um with action comes learning right now what we have is this
+16:39
+initial starting point but I do not see why this will once we prove this and
+16:43
+it's working the general concept is applicable right now with artificial
+16:47
+intelligence what we can do and I think most of the most promising applications
+16:50
+it's empowering services and professionals to scale. So I do not see
+16:54
+why should this just stay in in behavioral group therapy for for
+16:59
+children. But right now also being incredibly transparent we try to be
+17:04
+focus into this into this space.
+17:06
+>> You mentioned that these are the biggest problems. It means that fair to say that
+17:10
+you've actually validated this with a few therapists.
+17:13
+>> We've done research. Yes, we've done research. It's also coming from um as
+17:19
+mentioned uh the work that the team has done with
+17:23
+wot uh wot um was a company in the kind of therapy
+17:29
+space and so out of the learnings from the robot experience this idea came out
+17:33
+of that I was and this idea validated with the robot space.
+17:37
+>> Cool. Thank you. What's the age group target age group is
+17:43
+it under teen like 2 to 13
+17:46
+>> the initial that we like first of all all of these are initial assumptions
+17:52
+>> part of the role and part of the residency is validating all of these
+17:56
+what we have found right now the initial one is K12 so it's something like 6 to
+18:02
+12 okay yes
+18:04
+>> 6 years to 12 years old yes okay before and then the second question is
+18:11
+what happens right now what what is AI going to fill are in the group therapy
+18:16
+I'm assuming therapists ask kids to do something write a log and they manually
+18:22
+review it is AI doing something non-existing or is is AI facilitating
+18:28
+something that already happens
+18:30
+>> to my knowledge right now all of the operational burden lies in the therapist
+18:36
+so they're the ones who need to make sure that everyone is engage. They are
+18:40
+the ones facilitating the the session. They are the ones also paying attention
+18:45
+and they're also the ones following up the administrative component of it. So
+18:50
+yeah, right now at least to my knowledge that's how it's been working. There's
+18:54
+other players and we have a competitive benchmark that they offer different
+18:58
+kinds of of services and support but we will need to further research as well to
+19:03
+understand how is that that working right now.
+19:05
+>> I see. But just to clarify, it sounded like this particular idea is going to do
+19:10
+synthesis of what kids write uh in develop a relationship or
+19:16
+something. Is that the main pain point you're solving for or more than that?
+19:20
+>> There's multiple pain points in the journey.
+19:23
+>> Okay.
+19:23
+>> One of the biggest one is the facilitation.
+19:27
+>> Facilitation.
+19:28
+>> Yes, I can. The other one and this is one pain point number one with our
+19:32
+survey uh parents making sure that every kid in the session is having even
+19:39
+participation. Okay,
+19:40
+>> similar to the challenge that we might be facing in a moment, sometimes in
+19:43
+social settings, some people participate more than others and parents are highly
+19:47
+sensitive to that and kids as well, especially if the kid is going to group
+19:50
+therapy likely it's to work on social anxiety and based on their experience in
+19:55
+there, especially the first ones. It can be good or pos good or bad. It's really
+19:59
+hard for the for the therapist to keep track
+20:02
+>> into who's been participating more or not. they try their best and they're
+20:05
+experts but also making sure that there's equal and even participation.
+20:10
+So tracking engagement and then once also the session is over helping with
+20:15
+the followup which is synthesis and reporting not only for for the therapist
+20:21
+but also many times there's also a reporting and an interaction directly
+20:24
+with the part but again what we're thinking about is service company
+20:29
+service as a software. So ideally it's how can we apply and use artificial
+20:33
+intelligence in every single one of the touch points of the whole journey of
+20:37
+providing the the right service.
+20:40
+>> You had the opportunity.
+20:41
+>> Yeah. Um I I wanted to take a step back just to maybe ground the conversation
+20:44
+your prototype that you guys have built so far. Um kind of like could you
+20:49
+describe the logistics of what what the vision is? kind of like it's like if
+20:53
+there's a therapist and then there's a couple of you know the kids each of the
+20:57
+kids is staring at a like a screen that looks like a zoom window. Is that kind
+21:01
+of what that might be like and then there may be a like maybe one of the
+21:04
+windows is uh is the AI interface for the kid. Yeah, maybe just curious what
+21:09
+that looks like so that we can Yeah,
+21:11
+>> I could show it to you. I want to share it in a moment also. Oh, I see. I don't
+21:14
+want to bias everyone because again like this is based on we work in several
+21:18
+project and also based on what with the research I believe that is promising
+21:23
+direction but to answer concretely as well yes how how right now it's been
+21:28
+prototyped you can think about two types of user one is a therapist the other one
+21:33
+is a kid
+21:34
+>> as a therapist when you join you have a therapist panel which is something they
+21:38
+do not have right now the therapist panel you not only have like a zoom
+21:42
+meeting he has a view of all the kids. You also have controls in which you are
+21:47
+seeing real time the engagement tracking of all the kids.
+21:51
+>> You can also manage, mute and unmute different kids because it can be
+21:54
+something chaos. And right now also like a very simple uh AI assisted prompts,
+22:00
+activities, turns, nudging which you can share uh feedback to one of the kids
+22:05
+like for example it's Andy's turn, it's Andrew's turn. and each kid is receiving
+22:10
+in their own site um some direction it's your turn unmute yourself and tell us
+22:16
+how are you feeling etc etc I think also an next iteration I would like to do
+22:20
+part of like what I'm going to prescribe of having kind of like breakout rooms
+22:25
+and talk and discuss with your pet how are you feeling this kind of like
+22:28
+distributed parallel session and on this on the parallel side on the user that is
+22:33
+a kid it's a very simple very intuitive also even engaging uh interface place
+22:38
+where you can be talking, listening and also getting some prompts. And if the
+22:42
+kid in some way doesn't want to necessarily talk or speak, they can also
+22:47
+like just tap to do like some feelings uh tapping. Again, this is my prototype.
+22:52
+It's the vision that I had. I would like for all of you and that's part of the
+22:55
+process as well that you're going to be doing a a build challenge. Um but also
+23:00
+it's also like at least how we are envisioning it right now. It's a
+23:04
+prototype. The main goal is to test it, see it, validate it and especially once
+23:09
+we have also the clinician partner with a therapist to make sure that what we
+23:13
+are offering as tools uh complements the
+23:17
+>> this is definitely online right it's not face to face with technology
+23:22
+>> yes our initial vision nothing is set in stone and that's why like we're hoping
+23:28
+for you guys to answer your question is not AA therapy it's a assisted therapy
+23:34
+Tell health which is online not in person and it's pediatric group therapy
+23:39
+not one one
+23:40
+>> but if you had to look at like what it's replacing is there already a an existing
+23:48
+format that a therapist uses which and is it like a similar like kids in front
+23:54
+of screen and this would kind of replace that?
+23:56
+>> No, there's already there's already players offering group therapy online.
+24:02
+Not aiming to replace it. If we're able to speak
+24:07
+>> I have a question about the product research you have done. Uh one is on the
+24:12
+product visibility the other is on the competency. So for the physibility I
+24:17
+assume your scenario will be using AI coordinates like discussion among group
+24:21
+of kids uh and also you have the surace as human to intervent or overrides. So
+24:28
+this kind of use case probably uh I I'm not working on the audio model yet but I
+24:33
+was thinking to probably use GPD real time. Um I'm not sure whether this model
+24:38
+is feasible to handle this use case because the model probably trained by
+24:42
+adults mostly not a special kind of kids. Uh so is there any special
+24:47
+challenges actually are resolvable by the technology. So uh that's kind of my
+24:52
+first question and the second one is assuming this technology are solvable
+24:56
+and we want to build this software in 12 weeks and we want to put on market then
+25:01
+what be the competency assuming like we just have a couple engineers can build
+25:05
+in such a fast pace then what will be the this company or this products
+25:09
+competency to compete with wider markets.
+25:13
+>> Okay first I'm going to answer the first one
+25:16
+and then I'll need you to give me the second one. So the first one is
+25:19
+technological feasibility. Right now we have the idea high level and we have a
+25:23
+prototype rough prototype. Part of what we'll need to do as we
+25:28
+start working and getting the requirements of the product is to
+25:31
+validate the technical visibility. We are personally incredibly bullish to be
+25:35
+honest because voice AI has significantly improved recently. Yes,
+25:40
+likely it's been trained in adults but and in other events some people have
+25:45
+surfaced that sometimes understanding kids is complex. We are not aiming to
+25:49
+replace the therapist. So as long as also like the therapist can also
+25:53
+understand I think that that's one component but I believe at least we're
+25:57
+very bullish that with current and modern development of technology uh this
+26:01
+is much more also in managing the mechanics of how does the interaction
+26:05
+multiple players work. uh we will need to validate that our validation of the
+26:10
+of the idea right now hasn't gone that deeper into technology but I believe
+26:14
+that every single couple weeks we're seeing new developments and as you are
+26:16
+seeing duplex models in artificial intelligence that I believe could really
+26:20
+make this even more and more and more promising that's also why I believe
+26:23
+there's a good time to market right now because the developments are happening
+26:27
+as we speak and can you repeat me please the second question
+26:30
+>> yes she's assuming the technology is mature even now in real time to be real
+26:37
+time but can be combined with other maybe open source together to build a
+26:40
+product in 12 weeks then when we launch this product to market then will be the
+26:46
+competency of this product assuming like we can build a small group in a fast
+26:51
+pace there might be other big companies where we may jump into this market yeah
+26:55
+so yes I think it's part of the challenge and that's why like this this
+27:00
+is a a founder kind of challenge it's not just about the product that we will
+27:05
+be building definitely as Andrew mentioned our edge and where we want to
+27:09
+let focus in is is in technical experts and we also need to and we need to
+27:14
+figure out and that's part of the resency because we'll partner with you
+27:17
+the go to market the pricing securing who's going to be the right um design
+27:22
+partners in this one I believe it's kind of exciting because since we are
+27:25
+planning to have uh therapist working with us feedback loops will be will be
+27:29
+faster but yes ultimately the goal is after the 12 weeks a startup is found
+27:34
+there and and for many several years after that figure out and navigate the
+27:38
+challenges of the startup. So yes, we'll need to to figure that out. We have
+27:41
+initial competitive uh analysis of who's offering this what's the market size the
+27:46
+market size for pediatric group health and for behavioral health etc. And
+27:50
+definitely it's it's promising. So Andrew mentioned it a little bit, but
+27:53
+this one in particular has the potential of having a a small J curve which is
+27:58
+like the amount of investment you need to do to build a working prototype
+28:02
+before you start seeing revenue. Since it's like an end to end services as well
+28:06
+and the demand also for these kind of services is significant and the
+28:09
+bottleneck right now is supply, we believe that this can be starting to
+28:12
+become a really good business really quickly on top of the broader mission
+28:16
+whichever itself.
+28:17
+>> Thank you.
+28:18
+>> Thank you. Um in terms of value in the market uh
+28:22
+you mentioned that supply is a big challenge and I'm assuming therapists
+28:27
+are doing some extra work beyond therapy in after the or session. So how much
+28:33
+that work is it let's say it's double the therapy session. So at best this
+28:38
+solution can like increase the market by 2x right like it it's not like a 10x
+28:44
+100x solution. So how do you see the value proposition if all the technical
+28:49
+aspects are are solved?
+28:51
+>> Value proposition for for the
+28:53
+>> from market perspective uh like let's say I'm not sure how big uh uh the
+29:01
+teenager behavioral health market is. Uh but there are n number of therapists.
+29:08
+They're putting y hours today. At best we can double that
+29:14
+with technology because therapist is still sitting in the session
+29:18
+>> with the same set of kids. It's just they might need to do less pre and post
+29:21
+work. So we are making those number of hours available as a whole to why at
+29:28
+best.
+29:29
+>> So what is that market size today and then like
+29:33
+>> we can yeah I'll I'll pause at this question.
+29:36
+>> Um be fully transparent. I don't have the numbers right now to answer
+29:40
+concretely how much are we extending it. Definitely what we see is the number
+29:44
+three pain point for parents is very long waiting times for them to get
+29:49
+access to therapy. What we are thinking that this can
+29:54
+really enable is two things. The first one is to increase the quality of the
+29:57
+therapy because the number one pain point is equal and even participation.
+30:02
+So first quality and the second one is as a premise when the therapist can now
+30:08
+juggle more participants at the same time
+30:11
+increasing from six to eight which is right now the average size of a group to
+30:16
+something like 10 to 12. So doing some rough math in the same session if that's
+30:21
+proven that it's we're able to scale it that way while even maintaining or
+30:25
+increasing the quality we could even be doubting the capacity of of therapists.
+30:30
+What is also important to highlight, we are not aiming for this to be a tool
+30:34
+that we sell to therapists. The goal is to hire therapists and to offer this as
+30:38
+a service. So, we would also need to do some user discovery with therapist as as
+30:43
+you're saying, how do they work right now? Do they do this part-time or not
+30:47
+part-time? Because this would be like a full-time job of a therapist who's
+30:49
+working for a startup. And we need to to do all of this assumptions. Was I able
+30:54
+to answer at least part of your question?
+30:57
+>> Yes. Yes. Thank you. Uh and like from parents value proposition like the maybe
+31:03
+there is more opportunity in just making the therapy s significantly better. Uh
+31:09
+what aspect you I think you alluded to already that engagement of kids might be
+31:14
+less today because therapists cannot pay attention as much. What are like the
+31:18
+biggest pain points? uh uh like is this the only one or are there
+31:24
+>> again all of this will need to be validated
+31:26
+>> and there needs to be customer discovery based on the research that I run the
+31:30
+number one pain point right now is making sure every child gets equal
+31:33
+opportunity to participate.
+31:34
+>> Mhm.
+31:35
+>> The number two is that the therapist are able to also give individual attention
+31:38
+and of attention to the to children. Number two is that sessions are also
+31:42
+engaging and fun for for the child. uh some of the at least interviews that
+31:47
+I heard. There were many stories about like the kid having a bad first
+31:51
+experience and that already was very hard and challenging and after that it
+31:55
+was tricky and as a parent what you heard the most is first of all for this
+31:59
+to be effective and a good experience for your kid and then there's also price
+32:02
+sensitivity as well there's whole entire user discovery that we won't have time
+32:08
+to cover right now but this is what the
+32:10
+>> say research is it coming from research papers or like some
+32:14
+>> I run research
+32:15
+>> conversation with parents
+32:17
+>> I write conversations experts.
+32:21
+>> Yes. So my question how are you guys solving the data problem like if if this
+32:26
+is UI for kids because you know uh therapy sign and NDA like they don't
+32:30
+disclose any data. So how are you better understanding kids requirement and
+32:36
+understanding their human psychology like whether should you nudge them or
+32:41
+should you not nudge them like how are you understanding those behaviors?
+32:46
+are not right now. It's part of the challenge and I think part of the the
+32:49
+opportunity is clearly understanding the regulation and also clearly
+32:54
+understanding the research into what's effective. I believe in order to solve
+32:57
+these questions the partnership with the therapist is going to be essential
+33:01
+because they are also the ones that experts into what's the best type of
+33:05
+data to analyze and the regulation it's also what's the type of data that we can
+33:09
+actually
+33:10
+>> handle store and analyze.
+33:12
+>> Yeah. like I'm not sure because for our company we are also using open-source
+33:17
+data from psych forums. So we are working on the space of customer
+33:21
+behavior. We are trying to understand and we also partnered with UC Berkeley
+33:24
+who is giving us data. So maybe that can be an avenue where you guys can explore
+33:30
+okay to have those data if they are not open source so that can help to validate
+33:35
+the tech and uh people who have already worked on these type of things before.
+33:41
+>> Absolutely. Yes. Absolutely. Those are great ideas for us to to look at.
+33:46
+>> So I think what you're trying to say here is that you're trying to gify the
+33:49
+experience for the kids, right? That they come in and they look at the screen
+33:53
+and sort of like have some data that that the you know um therapists can
+33:57
+analyze but what is the qualitative outcome of this? So I'm assuming there
+34:01
+would be multiple tasks right and you somehow are analyzing that in the end
+34:06
+maybe over sessions and you have an outcome. So what is the larger outcome?
+34:10
+Is it only uh to have like uh you know to increase the engagement so that like
+34:15
+a lot of people have access to this session? Uh how about the quality? Do
+34:20
+you need to have like therapist uh evaluating all the tasks initially? How
+34:24
+aggressive is the feedback loop going to be initially? Because it looks like it's
+34:28
+a it's a very proper uh clinical task that not like engineers cannot do by
+34:32
+themselves, right? So to assess the quality of the system, you need that uh
+34:36
+expertise, right? So what's the plan? And I mean do you think that the initial
+34:40
+team should also have people who would really sit and do that um for for this
+34:44
+company? What is the larger vision of the food feedback? U
+34:48
+>> I think absolutely you nailed it. An engineer itself cannot solve this. The
+34:53
+larger outcome of the service when you offer therapy is an an improvement in in
+34:59
+behavior and and and condition. So really as you were saying like yes we
+35:04
+are using technology engagement kind of like ways to keep the attention for for
+35:08
+the children but the biggest number one goal is to provide effective therapy
+35:13
+services depending also on what are they meant for generally uh the most common
+35:20
+one at least for these kids in this stage and for for the ones in which are
+35:23
+we using in therapy is anxiety but I'm not a therapist so they're not then the
+35:28
+expert that's going to help us figure out how do we measure effectiveness, how
+35:34
+how are we making sure that it's working or not is the fact that we partnering
+35:38
+with you with the technical experts. So as you were saying, you're definitely
+35:40
+the one who this project in particular and that's why I'm especially excited to
+35:45
+be honest has a unique nature that other projects do not have that you're also
+35:49
+going to be partnering with a therapist and it's going to be uh this feedback
+35:53
+loop into okay technologically how are we making sure that we're driving the
+35:58
+behavioral improvements but I not a therapist I cannot give you the
+36:03
+specifics into how are we going to measure that which are the systems what
+36:06
+what there's definitely already in place is that there's a lot of I don't know
+36:10
+like research but particular programs of group therapy some of them last for
+36:15
+specific time some of them are with the same groups sometime they change it and
+36:19
+they have already developed their own methodology to how to measure impact or
+36:22
+not and at least the the public providers seems that it's a very
+36:25
+effective very effective trick
+36:28
+>> also another question would be what is a goto market I know that you said that
+36:32
+this is still a pilot right as you figure out the goto market strategy for
+36:35
+this but uh is it like you build a platform and sort of then like onboard
+36:40
+um you know therapist onto it and get people to adopt it. Is it going to be a
+36:44
+customerf facing product or is it going to be that there's an aggregator that
+36:48
+you sort of integrate with and sort of people just come onto that aggregator
+36:52
+and you get the customer base. Is it like a B2C or a B2B um company? me if
+36:58
+you have ideas. I know
+36:59
+>> you mentioned it but definitely like as we have been researching on this uh
+37:02
+particularly specifically go to market uh understanding the regulations but
+37:06
+right now where we see the regulation is and also the market is promising there's
+37:10
+good regulation but also there's openness to develop technology is
+37:15
+California uh he's from 6 to 12 years and we're
+37:18
+thinking about it as a B2C again like this is also based on I'll be happy to
+37:23
+share with you as followup some of the research or papers that investors are
+37:28
+seeing right now that really a big economical opportunities to offer end to
+37:32
+end service. So instead of partnering with a service provider, this idea of
+37:36
+the startup will be providing the complete service and the best way to add
+37:40
+is BTC. There's also opportunities to do it directly with schools, educational
+37:43
+institutions and that will be part of the research as well of the decisions
+37:47
+that you'll be doing during the residency or at least how I see it right
+37:51
+now would be
+37:53
+>> and just another question uh the product itself is going to the here right
+37:57
+because I think Andrew also talked about this to be um a very deeply technical
+38:02
+product. So why do you think somebody else cannot come in and sort of you know
+38:06
+do this um for solve the problem? uh so what is going to be that fundamental
+38:11
+mode for the company
+38:13
+>> that's part of what the things that we will need to be to be defining and to be
+38:17
+identifying I personally believe yes a technical excellence in the product is
+38:21
+essential I also believe that once we do this partnering directly with a subject
+38:26
+matter expert we can identify the challenges in their methodology that
+38:30
+there could be improved or differentiated so I think why can
+38:35
+somebody else cannot come and build it I mean that's always kind of like a
+38:39
+tricky question but I I am very bullish into the opportunity of partnering
+38:44
+deeply technical experts artificial intelligence with a subject matter
+38:48
+expert in in in the clinical trait and I think that's something we don't see that
+38:52
+commonly like when we get experts into two very different uh worlds focusing
+38:58
+specifically on this on a particular problem well defined I believe that's
+39:01
+that's where we can really develop something differential
+39:05
+>> expertise just jump on expertise that teams built up for past years with a lot
+39:12
+as well. So we're bringing that kind of build into has built um and then
+39:17
+secondly we do have um through Andrew um relationships with therapists as well.
+39:22
+So we bring that and then of course the rest of it is from the subject matter
+39:27
+experts in this room to bring to
+39:30
+>> data is the mode here. I think that can be a very big mode like if you guys can
+39:35
+have those data like that's very hard to get even after paying money is very
+39:40
+tough. So I think that can be a really big point.
+39:44
+I think one of the companies it could be the legal um because every states or
+39:49
+maybe even every country will have different practice on this and
+39:53
+technology perspective you can like the AI speak right the things but it won't
+39:58
+be 100 accurate right how to avoid those like corner cases right the AI probably
+40:04
+say oh you cannot do this to a kid you're a bad kid right they still want
+40:08
+to speak out that would be like a high risk one thing is how we can let the
+40:13
+solution to avoid these situations and then second once this happens do we have
+40:17
+some legal solutions to like a cover or like um handle this kind of case I think
+40:24
+those will be like could be one call competence office company
+40:29
+>> the um the service model you mentioned BTOC is that going to be like
+40:33
+marketplace where therapists sign up and patients parents sign up is you
+40:38
+mentioned it's a service can you explain a little bit more
+40:40
+>> we specifically on the question of the marketplace like there's decision made
+40:44
+in there. It's part of the the founder to make that decision. What what I mean
+40:48
+as a service is we're trying to think about not offering like a SAS to a
+40:54
+therapy
+40:55
+>> like company.
+40:56
+>> It's actually offering a service of we provide therapy services.
+41:01
+>> So that's why it's like it's like end to end the therapy component like if a kid
+41:06
+or a family need therapy services they can come to this startup. It's not like
+41:10
+they go to another company that then they this second company is paying for
+41:14
+the technology. That's what we mean.
+41:16
+>> So you won't be selling the software to therapist organization. You would be
+41:21
+hosting a service where therapist organization will sign up put their
+41:25
+therapist on.
+41:26
+>> We I mean it's part of like the nothing is set in stone.
+41:30
+>> Okay.
+41:30
+>> But how we think about it is also hiring therapist.
+41:33
+>> So you'll hire so they'll do like they'll work for this company or they'll
+41:37
+get paid based on
+41:38
+>> Yes. But if again like if while working on this you decide and discover a
+41:42
+different business model is much more promising nothing is set in stone like
+41:47
+right now our goal is
+41:48
+>> to share with you what are like opinions based on the
+41:51
+>> research program that we've done as a starting point the ones who will figure
+41:55
+all of this out are are you guys
+41:58
+>> based on your I know you guys pretty early but based on your research what
+42:02
+are the key hypothesis that you need to validate not just from technical side
+42:06
+even from product or Then I have second question based on
+42:10
+first cancer.
+42:11
+>> There are several of them. I think there's several of them but I think the
+42:15
+first one is really validating if with voice and different types of
+42:21
+artificial intelligence a better and higher quality therapy can be offered
+42:26
+and it's compelling and signally better. Then the second one is also if this can
+42:30
+actually scale like if we can increase the number of of kids taking therapy and
+42:39
+at least to me like the ones that I keep on thinking about it like those two like
+42:43
+and also like the effectiveness if like this kind of dynamic which like maybe
+42:49
+it's not the same as getting in the same room with other kids and many times that
+42:54
+exposure is also what helps. So validating the impact and effectiveness
+42:57
+of the service.
+42:58
+>> So I don't want
+42:59
+>> there's a lot of of assumptions that need to evaluate.
+43:01
+>> Yeah. So that that was the one on my mind. The thing I want to tie back is
+43:05
+like it's it's very hard to get kids to be engaged and when kids are social
+43:10
+anxiety it's even harder. Uh I don't know how the group sessions work. I have
+43:13
+some experience with like one-on-one. Uh and you mentioned like a lot of
+43:18
+people drop out because of the first experience, right? like because the kids
+43:24
+don't have so in your mind like how how do you cross
+43:31
+that gap because that I I'm not able to think how AI can solve that like AI can
+43:36
+solve to an extent but that it's an it's an engagement problem
+43:41
+>> well it's an engagement problem I think I wrong many times are addressed through
+43:45
+experimentation so all of this is my hypothesis
+43:49
+um I believe there's a big component in user interface
+43:53
+that particularly with kids can make a difference. I also believe there's a
+43:57
+good component in customization and in developing relationships with
+44:02
+particular characters or things that you mentioned gamification but kids and
+44:06
+general users are developing relationship with digital characters
+44:09
+like many times also in therapy like some of the things that we've seen like
+44:13
+they allow you like to bring your animal or your pet but there's like small
+44:16
+proven methodologies that drive higher engagement and also relationship and
+44:21
+attachment on the side of the field. So that would need to be part of the
+44:25
+research that we need to be doing and experimenting into what can it change.
+44:29
+But definitely at least I think right now with a prototype that has much more
+44:34
+simpler user interface and engaging than a regular zoom. I believe that's already
+44:38
+at least like an improvement. Now we need to validate and test which are the
+44:42
+specifics that we need to be doing for for it to work. Also I don't want to
+44:47
+like skip it. You mention other assumptions. I think other assumptions
+44:50
+as well. I mean we've done research. it suggests that it's it's it's there but
+44:55
+um how is this received by parts? I think at least in our research it was
+45:00
+like no actually like I like that there's AI helping the therapist for the
+45:05
+therapist to perform better but yes definitely part of the of the assumption
+45:08
+is like assess how is this received not only by the actual user the economic
+45:12
+user but it's very exciting it's answering all of those questions in
+45:17
+every intellectually on the spot
+45:21
+>> yeah so you would imagine that you need to have a therapist partnering with you
+45:27
+are you able to leverage I mean you mentioned robot a couple of times. Are
+45:31
+you able to leverage the expertise you have there and the technology that's
+45:35
+been built in in in that company for uh for this uh
+45:42
+specific
+45:43
+>> don't worry uh the question is if we would be able to leverage the expertise
+45:47
+and also technology that was already developed for WOT. Um, we're gonna
+45:53
+leverage expertise that Andrew has. Um, but robot was shut down, so we're not
+45:57
+going to there's no IP there anymore. Thank you.
+46:00
+>> Can you talk about the team structure? So, it's one AI engineer or AI engineer
+46:06
+partnering with therapist. What does the team look like usually for setup
+46:10
+engagements? In these engagements, the standard one
+46:14
+is an engineering residence working and being supported by the product builders
+46:20
+and the technical builders of AI fund during the residency. Correct me if I'm
+46:26
+wrong. In this case, it's an exception because of the nature of the project.
+46:30
+They're also aiming to have uh therapist therapist in residence partner with
+46:35
+engineering residents because we require this very specific technology
+46:40
+>> plus flower builders and others that I
+46:42
+>> say that the residence is designed such that it is like a a quote unquote solo
+46:47
+build. You have you're able to leverage from like a strate like a a strategy
+46:51
+standpoint the product builders and uh structurally, right? like weekly sprint
+46:56
+meetings and stuff like that but it's not like you will have engineering
+46:59
+resources or something like that assigned to you does that answer the
+47:02
+question
+47:02
+>> okay in this case it won't be well other cases
+47:05
+>> all all of all of the residencies are are yeah
+47:09
+>> it's also based on the premise that with AI at least for the initial stages of
+47:12
+startup we can build much more and iterate faster that's a perfect segue
+47:19
+Mike
+47:19
+>> anything sure I'm sorry if you have to answer
+47:23
+this again But I want to know like who are the target audience like are you
+47:27
+guys making the therapist job much easier or are you guys making therapy
+47:31
+much more uh open to anyone.
+47:38
+>> It's part of the things that we need to be defined for at least with what we
+47:41
+have right now. I believe that we are hoping to make therapist job
+47:46
+simpler and also more scalable for them to be able to offer the service to
+47:49
+people. the AI won't be in the same room like without the therapist right
+47:53
+>> and no no no there there's no goal of replacing the therapist there's no goal
+47:58
+of uh AI giving therapy no this is a tool assisting the therapists and with
+48:03
+the premise that also therapist will be benefited because I would have more
+48:06
+tools to deliver their practice better in the same way when we can now enable
+48:11
+therapist to access more or to to serve more patients this is also helping us
+48:18
+increase the access to therapy because right now waiting times are
+48:21
+significantly higher and it's also expensive
+48:23
+>> also. Uh sorry followup question. So does does the AI have the capability of
+48:27
+vision or just a voice understanding?
+48:30
+>> It's up to the engineers.
+48:34
+>> I see. Um sorry I want to check what I'm envisioning. So based on everything
+48:40
+you've described what I'm envisioning is basically a video chat system because
+48:46
+it's not in person. So everyone logs into this video uh zoom like system
+48:51
+except it's not zoom because it has to be hea compliant because of health
+48:55
+related stuff in here. uh each kid who logs in gets some kind of a gamified
+49:01
+interface potentially, but at the same time you want to transcribe every kid's
+49:06
+speech so that you can build an art for their growth over time. And that means
+49:12
+you want child speech recognition which inherently is significantly worse than
+49:16
+adult speech recognition. Uh and uh the other problem with this whole approach
+49:22
+with scaling therapists through this video calling system is that you lose a
+49:26
+human connection to it. It's very different meeting a therapist
+49:30
+in person.
+49:31
+>> It's very different meeting them online. So, does this really scale, right? I
+49:37
+think these are some of the challenges right off the bat that perhaps start
+49:41
+thinking of.
+49:42
+>> Absolutely. And I hear you and that is the current direction. But again, once
+49:48
+in the program, if if if you identify that that's not the right direction, it
+49:53
+needs to go other place for the goal is to build a successful start.
+49:57
+So, so we are not set into a particular instance of the product. This is that
+50:00
+we're sharing with you. It's the one that we believe in right now based on
+50:04
+our experience and prototyping and research,
+50:07
+but the the knowledge that we will have compared to the one that a founder or
+50:11
+engineering residence will actually have working on this full-time is definitely
+50:14
+not going to be the same. Just just to clarify to like tell health is already a
+50:17
+category that exists, right? Like I don't think we're we're it's not
+50:21
+bringing tele health uh in healthcale that's already something that that
+50:25
+exists. I think it's just like the efficiency of the uh group therapy
+50:29
+sessions. Is that right?
+50:33
+>> The AI is not assisting anything with the patient. It's only assisting the in
+50:38
+insights to the
+50:40
+>> therapist, right?
+50:42
+>> Both.
+50:43
+>> Yeah.
+50:43
+>> So, it's going to speak to the patient as well.
+50:46
+>> It can speak to the patient or also it can be like acting while the patient is
+50:49
+interacting with a with a group. So when a therapist is speaking uh to the
+50:54
+patient and there's an AI also speaking to the patient wouldn't that uh like be
+51:01
+individual like therapist need to concentrate on
+51:06
+the patient right uh
+51:08
+>> there's multiple product specifics okay
+51:11
+>> one of the possibilities and it's also I'm exploring that one in the prototype
+51:15
+as well is having a kind of breakout rooms similar like in Zoom you can have
+51:19
+a breakout room having two or three other
+51:22
+what I believe could be incredibly exciting but again I don't want to bias
+51:25
+you too much but it's having breakout rooms where a patient is talking and
+51:29
+reflecting for 5 minutes with an AI for example and then we also have some
+51:33
+transcription and then we come back into the group therapy so there's like many
+51:37
+many ways in which this can can go in different directions
+51:41
+>> how do we evaluate this 12 week program success I mean ideally at the end if we
+51:47
+can form a company that would be perfect but that part probably is too high. So,
+51:52
+how do we define a proper success for this 12 week?
+51:55
+>> Yeah, it's a good question. I think it it for the residencies, it very much
+51:59
+depends on what the build is. I don't know. Um Andy, do you have uh any
+52:02
+insight to like what what the what success looks like at the end of 12
+52:06
+weeks for us?
+52:06
+>> Yeah. So, for these the 12 weeks that I did is we have an idea, we have a strong
+52:10
+point of view, we have identified a need and the 12 weeks to figure out this idea
+52:16
+that we have that we think will solve this need. Is it actually solving the
+52:20
+need? Is it getting into a product that users love that users will use that
+52:24
+actually solves their problem? And that will the answer depends on what the
+52:29
+actual build is and what the metrics look like are shifted for each build.
+52:33
+But for this build in particular, it's if we feel like we've got to we get to
+52:36
+the point where the children are getting served, the therapist is saying it's
+52:41
+solving their need and that's a really strong signal that this is um on the
+52:44
+path to grace and then we'll fun.
+52:47
+>> Thank you. Um, I know, uh, sorry, we got a I think
+52:51
+a bunch of us have a hard stop and Alfredo, I know, you have to jump. Um,
+52:55
+let me just, uh, run through the, uh, the next steps quickly. Uh, and then if
+52:58
+there's still time, I can answer some more questions. But, um, I will send
+53:01
+everybody, uh, that attended a follow-up email later today. Uh, and it will ask
+53:06
+if you want to sort of opt into the the evaluation process for the engineering
+53:10
+residence for for this idea. Um, just to give you guys an idea on what the rest
+53:15
+of the process looks like. It is pretty quick. Um so after today the the the
+53:19
+next step is essentially the a prompt that will say you know we uh we just
+53:23
+talked about this idea for an hour um build in the next 48 hours use whatever
+53:28
+AI tools you want coding tools you want build um a functional prototype for for
+53:33
+the idea um and it I I think it it does a couple of things like it it serves to
+53:37
+give us um some signal on directionally like how you're thinking about solving
+53:40
+the problem. Um and uh and I think for you it gives you an idea on like hey is
+53:44
+this even interesting to me? Is this something I do want to work on for the
+53:46
+next 12 or maybe even more weeks? Um, and it asks for like a, you know, a one
+53:51
+to two page PRD, a one to two page TDB, and just like I said, that functional
+53:55
+prototype. It doesn't have to have bells and whistles or anything, just a just
+53:58
+work. Um, and uh, and then you'll do like a a quick sort of uh, intake and
+54:02
+uh, and deep dive on what you've actually built. Um, right? So, it's uh
+54:07
+explaining trade-offs or constraints and you know maybe why you chose this over
+54:10
+that just so we can get a sense on how you actually think about uh designing
+54:13
+the the system software. Um and from there it's just a panel interview with
+54:18
+uh Andy is back there uh Eli our technology partner and uh and Andrew
+54:24
+which we can knock out basically all in one day. Um it is one like we hire one
+54:28
+person into this role. I know that's been a question in the past. Um yeah I I
+54:33
+know that's a super high level. I know I sent you guys a bunch of written
+54:35
+contexts, too. So, feel free to refer back to those FAQ docs. Um, or, you
+54:39
+know, just ping me if you have questions or want to jump on a poll.
+54:42
+>> Cool.
+54:44
+>> That that means he's not showing us a prototype. That would that would bias.
+54:48
+>> Yeah.
+54:49
+>> If you tell us then everybody's going to, including myself, it's going to
+54:53
+reproduce it.
+54:54
+>> Bias.
+54:55
+>> I don't know. I mean, I guess it's fine. Okay.
+54:59
+>> Yeah. Yeah. Sorry. Yeah. Let's Let's skip it for now. Um, okay. Thank you
+55:04
+everyone.
+55:10
+>> Yeah, thank you.
+55:13
+>> I was looking forward to demo but then after you
+55:18
+think about I get excited but I also bias the bias facing so many assumptions
+55:24
+that that it also takes away part of the weakness of
+55:26
+>> right. I think that part of the cool part about the self challenge is also
+55:29
+seeing how you're managing it.
+55:30
+>> Yeah. Yeah. That's why I don't want to
+55:32
+>> Yeah. I was like, "But why'd you bring it up?" No, I'm kidding. Because he said
+55:36
+he was we do, it's funny, like sometimes we will get into it if people really
+55:41
+want to see it. I think we do generally try to avoid it because Yeah. Yeah.
+55:46
+Yeah. Absolutely. I think
