@@ -1,0 +1,21 @@
+{
+  "name": "@briocare/worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "spike": "tsx src/spike-agent.ts dev",
+    "spike:talker": "tsx src/spike-talker.ts"
+  },
+  "dependencies": {
+    "@livekit/agents": "latest",
+    "@livekit/agents-plugin-openai": "latest",
+    "@livekit/rtc-node": "latest",
+    "dotenv": "^16.4.5",
+    "livekit-server-sdk": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0"
+  }
+}

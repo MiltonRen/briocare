@@ -11,7 +11,10 @@ Working memory for the agent across compressed conversations. Keep updated as st
 
 ## Key artifacts & files
 
-- PRD v0.8: `docs/prd.html` → artifact https://claude.ai/code/artifact/281e36ab-f9f8-4b3d-bf62-5e332090279b
+- PRD v0.9: `docs/prd.html` → artifact https://claude.ai/code/artifact/281e36ab-f9f8-4b3d-bf62-5e332090279b
+  - v0.9 = v0.8 + **7 riso-style illustrations** inlined as WebP data URIs, **no captions** (Milton: captions restated the adjacent prose). Alt text retained. Sources `docs/img/{1..7}.png` — all regenerated at a uniform ~2.4:1 — web copies `{1..7}.webp` (752 KB total; `cwebp -q 82 -resize 1800 0 -m 6`). Prompts + art direction: `docs/image-brief.md` — regenerate from there to keep the style consistent.
+  - Figure CSS = `figure.plate` only (paper-ground plate + thin rule, full measure; images get `brightness(.9)` in dark mode so they don't glare). Artifact favicon 🪑.
+  - Known nit: image 3 (§02) now reads as two people side by side rather than one person printed in two ink plates — weakens "a two-person job, staffed by one". Regenerate if it bothers a reviewer.
 - TDD v0.6 ("Reflexes, judgment, and a veto"): `docs/tdd.html` → artifact https://claude.ai/code/artifact/d38e028b-f753-449c-9723-84cd74ca3d9e
 - Field research: `research/pediatric-group-therapy.html`
 - **Doc convention**: each doc = hidden artifact body (`docs/.prd.artifact-body.html`) + standalone (`docs/prd.html` = body wrapped in doctype/head; regenerate with the small python wrapper script used throughout). Republish via Artifact tool with SAME file path → same URL. Bump version in mast-meta + footer each edit; label `prd-vX.Y`.
@@ -54,7 +57,8 @@ Core rules:
 ## Current state (done)
 
 - [x] Research, PRD v0.8, TDD v0.6 (incl. deployment section + design-journey appendix) — committed by Milton.
-- [x] `src/` workspace + `src/backend/convex/schema.ts` — 6 tables (sessions, participants, utterances, actions, agentIntents, flags), guideline-compliant index names (`by_sessionId`, `by_sessionId_and_state`, …), validated & deployed on **anonymous local Convex** (`npx convex dev --once`, no login; state in `backend/.convex/` + `.env.local`, gitignored).
+- [x] PRD v0.9 — 7 illustrations placed + republished (same artifact URL). **TDD still has no figures**; the four diagrams deliberately left for hand-authored SVG are listed at the bottom of `docs/image-brief.md` (therapist panel, airtime arithmetic, trigger→actor→gate, phase timeline).
+- [x] `src/` workspace + `src/backend/convex/schema.ts` — 6 tables (sessions, participants, utterances, actions, agentIntents, flags), guideline-compliant index names (`by_sessionId`, `by_sessionId_and_state`, …), validated & deployed on **Convex Cloud**: project `briocare`, team `milton-x-ren-gmail-com`, dev deployment **`zany-bee-795`** → dashboard https://dashboard.convex.dev/d/zany-bee-795 (Milton watches here while we develop). Reviewer path still = anonymous local (`npx convex dev` on a fresh clone, no account).
 - [x] Convex AI files installed (`backend/CLAUDE.md` → read `convex/_generated/ai/guidelines.md` before writing Convex code; skills in `backend/.claude/skills/`).
 - Schema notes: `agentIntentType` union is a **working set** (do_nothing, draw_out, re_engage, affirm, suggest_to_therapist, raise_flag, respond_to_cue, introduce, block, cut_off, link) — free to change while dev DB is empty. `raise_flag` rows are born `executed`.
 
@@ -62,13 +66,23 @@ Core rules:
 
 Walk step by step with Milton; check off as we go. 🧑 = needs Milton.
 
-### Phase 0 — accounts & spikes (do first, cheap de-risking)
-- [ ] 🧑 LiveKit Cloud account + project → get `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`
-- [ ] 🧑 OpenAI API key (his credits)
-- [ ] Put keys in `src/backend/.env.local` (Convex env vars via `npx convex env set`) and a `src/worker/.env` (gitignored)
-- [ ] **Spike A**: minimal agents-js worker — join a room, subscribe 2 participants' tracks, per-track Inference STT prints attributed finals, publish a TTS track audible in a browser tab. Verify multi-track pattern + current API names (agents-js ~v1.6, Inference model strings).
-- [ ] **Spike B**: Convex action → OpenAI structured output (zod/JSON schema) round-trip.
-- [ ] 🧑 Optional: `/plugin install convex@claude-plugins-official` in interactive terminal.
+### Phase 0 — accounts & spikes ✅ COMPLETE
+- [x] 🧑 LiveKit Cloud project `briocare` + `lk cloud auth` on this device; keys in both env files (note: worker uses **`.env.local`**, not `.env`; key renamed `OPENAI_API_SECRET_KEY` → `OPENAI_API_KEY`)
+- [x] Convex deployment env set via `npx convex env set`: OPENAI_API_KEY + LIVEKIT_URL/API_KEY/API_SECRET — set on cloud dev deployment `zany-bee-795` (env vars are per-deployment; re-set them if the deployment ever changes). Spike B re-verified against cloud.
+- [x] 🧑 Convex plugin installed (convex-expert agent, MCP tools, `convex:design` skill available)
+- [x] **Spike A ✅** (`worker/src/spike-agent.ts`, `spike-talker.ts`, `spike-stt-direct.ts` — throwaway/reference): auto-dispatch works; TTS voice track published and heard; per-track Inference STT gives speaker-attributed finals; ActiveSpeakersChanged gives per-identity speaking events.
+- [x] **Spike B ✅** (`backend/convex/spikes.ts` — throwaway): Convex action → OpenAI structured output round-trip works.
+
+**Phase-0 discoveries (carry into the real build):**
+- `gpt-5-mini` confirmed (resolves `gpt-5-mini-2025-08-07`). **Must pass `reasoning_effort: "minimal"`** — default thinks for ~7.6s; minimal ≈ 2.0–2.4s. Speed fallbacks: gpt-5-nano / gpt-4o-mini.
+- **Actor over-personalization observed live**: recommendation was L0 *unnamed group cue*; model wrote a *named* Maya invite anyway. System prompt must define ladder-level semantics hard (TDD §06 failure, empirically confirmed on day one).
+- agents-js 1.7.1: `defineAgent({entry})` + `cli.runApp(new ServerOptions({agent: fileURLToPath(import.meta.url)}))`; no `agentName` → auto-dispatch to every new room; `tsx src/agent.ts dev` works ("dev mode deprecated → use `lk agent dev`"). Standalone use of agents libs requires `initializeLogger()`.
+- **Inference STT does NOT resample** (default 16 kHz; gateway rejects 48 kHz). Fix: `new AudioStream(track, {sampleRate: 16000, numChannels: 1})` — rtc-node resamples natively. `deepgram/nova-3` works; finals carry word timings + confidence.
+- **rtc-node native-boundary bug (the interview bug story)**: an `Int16Array` **subarray view** passed to `new AudioFrame(...)` → `captureFrame()` ships garbage (byteOffset ignored — correct energy + clock, zero words, no interims). Use `.slice()` (copy). Diagnosed via file→STT direct test (perfect) vs room path (empty), then slice-vs-subarray discriminator.
+- OpenAI TTS: `new openai.TTS({model:"gpt-4o-mini-tts", voice:"nova"})` from `@livekit/agents-plugin-openai`; `synthesize(text)` → ChunkedStream `{frame}` → `AudioSource.captureFrame`; publish `LocalAudioTrack.createAudioTrack` + `TrackPublishOptions({source: TrackSource.SOURCE_MICROPHONE})`; AudioSource rate = `ttsEngine.sampleRate`. captureFrame paces in real time (blocking ≈ audio duration).
+- Convex: typed env via `convex.config.ts` `defineApp({env}) ` + `import { env } from "./_generated/server"`; TypeScript installed in backend (tsc 7.x); a plugin hook typechecks convex/ after every write; guidelines file read (validators everywhere, internal* for private fns, fetch OK in default runtime, scheduler patterns, convex-test setup).
+- Sim-persona seed: talker WAVs via macOS `say` + `afconvert -f WAVE -d LEI16@48000 -c 1`.
+- **dotenv must use `override: true`** in worker scripts — Milton's shell exports a stale `OPENAI_API_KEY` (ends `TmoA`, 401s); without override the shell wins over `.env.local`.
 
 ### Phase 1 — backend functions (Convex; keyless-testable core)
 - [ ] Session lifecycle: `createSession`, `joinSession(name)`, `startSession` (locks joins), `endSession` (kicks notes job + transcript concat), live queries (`getSession`, `roster`, `timeline`).

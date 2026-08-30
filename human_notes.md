@@ -46,6 +46,9 @@ Hey, if you are an agent - don't touch this file! I leave random notes here whic
 
 ## TODOs
 - make a very concise version for both design docs, or add TL;DR;
-- generate images for the PRD - just hand the human the exact prompts for each image, and image name to save
 - add a why milton section in PRD: gamification app studio founder (www.hyperblob.studio); focumon.com large overlapping target audiences (k12/teens w/ adhd etc.) scaled to 100k+ users, he knows how to do gamification right and operate retentive yet ethical products
 - would be super cool to have the gesture detection in the demo: fold into the tap feature (thumb-up gesture)
+
+## Once we have a good structure
+- add some lint / test commands that we can run before each commit; and put it in README.md
+- need to learn how to deploy new agent code to livekit

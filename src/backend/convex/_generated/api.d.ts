@@ -8,13 +8,17 @@
  * @module
  */
 
+import type * as spikes from "../spikes.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  spikes: typeof spikes;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.
