@@ -1,0 +1,11 @@
+{
+  "name": "briocare",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "dev:db": "npm run dev -w @briocare/backend"
+  }
+}

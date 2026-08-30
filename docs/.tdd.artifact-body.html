@@ -176,7 +176,7 @@ footer p{max-width:var(--read)}
     <h1>Reflexes, judgment, and a veto</h1>
     <p class="lede read">How the BrioCare prototype works: deterministic reflexes wake a supervised model that judges whether to act at all — and every word it wants to say passes the therapist first. Every technology choice below names the alternatives weighed and the trade-off accepted.</p>
     <div class="mast-meta">
-      <span><span class="mono">v0.6</span> · 29 August 2026</span>
+      <span><span class="mono">v0.7</span> · 29 August 2026</span>
       <span>Author · <span class="mono">Milton Ren</span></span>
       <span>Status · <span class="mono">build-challenge submission</span></span>
       <span>Companions · <span class="mono">PRD</span> + field research</span>
@@ -522,7 +522,7 @@ footer p{max-width:var(--read)}
     <div class="sec-head">
       <p class="eyebrow">08 · Deployment</p>
       <h2>Where everything runs</h2>
-      <p class="read">Four vendors, two of them already in hand (Render, Convex), and exactly one paid piece. Secrets never reach a browser: LiveKit room tokens are minted inside a Convex action, so clients only ever hold short-lived JWTs.</p>
+      <p class="read">Four vendors, two of them already in hand (Render, Convex), and — at prototype scale — a $0 standing bill. Secrets never reach a browser: LiveKit room tokens are minted inside a Convex action, so clients only ever hold short-lived JWTs.</p>
     </div>
 
     <div class="tbl-scroll">
@@ -544,9 +544,9 @@ footer p{max-width:var(--read)}
           </tr>
           <tr>
             <td><strong>Media worker</strong><span class="small">STT in · Brio's voice out</span></td>
-            <td>Render · Background Worker</td>
-            <td>~$7/mo<span class="small">the one paid piece</span></td>
-            <td>Outbound-only — it registers with LiveKit Cloud; no inbound HTTP, so a worker (not a web service) is the right shape. Env: LiveKit keys, <code>OPENAI_API_KEY</code> (TTS), Convex URL. Alternatives: LiveKit Cloud hosted agents (free-tier agent minutes — worth a spike), or run it locally during the review window at $0.</td>
+            <td>LiveKit Cloud · hosted agents</td>
+            <td>$0<span class="small">1,000 agent min/mo free; $0.01/min after</span></td>
+            <td>Billed only while the agent sits in a session — an idle deployment costs nothing — and LiveKit dispatches it into rooms, which also settles the dispatch mechanism. Zero-downtime deploys, one-click rollback, built-in traces and logs. Env: LiveKit keys, <code>OPENAI_API_KEY</code> (TTS), Convex URL. The identical code runs in the fallbacks if the cloud build fights the 48-hour clock: a Render Background Worker (~$7/mo) or a laptop during the review window.</td>
           </tr>
           <tr>
             <td><strong>Media plane</strong><span class="small">rooms · tracks · Inference STT</span></td>
@@ -564,7 +564,7 @@ footer p{max-width:var(--read)}
       </table>
     </div>
 
-    <p class="read">Three environments. <strong>Local / reviewer</strong>: <code>npm run dev</code> starts Vite, <code>npx convex dev</code> (anonymous local deployment — reviewers need no Convex account), and the media worker as a local process; LiveKit Cloud serves media everywhere, because the self-hostable server lacks Inference STT and isn't worth the trade for a prototype. Tests and invariant evals run fully keyless (sims + scripted actor). <strong>Live URL</strong>: Render static site + <code>npx convex deploy</code> + the worker on Render — total standing cost $7/mo. <strong>Known simplification</strong>: the worker talks to Convex through public functions (v0 has no auth at all — sessions are unguessable ids); real auth is Phase 1 work alongside the compliance stack.</p>
+    <p class="read">Three environments. <strong>Local / reviewer</strong>: <code>npm run dev</code> starts Vite, <code>npx convex dev</code> (anonymous local deployment — reviewers need no Convex account), and the media worker as a local process; LiveKit Cloud serves media everywhere, because the self-hostable server lacks Inference STT and isn't worth the trade for a prototype. Tests and invariant evals run fully keyless (sims + scripted actor). <strong>Live URL</strong>: Render static site + <code>npx convex deploy</code> + the worker deployed to LiveKit Cloud agents — standing cost $0; the worker bills only during live sessions. (Dev and deployed workers use distinct agent names so a laptop worker never double-registers against the deployment.) <strong>Known simplification</strong>: the worker talks to Convex through public functions (v0 has no auth at all — sessions are unguessable ids); real auth is Phase 1 work alongside the compliance stack.</p>
   </div>
 </section>
 
@@ -672,14 +672,14 @@ footer p{max-width:var(--read)}
       <li><strong>Speech went from guarded templates to generated lines.</strong> Validator chains and fallback races were removed as latency spent guarding against what the therapist preview already catches. The model writes Brio's actual words; TTS pre-synthesizes during the window so approval triggers playback, never generation.</li>
       <li><strong>The big inversion: rules decide → rules recommend.</strong> Rules can count airtime but cannot read the room, so deterministic triggers now wake a full-context actor that may always choose <code>do_nothing</code> — bounded by a menu it cannot extend, hard constraints, and the human gate. Distress gained a 10-second LLM sweep beside the zero-latency tripwire, and every decision is audited with its prompt and raw response.</li>
       <li><strong>The brain moved into Convex; the worker became a dumb pipe.</strong> All cognition lives in testable Convex functions; the agents-js process survives only because something must hold Brio's seat in the room — per-track STT in, a published voice track out.</li>
-      <li><strong>The stack settled on two keys and one bill.</strong> LiveKit (media + Inference STT) and OpenAI (gpt-5-mini + TTS), hosted on Render and Convex at ~$7/month total. Autonomous mode became the default — instant execution at window lapse makes Brio visibly co-facilitate — with suggest-only one tap away. The title followed the architecture: from "a deterministic brain with a narrow mouth" to "reflexes, judgment, and a veto."</li>
+      <li><strong>The stack settled on two keys and no standing bill.</strong> LiveKit (media + Inference STT + hosted agent) and OpenAI (gpt-5-mini + TTS), with the web on Render and the brain on Convex, at $0/month standing cost. Autonomous mode became the default — instant execution at window lapse makes Brio visibly co-facilitate — with suggest-only one tap away. The title followed the architecture: from "a deterministic brain with a narrow mouth" to "reflexes, judgment, and a veto."</li>
     </ol>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>BrioCare TDD v0.6 · Milton Ren · 29 August 2026. Companions: <span class="mono">docs/prd.html</span> and <span class="mono">research/pediatric-group-therapy.html</span>. Run commands, keys, and known limitations ship in the repository README; the eval report is generated by <span class="mono">npm run eval</span>.</p>
+    <p>BrioCare TDD v0.7 · Milton Ren · 29 August 2026. Companions: <span class="mono">docs/prd.html</span> and <span class="mono">research/pediatric-group-therapy.html</span>. Run commands, keys, and known limitations ship in the repository README; the eval report is generated by <span class="mono">npm run eval</span>.</p>
   </div>
 </footer>
 

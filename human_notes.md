@@ -1,7 +1,9 @@
 Hey, if you are an agent - don't touch this file! I leave random notes here which may or may not be relevant to the current product direction. - milton
 
 # BrioCare
-AI-supported care coordination built around patients, families, and clinicians
+- AI-supported care coordination built around patients, families, and clinicians.
+- Order of execution: focus on getting the therapist to adopt the product first -> solve kids retention problem -> intra sessions value adds / parents education -> build a service company to provide care at scale.
+- I'm just personally really aligned with this project - having gone through childhood depression myself, helping the target users means a lot to me. I'm also surprisingly well-positioned to tackle the problem as well - UX/full-stack/gamification for kids. Even if i don't get into the EIR i'd seriously want to work with the company one way or another if it were formed after the 12 weeks.
 
 ## Notes
 - telehealth
@@ -29,12 +31,12 @@ AI-supported care coordination built around patients, families, and clinicians
 - breakout room where parallel discussions can happen
   - can have ai real time prompts in there as well
 
-## Insights
-- level of participation != length of speech
-
 ## Hypothesis
 - if with voice & AI a better quality service can be provided
 - if the service can actually scale
+
+## Insights
+- level of participation != length of speech
 
 ## Gamification Ideas
 - Pets as gamified talking sticks to manage interruprions? Both human<>AI in breakout rooms, and huamn<>human as well
@@ -47,7 +49,3 @@ AI-supported care coordination built around patients, families, and clinicians
 - generate images for the PRD - just hand the human the exact prompts for each image, and image name to save
 - add a why milton section in PRD: gamification app studio founder (www.hyperblob.studio); focumon.com large overlapping target audiences (k12/teens w/ adhd etc.) scaled to 100k+ users, he knows how to do gamification right and operate retentive yet ethical products
 - would be super cool to have the gesture detection in the demo: fold into the tap feature (thumb-up gesture)
-
-
-
-great! now let's draft the convex schema in a real convex setup. follow https://docs.convex.dev/ai/using-claude-code - and ask for my help when needed. Make sure we start the work under /src so we don't make the project root directory overwhelming to read. For now, only write the schema - no other implementation beside that and setting up a new convex project.
