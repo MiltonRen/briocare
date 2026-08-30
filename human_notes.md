@@ -36,12 +36,18 @@ AI-supported care coordination built around patients, families, and clinicians
 - if with voice & AI a better quality service can be provided
 - if the service can actually scale
 
-## Random Ideas
-- gamification
-- use talking sticks to manage interruprions? Both human<>AI and huamn<>human
+## Gamification Ideas
+- Pets as gamified talking sticks to manage interruprions? Both human<>AI in breakout rooms, and huamn<>human as well
 - When you talk your pet gets energy and dance - but too much it gets tired (therapist can control as well)
-
-## Later
-- would be super cool to have the gesture stuff in it
+- "Dominance note" in TDD - the pet gamification can come in to offer small nudges
 - Pick your pet and decorate it across sessions - and work with the pet for homework etc.
-- add a why milton section in PRD
+
+## TODOs
+- make a very concise version for both design docs, or add TL;DR;
+- generate images for the PRD - just hand the human the exact prompts for each image, and image name to save
+- add a why milton section in PRD: gamification app studio founder (www.hyperblob.studio); focumon.com large overlapping target audiences (k12/teens w/ adhd etc.) scaled to 100k+ users, he knows how to do gamification right and operate retentive yet ethical products
+- would be super cool to have the gesture detection in the demo: fold into the tap feature (thumb-up gesture)
+
+
+
+great! now let's draft the convex schema in a real convex setup. follow https://docs.convex.dev/ai/using-claude-code - and ask for my help when needed. Make sure we start the work under /src so we don't make the project root directory overwhelming to read. For now, only write the schema - no other implementation beside that and setting up a new convex project.

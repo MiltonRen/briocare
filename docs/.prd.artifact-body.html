@@ -225,7 +225,7 @@ footer p{max-width:var(--read)}
     <h1>The second chair, staffed by software</h1>
     <p class="lede read">BrioCare puts an AI co-facilitator — working name <strong>Brio</strong> — in the second chair of clinician-supervised pediatric group teletherapy. It keeps the turn ledger, draws in the quiet child, and drafts the per-child record, so one therapist can run a group that clinical practice says takes two.</p>
     <div class="mast-meta">
-      <span><span class="mono">v0.5</span> · 29 August 2026</span>
+      <span><span class="mono">v0.8</span> · 29 August 2026</span>
       <span>Author · <span class="mono">Milton Ren</span></span>
       <span>Status · <span class="mono">build-challenge submission</span></span>
       <span>Companions · <span class="mono">TDD</span> + field research (<span class="mono">Inside the Therapy Circle</span>)</span>
@@ -266,7 +266,7 @@ footer p{max-width:var(--read)}
         <p class="eyebrow">The target patient · who it must work for</p>
         <h3>The child: 8–12, and groups are hard for them</h3>
         <p>Often referred precisely <em>because</em> peer settings are hard. This is the band where the evidence-based programs cluster (Secret Agent Society 8–12, UP-C 8–11, FRIENDS 7–12), and the peer room is the treatment mechanism, not a discount format. BrioCare's clinical scope is ages 6–12; the prototype is tuned to 8–12.</p>
-        <p>What the child needs from v0: predictable rituals, a warm voice that never puts them on the spot, and ways to participate before they are ready to speak — tap a feeling, thumbs up, a turn holding the stick. Their whole engagement layer is designed, in section 05.</p>
+        <p>What the child needs from v0: predictable rituals, a warm voice that never puts them on the spot, and ways to participate before they are ready to speak — send a reaction — a feeling, a thumbs-up — answer a selection, or pass. Their whole engagement layer is designed, in section 05.</p>
       </div>
       <div class="card">
         <p class="eyebrow">The parent · who decides it continues</p>
@@ -385,7 +385,7 @@ footer p{max-width:var(--read)}
           <li><em>Group composition</em> — age-band, goal fit, balance; the cohort is set up to succeed or quietly fail here <span class="tag tag-road">Roadmap</span></li>
           <li>Parent consent, positioned as home co-coaching <span class="tag tag-road">Roadmap</span></li>
           <li>Tech-readiness screen and practice call per family <span class="tag tag-road">Roadmap</span></li>
-          <li><em>Session setup</em> — the therapist picks the exercise and sets per-child context: "Leo had a rough week" becomes a quiet setting and a baseline <span class="tag tag-v0">Prototype</span></li>
+          <li><em>Session setup</em> — the therapist describes the exercise and sets per-child context: "Leo had a rough week" becomes a note and a lowered participation weight <span class="tag tag-v0">Prototype</span></li>
         </ul>
       </div>
       <div class="flow-col now">
@@ -393,8 +393,8 @@ footer p{max-width:var(--read)}
         <ul>
           <li><em>Arrival ritual + tech check</em> — Brio greets each child by name, confirms audio, seats the session pets <span class="tag tag-road">Roadmap</span></li>
           <li><em>Agreements + visual schedule</em> — Brio walks the schedule; agreements stay therapist-led <span class="tag tag-road">Roadmap</span></li>
-          <li><em>Feelings check-in</em> — every child acts: tap a feeling or say it <span class="tag tag-road">Roadmap</span></li>
-          <li><em>Structured exercise</em> — the prototype, end to end: the therapist introduces Brio and opens the round; the talking stick moves on evidence, tap-acts count alongside speech, draw-outs climb the pressure ladder, interruptions get blocked, the acts ledger fills live. Every voiced action previews first; the therapist cues, blocks, or holds the round <span class="tag tag-v0">Prototype</span></li>
+          <li><em>Feelings check-in</em> — every child acts: send a feeling reaction or say it <span class="tag tag-road">Roadmap</span></li>
+          <li><em>Structured exercise</em> — the prototype, end to end: the therapist introduces Brio and opens a free-flowing exercise; reactions and selections count beside speech, draw-outs climb the pressure ladder, and the participation ledger fills live while the therapist moderates mics directly. Every Brio line previews as its exact words; the therapist approves, cancels, cues <span class="tag tag-v0">Prototype</span></li>
           <li><em>Closing check + points + dismissal ritual</em> — the day's deltas made visible <span class="tag tag-road">Roadmap</span></li>
         </ul>
       </div>
@@ -428,22 +428,22 @@ footer p{max-width:var(--read)}
         <tbody>
           <tr>
             <td><strong>Quiet children get skipped</strong><span class="small">"Drawing out" is a named clinical move, done manually, when the therapist notices</span></td>
-            <td>An <strong>evidence-based talking stick</strong>: the facilitation engine tracks each child's participation deficit against their own baseline and hands the floor accordingly. Draw-outs climb a pressure ladder — ambient group cue first, then a private on-screen nudge, and only last a voiced invitation that always carries a pass option</td>
+            <td><strong>Draw-outs on evidence</strong>: the facilitation engine tracks each child's share of airtime against their therapist-set participation weight and prompts accordingly. Draw-outs climb a pressure ladder — an unnamed group cue first, then a low-pressure selection on the child's own screen, and only last a voiced invitation that always carries a pass option. Discussion stays free-flowing; a formal talking-stick mode is roadmap</td>
             <td class="mono">Facilitation engine · kid view</td>
           </tr>
           <tr>
             <td><strong>Rewarding talk-time punishes the anxious child</strong><span class="small">The child the group exists to help physically can't win a speech-seconds contest</span></td>
-            <td><strong>Participation acts, not seconds.</strong> Tapping a feeling, reacting, choosing, taking a turn — all count. Each child's session pet gains energy from <em>acts</em>; monopolizing the floor tires it. A token economy with clinical lineage, pointed at the right behavior</td>
-            <td class="mono">Acts model · pet meter</td>
+            <td><strong>Participation acts, not seconds.</strong> Sending a reaction, answering a selection, choosing to pass — all count in the ledger beside airtime, so the child who won't unmute still registers, still shapes the equity view, and still shows up in their note. The pet token economy layers onto this after v0</td>
+            <td class="mono">Actions ledger · kid view</td>
           </tr>
           <tr>
             <td><strong>One person can't watch tone and count turns</strong><span class="small">The analyst-interpreter half of a two-person job</span></td>
-            <td>The <strong>therapist panel</strong>: live equity display, pacing against the exercise plan — and command of Brio itself. Every planned action previews as an intent card before it fires, one tap blocks it, and the named clinical moves — <em>Draw out · Block · Cut off · Link</em> — double as buttons that aim Brio manually</td>
+            <td>The <strong>therapist panel</strong>: live equity display, per-child mic control — and command of Brio itself. Every planned line previews as an intent card showing the exact words, one tap approves or cancels it, and the named clinical moves — <em>Draw out · Block · Cut off · Link</em> — double as buttons that aim Brio manually</td>
             <td class="mono">Therapist panel</td>
           </tr>
           <tr>
             <td><strong>An AI talking to children is a trust cliff</strong><span class="small">Clinicians, parents, and regulators all need the same guarantee</span></td>
-            <td>A <strong>constrained co-facilitator</strong>: Brio's voice only renders intents the deterministic engine selected from a closed facilitation set, in age-appropriate language — and it announces before it acts, giving the therapist a veto window on everything voiced. Mute Brio silences all action while sensing continues. Every utterance is logged and reviewable</td>
+            <td>A <strong>constrained co-facilitator</strong>: deterministic reflexes decide when Brio may consider acting and build the menu of legal moves; the model judges whether to act at all — declining is always an option — and writes the warm, age-appropriate sentence, which the therapist reads verbatim before it is spoken: a veto window in autonomous mode, an explicit tap in suggest-only. Mute silences all action while sensing continues. Every decision, even the silent ones, is logged and reviewable</td>
             <td class="mono">Safety envelope</td>
           </tr>
           <tr>
@@ -468,16 +468,15 @@ footer p{max-width:var(--read)}
     <div style="margin-top:.6rem">
       <p class="eyebrow">The heads-up loop</p>
       <h3 style="margin-top:.4rem;font-size:1.35rem">Brio asks the room's owner first</h3>
-      <p class="read" style="margin-top:.55rem;color:var(--ink-2)">Brio never surprises the therapist. Every planned action surfaces on the panel as a concise intent card — what, to whom, why ("Draw out Maya · quietest 8 min · low-pressure invite") — and fires only when its veto window lapses. Actions come in three classes: ambient, reversible cues (pet animations, captions, timers) act instantly; anything voiced waits out the window; anything referencing a child's own words needs an explicit tap. An autonomy dial shifts these defaults — week one runs suggest-only; trust earns announce-then-act. Brio enters the room the way therapy puppets always have — introduced by the therapist in her own words ("she helps us take turns, and she makes mistakes sometimes"), summonable on cue — but with her own eyes on the room.</p>
+      <p class="read" style="margin-top:.55rem;color:var(--ink-2)">Brio never surprises the therapist. Every planned line surfaces on the panel as an intent card — the exact sentence it wants to say, to whom, and why ("Draw out Maya · quietest 8 min"). The autonomy dial has two positions: <strong>autonomous</strong>, the default, where a line auto-executes after a short veto window unless cancelled; and <strong>suggest-only</strong>, one tap away, where nothing is voiced until the therapist taps it — where a cautious clinician or an early pilot can choose to live. Cards whose moment passes cancel themselves. Captions and the live equity display always stream; they are displays, not actions. Brio enters the room the way therapy puppets always have — introduced by the therapist in her own words ("she helps us take turns, and she makes mistakes sometimes"), summonable on cue — but with her own eyes on the room.</p>
     </div>
     <div class="grid g2">
       <div class="card">
         <p class="eyebrow">Control over Brio</p>
         <ul style="margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem">
-          <li><strong>Intent cards</strong> — block or fire-now on anything Brio proposes, before the room hears it</li>
-          <li><strong>Mute Brio</strong> — silences every action; sensing continues, so captions, flags and the ledger keep flowing</li>
-          <li><strong>Hold the round</strong> — the exercise clock stops, and proposals stop with it, while she takes the room</li>
-          <li><strong>Autonomy dial</strong> — suggest-only ↔ announce-then-act, set per action class</li>
+          <li><strong>Intent cards</strong> — read the exact sentence, approve or cancel it, before the room hears it</li>
+          <li><strong>Mute Brio</strong> — silences every action and drops pending cards; sensing continues, so captions, flags and the ledger keep flowing</li>
+          <li><strong>Autonomy dial</strong> — autonomous with a veto window (default) ↔ suggest-only</li>
         </ul>
       </div>
       <div class="card">
@@ -485,8 +484,7 @@ footer p{max-width:var(--read)}
         <ul style="margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem">
           <li><strong>Cue Brio</strong> — one tap summons a contribution: Brio speaks its most useful observation, now</li>
           <li><strong>Named moves as buttons</strong> — Draw out, Block, Cut off, Link, aimed at a child, delivered in Brio's warm voice</li>
-          <li><strong>Per-child quiet setting</strong> — "no prompts for Leo today," for the kid having a hard week</li>
-          <li><strong>Rest a pet</strong> — soften a dominant streak without a public call-out</li>
+          <li><strong>Participation weight dial</strong> — per child, adjustable live: lower it for the kid having a hard week; zero means "no prompts for Leo today"</li>
         </ul>
       </div>
     </div>
@@ -494,12 +492,12 @@ footer p{max-width:var(--read)}
     <div style="margin-top:.6rem">
       <p class="eyebrow">The child's side of the screen</p>
       <h3 style="margin-top:.4rem;font-size:1.35rem">Play, kept small and in service of participation</h3>
-      <p class="read" style="margin-top:.55rem;color:var(--ink-2)">The engagement layer is deliberately modest and clinically derived — token economies and gamified programs like Secret Agent Society are already in the evidence base. One governing rule: mechanics point at regulation and participation, never at competition between children. No leaderboards; each child plays only against their own baseline.</p>
+      <p class="read" style="margin-top:.55rem;color:var(--ink-2)">The engagement layer is deliberately modest and clinically derived — token economies and gamified programs like Secret Agent Society are already in the evidence base. In v0 the child's playful surface is the reaction-and-selection layer plus Brio's own warmth; the pet economy follows once the participation loop is proven. One governing rule: mechanics point at regulation and participation, never at competition between children. No leaderboards; each child plays only against their own baseline.</p>
     </div>
     <div class="grid g2">
       <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem"><p class="eyebrow">Session pet + shared points</p><span class="tag tag-v0">Prototype</span></div>
-        <p>Each child's pet gains energy from participation acts — any act, not just speech — and grows sleepy when one voice dominates; the therapist can rest any pet. Group points tally as the exercise wraps, earned together, never ranked.</p>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem"><p class="eyebrow">Session pet + shared points</p><span class="tag tag-road">Roadmap</span></div>
+        <p>Each child's pet gains energy from participation acts — any act, not just speech — and grows sleepy when one voice dominates. Group points tally as the exercise wraps, earned together, never ranked. Deliberately deferred: v0 proves the participation loop first, then the pet economy layers on.</p>
       </div>
       <div class="card">
         <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem"><p class="eyebrow">Cohort progression + missions</p><span class="tag tag-road">Roadmap</span></div>
@@ -524,7 +522,7 @@ footer p{max-width:var(--read)}
         <ul>
           <li>Diagnoses, assesses, or labels a child — no clinical language about any child, ever</li>
           <li>Gives therapeutic interpretation or advice</li>
-          <li>Acts while muted or while the round is held, or against a therapist instruction</li>
+          <li>Acts while muted, or against a therapist instruction</li>
           <li>Speaks to a child outside the therapist-visible, logged channel</li>
           <li>Controls a child's microphone — it may suggest a mute; muting stays a therapist-only power</li>
           <li>Makes membership, escalation, or safety-response decisions — it flags, the clinician decides</li>
@@ -533,8 +531,8 @@ footer p{max-width:var(--read)}
       <div class="bound always">
         <p class="eyebrow">Brio always</p>
         <ul>
-          <li>Announces before acting — every voiced action previews on the panel inside a veto window</li>
-          <li>Yields instantly — therapist mute, hold, block or redirect pre-empts any queued action</li>
+          <li>Shows its words before speaking them — every line previews on the panel, and in suggest-only mode nothing is voiced without a tap</li>
+          <li>Yields instantly — therapist mute or cancel pre-empts any pending line</li>
           <li>Speaks only from the closed facilitation-intent set, in warm, low-pressure language</li>
           <li>Logs every utterance and every intervention decision for clinician review</li>
           <li>Degrades to silence — when uncertain (garbled audio, ambiguous state), it does nothing and lets the human lead</li>
@@ -555,7 +553,7 @@ footer p{max-width:var(--read)}
     <div class="sec-head">
       <p class="eyebrow">07 · Evidence</p>
       <h2>What shaped the build — and what's still unvalidated</h2>
-      <p class="read">Direct user testing with children inside a 48-hour window would be neither possible nor ethical, so v0 is shaped by credible proxy evidence: published treatment manuals (PEERS, Secret Agent Society, Incredible Years), the one peer-reviewed account of moving a children's group program to telehealth, group-note and billing documentation, and AI Fund's own parent survey and info-session findings. Three build decisions trace straight to it: <strong>acts-not-seconds</strong> (from the drawing-out and token-economy literature), the <strong>digital talking stick</strong> (a documented device — we automate the handoff, on evidence), and <strong>notes-from-evidence</strong> (the group note's per-child compliance shape).</p>
+      <p class="read">Direct user testing with children inside a 48-hour window would be neither possible nor ethical, so v0 is shaped by credible proxy evidence: published treatment manuals (PEERS, Secret Agent Society, Incredible Years), the one peer-reviewed account of moving a children's group program to telehealth, group-note and billing documentation, and AI Fund's own parent survey and info-session findings. Three build decisions trace straight to it: <strong>acts-not-seconds</strong> (from the drawing-out and token-economy literature), the <strong>pressure-ladder draw-out</strong> (drawing out is a documented facilitation technique — we automate its timing and the evidence behind it), and <strong>notes-from-evidence</strong> (the group note's per-child compliance shape).</p>
     </div>
 
     <div class="grid g2">
@@ -625,7 +623,7 @@ footer p{max-width:var(--read)}
 
 <footer>
   <div class="wrap">
-    <p>BrioCare PRD v0.5 · Milton Ren · 29 August 2026. Written for the AI Fund build challenge; the PRD and the prototype tell one story. Companions: <span class="mono">docs/tdd.html</span> (technical design) and <span class="mono">research/pediatric-group-therapy.html</span> (field research — every sourced figure above traces to its citation list). Working name "Brio" and all metrics are proposals for the clinical partner to challenge.</p>
+    <p>BrioCare PRD v0.8 · Milton Ren · 29 August 2026. Written for the AI Fund build challenge; the PRD and the prototype tell one story. Companions: <span class="mono">docs/tdd.html</span> (technical design) and <span class="mono">research/pediatric-group-therapy.html</span> (field research — every sourced figure above traces to its citation list). Working name "Brio" and all metrics are proposals for the clinical partner to challenge.</p>
   </div>
 </footer>
 
