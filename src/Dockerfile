@@ -4,6 +4,12 @@
 # personas), so the whole npm workspace installs.
 FROM node:22-slim
 
+# rtc-node's native (Rust) core does its own TLS against the OS root-CA
+# store, which slim images ship EMPTY — without this, worker registration
+# succeeds (Node's bundled CAs) but every Room.connect fails with
+# "no native root CA certificates found".
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # Workspace manifests first — layer-cached npm ci unless deps change.

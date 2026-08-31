@@ -123,3 +123,5 @@ grep -E '^(OPENAI_API_KEY|CONVEX_URL)=' worker/.env.local > /tmp/brio-agent-secr
 lk agent create --secrets-file /tmp/brio-agent-secrets.env .
 rm /tmp/brio-agent-secrets.env
 lk agent logs
+
+for following deployments, run ```lk agent deploy .```
