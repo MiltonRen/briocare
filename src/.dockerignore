@@ -1,0 +1,12 @@
+# Keep secrets OUT of the image: agent.ts loads .env.local with
+# override:true, so a copied dev env file would beat the injected cloud
+# secrets. Never remove these lines.
+**/.env
+**/.env.*
+**/.env.local
+
+node_modules
+**/node_modules
+**/dist
+.DS_Store
+eval-report.md

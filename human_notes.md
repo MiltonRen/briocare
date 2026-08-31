@@ -48,3 +48,13 @@ Hey, if you are an agent - don't touch this file! I leave random notes here whic
 - better agent framework - kind of like a digital human? with real eyes and ears to capture subtle emotion shifts
 - enable comboed primitives in one intent
 - if we need to ship fast - take creative simplifications: talking stick with gamified order system
+
+## Submission
+PRD: https://claude.ai/code/artifact/281e36ab-f9f8-4b3d-bf62-5e332090279b
+TDD: https://claude.ai/code/artifact/d38e028b-f753-449c-9723-84cd74ca3d9e
+Prototype: https://briocare.onrender.com
+Source code: https://github.com/MiltonRen/briocare
+Access notes / credentials: Sign up for LiveKit, Convex, OpenAI API Platform. Get keys for each platform, and make sure you have >$5 credit balance in OpenAI (free plans for Convex and LiveKit are fine).
+Known limitations or broken paths: This demo is a snapshot of the group exercise scenario - where I started by focusing on the therapist UX but later shifted to having the agent run the session. Some tips: as a therapist you will always speak first to establish authority and provide context to the children, then tap "hand to Brio" button to invite the agent into the session. I started with a less flexible agentic workflow design in order to ensure guardrails, but later realized that we need more flexible, human-like designs, so expect some rough edges in agent<>human UX. One alternative we can take to ship fast: come up with a creative reduction of agent capability with gamified systems / protocols that kids could enjoy. Got a few ideas but more on it later. One more thing - if you want to try the product by yourself, run local dev then follow demo-script.md to run a group session with virtual kids (you can choose to be a kid or the therapist), but this demo script was implemented last-minute so not super polished.
+
+> research on the best multi-player multimodal ai agent framework

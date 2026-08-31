@@ -109,3 +109,17 @@ rate limits, and the trigger → actor → audited-commit loop via the no-key fa
 - The engine tick chain lives in scheduled Convex functions; if a tick transaction ever
   failed the loop would stop for that session (not observed in testing).
 - Data is dev-tier and unencrypted at the application layer — synthetic/demo data only.
+
+## Deployment
+
+- convex just works, there's a claude plugin for it if you need help
+- i use render.com for the frontend, but you can deploy it anywhere
+- for lk agent see below
+
+### LiveKit Agent Deployment
+lk project list
+cd src
+grep -E '^(OPENAI_API_KEY|CONVEX_URL)=' worker/.env.local > /tmp/brio-agent-secrets.env
+lk agent create --secrets-file /tmp/brio-agent-secrets.env .
+rm /tmp/brio-agent-secrets.env
+lk agent logs
