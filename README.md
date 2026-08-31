@@ -53,7 +53,22 @@ npm run dev
 That starts all three (Convex functions, the Brio media worker, and the web app at
 <http://localhost:5173>). Open the web app → create a session (you're the therapist) →
 open the invite link in other tabs/devices as kids → **Start session**. Brio is dispatched
-into the room automatically; cue its introduction from the panel.
+into the room automatically and stays silent until you press the green **"Hand to Brio"**
+button on its video tile — from then on it leads the exercise while you supervise (from
+inside the room or from outside, panel-only).
+
+### No other people handy? Run the sim demo
+
+```bash
+npm run demo
+```
+
+Four sim kids (a dominator, a silent one, a tangent-chaser, an eager helper) join a fresh
+session and **speak through TTS in the LiveKit room**, so Brio hears them with its real
+STT. Open the printed link, join with your name, and the session starts itself. To keep
+the therapist panel instead, create the session in your browser first and attach the sims
+with `npm run demo -- <session link>`. `--headless` skips media (sim lines land straight
+in the transcript). See `docs/demo-script.md` for the rehearsed 6-minute arc.
 
 ## Test it
 
@@ -62,7 +77,7 @@ cd src
 npm test
 ```
 
-32 keyless tests (no API keys, no network): pure trigger/participation/constraint logic —
+58 keyless tests (no API keys, no network): pure trigger/participation/constraint logic —
 including the observed level-0-name-ban failure mode — plus full guarded-intent lifecycle
 races (approve vs veto vs auto-execute vs mute vs dial flips), the watchlist tripwire,
 rate limits, and the trigger → actor → audited-commit loop via the no-key fallback path.

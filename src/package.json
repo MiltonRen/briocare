@@ -10,6 +10,7 @@
   "scripts": {
     "dev:db": "npm run dev -w @briocare/backend",
     "test": "npm run test -w @briocare/backend",
+    "demo": "npm run demo -w @briocare/worker",
     "dev": "concurrently -n db,worker,web -c green,magenta,cyan --kill-others \"npm run dev -w @briocare/backend\" \"npm run dev -w @briocare/worker\" \"npm run dev -w @briocare/web\""
   },
   "devDependencies": {

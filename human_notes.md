@@ -44,8 +44,7 @@ Hey, if you are an agent - don't touch this file! I leave random notes here whic
 - "Dominance note" in TDD - the pet gamification can come in to offer small nudges
 - Pick your pet and decorate it across sessions - and work with the pet for homework etc.
 
-## TODOs
-- make a very concise version for both design docs, or add TL;DR; for PRD: probably shorten the first few sections
-- add some lint / test commands that we can run before each commit; and put it in README.md
-- need to learn how to deploy new agent code to livekit
-- research on the best multi-player multimodal ai agent framework - kind of a digital human
+## Post Demo
+- better agent framework - kind of like a digital human? with real eyes and ears to capture subtle emotion shifts
+- enable comboed primitives in one intent
+- if we need to ship fast - take creative simplifications: talking stick with gamified order system

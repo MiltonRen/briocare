@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { api, internal } from "./_generated/api";
 import type { Doc, Id } from "./_generated/dataModel";
 import schema from "./schema";
-import { THOUGHT_GAP_MS, VETO_WINDOW_MS } from "./lib/constants";
+import { ENGINE_TICK_MS, THOUGHT_GAP_MS, VETO_WINDOW_MS } from "./lib/constants";
 import type { Wake } from "./lib/triggers";
 
 const modules = import.meta.glob("./**/*.ts");
@@ -437,24 +437,31 @@ describe("the handoff and the round", () => {
   });
 
   test("the wake check debounces: only the check after the last fragment evaluates", async () => {
+    // Timing here is derived from the constants so retuning them keeps the
+    // test honest: the whole debounced sequence must finish BEFORE the first
+    // fallback tick, or a late-running tick wakes a second actor and the
+    // "exactly one decision" claim stops isolating the debounce.
+    expect(ENGINE_TICK_MS).toBeGreaterThan(THOUGHT_GAP_MS + 900); // else this test cannot dodge the tick — restructure it
+    const GAP_B = 700; // second fragment lands this long after the first
     const t = newTest();
     const { sessionId, maya } = await seedActiveSession(t);
     await handOff(t, sessionId);
-    const t0 = Date.now();
+    const t0 = Date.now(); // == session start under fake timers; tick #1 due t0+ENGINE_TICK_MS
     await t.mutation(api.worker.recordUtterance, speak(sessionId, maya, "I got", t0 - 500, t0));
-    vi.advanceTimersByTime(1500); // fragment lands mid-thought
+    vi.advanceTimersByTime(GAP_B); // fragment lands mid-thought
     await t.mutation(
       api.worker.recordUtterance,
-      speak(sessionId, maya, "a new bike", t0 + 1000, t0 + 1500),
+      speak(sessionId, maya, "a new bike", t0 + GAP_B - 500, t0 + GAP_B),
     );
-    // first check comes due while the merged thought is still fresh → bails
-    vi.advanceTimersByTime(1100);
+    // run the FIRST check while the merged thought is still fresh → it bails
+    // (checks run at current fake-time, so stay inside the freshness window)
+    vi.advanceTimersByTime(THOUGHT_GAP_MS - GAP_B + 100); // now: t0 + THOUGHT_GAP + 100
     await t.finishInProgressScheduledFunctions();
     let audit = await t.query(api.intents.audit, { sessionId });
     expect(audit.filter((i) => i.source === "engine").length).toBe(0);
-    // second check comes due after a real gap of silence → wakes the actor
-    // (stay under the 5s tick so this isolates the debounced path)
-    vi.advanceTimersByTime(1500);
+    // run the SECOND check after a real gap of silence → it wakes the actor
+    // (still before tick #1: THOUGHT_GAP + GAP_B + 200 < ENGINE_TICK_MS)
+    vi.advanceTimersByTime(GAP_B + 100); // now: t0 + THOUGHT_GAP + GAP_B + 200
     await t.finishInProgressScheduledFunctions();
     vi.advanceTimersByTime(50);
     await t.finishInProgressScheduledFunctions(); // run the scheduled actor
