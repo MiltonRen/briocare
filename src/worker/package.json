@@ -4,13 +4,17 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "dev": "tsx src/agent.ts dev",
+    "start": "tsx src/agent.ts start",
     "spike": "tsx src/spike-agent.ts dev",
     "spike:talker": "tsx src/spike-talker.ts"
   },
   "dependencies": {
+    "@briocare/backend": "^0.1.0",
     "@livekit/agents": "latest",
     "@livekit/agents-plugin-openai": "latest",
     "@livekit/rtc-node": "latest",
+    "convex": "^1.45.0",
     "dotenv": "^16.4.5",
     "livekit-server-sdk": "^2.9.0"
   },

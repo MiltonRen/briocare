@@ -15,7 +15,7 @@ import { v } from "convex/values";
 // Working set of actor decisions. The per-wake legal menu is narrower and is
 // built in code (hard constraints re-check it); this union documents the
 // universe. Safe to extend while the dev deployment holds no real data.
-const agentIntentType = v.union(
+export const agentIntentType = v.union(
   v.literal("do_nothing"), // logged for audit; never displayed
   v.literal("draw_out"), // ladder level lives in `reason`/prompt context
   v.literal("re_engage"), // pacing observation or group selection
@@ -39,8 +39,9 @@ export default defineSchema({
     ),
     exerciseDescription: v.string(), // therapist's own words; fed to the actor verbatim
     agentAutonomyDial: v.union(
-      v.literal("suggest-only"),
-      v.literal("autonomous"), // default: veto window, then auto-execute
+      v.literal("suggest-only"), // nothing voiced without a therapist tap
+      v.literal("auto-with-delay"), // veto window, then auto-execute
+      v.literal("autonomous"), // default: executes instantly, mute is the brake
     ),
     agentMuted: v.boolean(),
     transcript: v.optional(v.string()), // mechanical consolidation, written once at end
@@ -111,9 +112,21 @@ export default defineSchema({
     ),
     reason: v.string(), // shown on the intent card ("quietest 14 min")
     utterance: v.optional(v.string()), // absent for do_nothing / suggest-only actions
+    // when the worker finished actually PLAYING the line — executed means the
+    // decision was final; voicedAt means children really heard it.
+    voicedAt: v.optional(v.number()),
+    // draw_out only. 0 = unnamed group cue (voiced), 1 = on-screen selection
+    // for one child (NOT voiced), 2 = named invite with a pass (voiced).
+    // The engine sets the level deterministically; the actor writes words for it.
+    ladderLevel: v.optional(v.number()),
     resolvedAt: v.optional(v.number()),
     cancellationReason: v.optional(
-      v.union(v.literal("therapist"), v.literal("muted"), v.literal("stale")),
+      v.union(
+        v.literal("therapist"),
+        v.literal("muted"),
+        v.literal("stale"),
+        v.literal("yielded"), // the floor never opened — the line was given back unspoken
+      ),
     ),
     prompt: v.optional(v.string()), // exact prompt sent to the model
     llmResponse: v.optional(v.string()), // raw structured output received

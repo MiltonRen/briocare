@@ -1,0 +1,262 @@
+/* BrioCare web — sage design system lifted from the PRD/TDD documents. */
+:root {
+  --ground: #eff1ee;
+  --surface: #fafbf9;
+  --ink: #161c19;
+  --ink-soft: #4a5550;
+  --rule: #d3d9d2;
+  --rule-soft: #e2e7e0;
+  --green: #1f6f5c;
+  --green-deep: #134b3e;
+  --green-wash: #e2ede8;
+  --z-blue: #3e6e9c;
+  --z-yellow: #b07a12;
+  --z-red: #a63f35;
+  --red-wash: #f7e7e5;
+  --shadow: 0 1px 2px rgba(19, 40, 33, 0.05), 0 8px 24px -12px rgba(19, 40, 33, 0.14);
+  --display: "Newsreader", georgia, serif;
+  --body: "Public Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #0e1513;
+    --surface: #141d1a;
+    --ink: #e6ebe7;
+    --ink-soft: #9fada7;
+    --rule: #2a3733;
+    --rule-soft: #212c29;
+    --green: #5fbfa2;
+    --green-deep: #8ed8be;
+    --green-wash: #17302a;
+    --z-blue: #7faad4;
+    --z-yellow: #d9aa4e;
+    --z-red: #d97f72;
+    --red-wash: #3a201d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; }
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+button:hover { border-color: var(--green); }
+button:disabled { opacity: 0.45; cursor: default; }
+button.primary { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+button.primary:hover { background: var(--green-deep); }
+button.danger { color: var(--z-red); border-color: var(--z-red); }
+button.small { padding: 4px 10px; font-size: 13px; border-radius: 8px; }
+input, textarea, select {
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 9px 12px;
+  width: 100%;
+}
+textarea { resize: vertical; min-height: 70px; }
+label { font-size: 13px; font-weight: 600; color: var(--ink-soft); display: block; margin: 12px 0 4px; }
+
+.shell { max-width: 46rem; margin: 0 auto; padding: 48px 20px; }
+.brand { font-family: var(--display); font-size: 20px; color: var(--green); font-weight: 600; }
+.brand small { color: var(--ink-soft); font-family: var(--body); font-weight: 400; font-size: 13px; margin-left: 8px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule-soft);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-top: 16px;
+}
+.muted { color: var(--ink-soft); font-size: 13px; }
+.mono { font-family: var(--mono); font-size: 12px; }
+.row { display: flex; gap: 10px; align-items: center; }
+.spread { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: 999px; background: var(--green-wash); color: var(--green);
+  text-transform: uppercase;
+}
+.chip.pending { background: var(--green-wash); color: var(--green); }
+.chip.executed { background: var(--rule-soft); color: var(--ink-soft); }
+.chip.canceled { background: var(--red-wash); color: var(--z-red); }
+.chip.gray { background: var(--rule-soft); color: var(--ink-soft); }
+
+/* ---- active session layout ---- */
+.session { display: grid; grid-template-columns: 1fr 400px; height: 100vh; }
+.session.kid { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; align-items: center; }
+.stage { display: flex; flex-direction: column; min-width: 0; min-height: 0; height: 100%; padding: 14px; gap: 10px; }
+.stage .lk-grid-layout { flex: 1; border-radius: 14px; overflow: hidden; }
+.panel {
+  border-left: 1px solid var(--rule);
+  background: var(--surface);
+  overflow-y: auto;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.panel h3 { font-size: 16px; }
+.panel section { border: 1px solid var(--rule-soft); border-radius: 12px; padding: 12px; }
+
+.captions {
+  background: var(--surface); border: 1px solid var(--rule-soft); border-radius: 12px;
+  padding: 8px 14px; min-height: 54px; font-size: 14px;
+}
+.captions .line b { color: var(--green); font-weight: 600; }
+
+/* supervise-mode conversation log: kids' lines interleaved with Brio's voiced lines */
+.translog { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 16px; }
+.translog .line { margin: 3px 0; }
+.translog .line b { color: var(--ink); }
+.translog .line.brio b { color: var(--green); }
+.translog .t { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); margin-right: 8px; }
+
+.reactionbar { display: flex; gap: 8px; justify-content: center; padding: 4px 0; }
+.reactionbar button { font-size: 22px; padding: 8px 14px; border-radius: 999px; }
+.reaction-float { position: fixed; bottom: 110px; left: 0; right: 0; text-align: center; pointer-events: none; font-size: 26px; }
+
+/* kid selection prompt */
+.selection-overlay {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(15, 25, 21, 0.45); z-index: 50;
+}
+.selection-card { background: var(--surface); border-radius: 18px; padding: 26px; max-width: 420px; width: 92%; box-shadow: var(--shadow); text-align: center; }
+.selection-card h3 { font-size: 20px; margin-bottom: 6px; }
+.selection-card .options { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.selection-card .options button { padding: 12px; border-radius: 12px; font-weight: 600; }
+
+/* flags */
+.flag {
+  background: var(--red-wash); border: 1px solid var(--z-red); border-radius: 12px;
+  padding: 12px; margin-bottom: 8px;
+}
+.flag q { display: block; font-style: italic; margin: 4px 0; }
+
+/* intent cards */
+.intent { border: 1px solid var(--rule-soft); border-radius: 12px; padding: 10px 12px; margin-top: 8px; }
+.intent.pending { border-color: var(--green); background: var(--green-wash); }
+.intent .utterance { font-family: var(--display); font-size: 15px; margin: 6px 0; }
+.intent .why { font-size: 12px; color: var(--ink-soft); }
+.countdown { height: 3px; background: var(--rule-soft); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.countdown div { height: 100%; background: var(--green); animation: shrink linear forwards; }
+@keyframes shrink { from { width: 100%; } to { width: 0; } }
+
+/* equity bars */
+.equity { margin-top: 8px; }
+.equity .bar { position: relative; height: 10px; background: var(--rule-soft); border-radius: 6px; overflow: hidden; }
+.equity .bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--green); border-radius: 6px; }
+.equity .bar .expect { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--z-yellow); }
+.equity .kidrow { padding: 8px 0; border-bottom: 1px solid var(--rule-soft); }
+.equity .kidrow:last-child { border-bottom: none; }
+input[type="range"] { padding: 0; height: 24px; accent-color: var(--green); }
+
+/* review */
+.timeline { border-left: 2px solid var(--rule); margin-left: 6px; padding-left: 14px; }
+.timeline .evt { margin-bottom: 10px; position: relative; }
+.timeline .evt::before {
+  content: ""; position: absolute; left: -20px; top: 6px; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--rule);
+}
+.timeline .evt.brio::before { background: var(--green); }
+.timeline .evt.flagged::before { background: var(--z-red); }
+.timeline .t { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); margin-right: 8px; }
+
+/* the handoff button on Brio's tile */
+.tilewrap { position: relative; width: 100%; height: 100%; }
+.tilewrap .lk-participant-tile { height: 100%; }
+
+/* once the room is handed over, Brio's box is green and the character appears */
+.tilewrap.brio-live .lk-participant-tile,
+.tilewrap.brio-live .lk-participant-placeholder { background: var(--green); }
+.tilewrap.brio-live .lk-participant-placeholder svg { display: none; }
+.tilewrap.brio-live::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 4;
+  border: 3px solid var(--green); border-radius: calc(var(--lk-border-radius, 0.5rem));
+  box-shadow: 0 0 18px -4px var(--green);
+}
+.brio-face {
+  position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%);
+  height: 58%; aspect-ratio: 1; border-radius: 50%; z-index: 2;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 180ms ease;
+  pointer-events: none;
+}
+.brio-face.talking { transform: translate(-50%, -50%) scale(1.06); }
+
+/* per-tile live caption — everyone's latest line under their own avatar,
+   fading out once it goes stale (see CAPTION_TTL_MS) */
+.tilecap {
+  position: absolute; left: 10px; right: 10px; bottom: 46px; z-index: 3;
+  background: rgba(12, 18, 15, 0.62); color: #fff;
+  padding: 4px 9px; border-radius: 8px; font-size: 12.5px; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  pointer-events: none;
+  animation: capfade 300ms ease;
+}
+.tilecap.brio { background: rgba(19, 75, 62, 0.8); }
+@keyframes capfade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; } }
+
+/* the name + mic-state pill (LiveKit's metadata bar, restyled to be readable) */
+.tilewrap .lk-participant-metadata { bottom: 10px; left: 10px; right: 10px; }
+.tilewrap .lk-participant-metadata-item {
+  background: rgba(10, 16, 13, 0.72);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-radius: 999px; padding: 5px 13px; gap: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+.tilewrap .lk-participant-name { font-size: 14px; font-weight: 600; letter-spacing: 0.01em; color: #fff; }
+/* LiveKit's connection-quality blob (bottom-right) is non-interactive and
+   reads as a broken button — hidden. */
+.tilewrap .lk-connection-quality { display: none; }
+.tilewrap .lk-track-muted-indicator-microphone { width: 17px; height: 17px; opacity: 1; }
+/* muted → the whole pill goes red so the state is unmissable */
+.tilewrap .lk-participant-metadata-item:has([data-lk-muted="true"]) {
+  background: rgba(140, 42, 33, 0.88);
+}
+.tilewrap.brio-live .lk-participant-metadata-item { background: rgba(19, 75, 62, 0.9); }
+
+/* therapist-only mute toggle on each kid's tile */
+.tilemute {
+  position: absolute; top: 8px; right: 8px; z-index: 5;
+  border: none; border-radius: 999px; padding: 5px 12px;
+  font-size: 12.5px; font-weight: 600;
+  background: rgba(12, 18, 15, 0.6); color: #fff;
+}
+.tilemute:hover { background: rgba(12, 18, 15, 0.8); border-color: transparent; }
+.tilemute.muted { background: var(--z-red); }
+.tilemute.muted:hover { background: var(--z-red); filter: brightness(1.1); }
+.handoff {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  z-index: 5; background: var(--green); border-color: var(--green); color: #fff;
+  font-weight: 700; font-size: 17px; padding: 14px 24px; border-radius: 999px;
+  box-shadow: var(--shadow); cursor: pointer;
+}
+.handoff:hover { background: var(--green-deep); transform: translate(-50%, -50%) scale(1.04); }
+
+/* lobby */
+.waiting { text-align: center; padding: 60px 20px; }
+.waiting .big { font-size: 56px; }
+.joinlink { display: flex; gap: 8px; }
+.joinlink input { font-family: var(--mono); font-size: 12px; }
+
+@media (max-width: 900px) {
+  .session { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .panel { border-left: none; border-top: 1px solid var(--rule); max-height: 45vh; }
+}

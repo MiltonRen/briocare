@@ -183,9 +183,9 @@ footer p{max-width:var(--read)}
   <div class="wrap">
     <p class="eyebrow">BrioCare · Technical Design Document</p>
     <h1>Reflexes, judgment, and a veto</h1>
-    <p class="lede read">How the BrioCare prototype works: deterministic reflexes wake a supervised model that judges whether to act at all — and every word it wants to say passes the therapist first. Every technology choice below names the alternatives weighed and the trade-off accepted.</p>
+    <p class="lede read">How the BrioCare prototype works: deterministic reflexes wake a supervised model that judges whether to act at all, every word it wants to say passes the therapist's controls — and the microphone itself obeys the room: Brio never talks over a child, and a line that finds no air is given back, audited, unspoken. Every technology choice below names the alternatives weighed and the trade-off accepted; the behaviors were then hardened against live adversarial sessions with real users, and each fix is recorded in the appendix.</p>
     <div class="mast-meta">
-      <span><span class="mono">v0.7</span> · 29 August 2026</span>
+      <span><span class="mono">v0.8</span> · 30 August 2026</span>
       <span>Author · <span class="mono">Milton Ren</span></span>
       <span>Status · <span class="mono">build-challenge submission</span></span>
       <span>Companions · <span class="mono">PRD</span> + field research</span>
@@ -199,7 +199,7 @@ footer p{max-width:var(--read)}
     <div class="sec-head">
       <p class="eyebrow">01 · The system at a glance</p>
       <h2>Triggers wake it, a menu bounds it, a human gates it</h2>
-      <p class="read">Two runtimes, sharply divided. A thin <strong>media worker</strong> (LiveKit Agents, Node) holds Brio's seat in the room: it transcribes every child's track separately, counts speaking time, and plays Brio's voice on its own published audio track — no decisions. The <strong>brain lives entirely in Convex</strong>: deterministic triggers watch the ledger and the clock, wake a single-call LLM actor with full context and a menu of legal actions, re-check whatever it returns, and put every voiced line through the therapist gate. The actor may always answer <code>do_nothing</code> — and that answer is logged like any other.</p>
+      <p class="read">Two runtimes, sharply divided. A thin <strong>media worker</strong> (LiveKit Agents, Node) holds Brio's seat in the room: it transcribes every child's track separately, counts speaking time, and plays Brio's voice on its own published audio track — no decisions, but it owns the one thing only it can see: the live floor. The <strong>brain lives entirely in Convex</strong>: deterministic triggers watch the ledger and the clock, wake a single-call LLM actor with full context and a menu of legal actions, re-check whatever it returns, and put every voiced line through the therapist's controls. The division of judgment is deliberate: <em>the brain decides; the floor decides delivery.</em> A decided line is only a candidate until the room has space for it — the worker waits for a real gap, yields the line back if the room stays busy, and stops mid-sentence if a child starts talking. The actor may always answer <code>do_nothing</code> — and that answer is logged like any other. The session model is a <strong>breakout room</strong>: the therapist opens, presses the handoff, and from then on Brio leads the exercise while the therapist supervises — from inside the room or from the panel outside it — with the gate, the mute, and the named moves always in hand.</p>
     </div>
 
     <div class="diagram">
@@ -234,8 +234,8 @@ footer p{max-width:var(--read)}
         <text x="185" y="226" text-anchor="middle" font-weight="600">Senses — STT × N</text>
         <text x="185" y="242" text-anchor="middle" class="sub">per-track transcripts + speaking</text>
         <rect class="box-mdl" x="350" y="206" width="250" height="48" rx="3"/>
-        <text x="475" y="226" text-anchor="middle" font-weight="600">Voice out</text>
-        <text x="475" y="242" text-anchor="middle" class="sub">pre-synthesize · play on execute</text>
+        <text x="475" y="226" text-anchor="middle" font-weight="600">Voice out — the delivery gate</text>
+        <text x="475" y="242" text-anchor="middle" class="sub">wait for the floor · yield · barge-in</text>
 
         <line class="edge" x1="200" y1="276" x2="200" y2="312" marker-end="url(#ah)"/>
         <line class="edge" x1="480" y1="316" x2="480" y2="280" marker-end="url(#ah)"/>
@@ -262,8 +262,8 @@ footer p{max-width:var(--read)}
         <line class="edge" x1="340" y1="534" x2="340" y2="548" marker-end="url(#ah)"/>
 
         <rect class="box" x="170" y="552" width="340" height="48" rx="3"/>
-        <text x="340" y="572" text-anchor="middle" font-weight="600">Therapist gate</text>
-        <text x="340" y="588" text-anchor="middle" class="sub">veto window · tap · mute</text>
+        <text x="340" y="572" text-anchor="middle" font-weight="600">Therapist controls</text>
+        <text x="340" y="588" text-anchor="middle" class="sub">three-dial autonomy · veto · mute</text>
 
         <rect x="40" y="644" width="9" height="9" rx="2" fill="var(--green-wash)" stroke="var(--green)"/>
         <text x="56" y="652" class="sub">deterministic code</text>
@@ -275,7 +275,7 @@ footer p{max-width:var(--read)}
     </div>
 
     <div class="callout">
-      <p><strong>The consequential judgment — made once, then revised mid-design: rules recommend, the model decides.</strong> The first version of this architecture had a deterministic engine choosing every action, with the model only phrasing. We inverted it after facing what rules cannot do: they can count airtime, but they cannot read the room. A rule can say "Maya is quiet"; it cannot see that Maya went quiet because the last share was about something painful. Now deterministic triggers <em>wake</em> a supervised actor that sees full context and may always choose <code>do_nothing</code> — but the model still cannot act outside a menu deterministic code built, cannot exceed ceilings it doesn't control, and cannot reach the room past the therapist gate. Both rejected options are worth stating: pure rules were more testable (they survive as tripwires and rate-limiters), and an always-on speech-to-speech agent (OpenAI Realtime) would be more expressive (still rejected — a group facilitator is mostly silent, needs external governance and per-child attribution, and must be testable without audio; it returns for breakout rooms, Phase 2).</p>
+      <p><strong>The consequential judgment — made once, then revised mid-design: rules recommend, the model decides.</strong> The first version of this architecture had a deterministic engine choosing every action, with the model only phrasing. We inverted it after facing what rules cannot do: they can count airtime, but they cannot read the room. A rule can say "Maya is quiet"; it cannot see that Maya went quiet because the last share was about something painful. Now deterministic triggers <em>wake</em> a supervised actor that sees full context and may always choose <code>do_nothing</code> — but the model still cannot act outside a menu deterministic code built, cannot exceed ceilings it doesn't control, and cannot reach the room past the therapist gate. Both rejected options are worth stating: pure rules were more testable (they survive as tripwires and rate-limiters), and an always-on speech-to-speech agent (OpenAI Realtime) would be more expressive (still rejected — a group facilitator is mostly silent, needs external governance and per-child attribution, and must be testable without audio; it returns when Brio should genuinely converse, Phase 2).</p>
     </div>
   </div>
 </section>
@@ -339,17 +339,17 @@ footer p{max-width:var(--read)}
   <div class="wrap stack">
     <div class="sec-head">
       <p class="eyebrow">03 · Real-time flow</p>
-      <h2>One draw-out, end to end</h2>
-      <p class="read">The walk below is the core loop the interview will trace, in the default autonomous mode. Latency targets are stated per hop; the ~4 s veto window dominates — consent, not lag (suggest-only mode swaps the window for the therapist's own tap). Captions and the equity display are not actions; they stream continuously.</p>
+      <h2>One invite, end to end</h2>
+      <p class="read">The walk below is the core loop the interview will trace, in the default fully-autonomous dial. The pace is a human facilitator's: a thought is allowed to finish, a decision follows within a couple of seconds, and the voice waits for a genuine gap in the room. Captions and the equity display are not actions; they stream continuously.</p>
     </div>
 
     <ol class="steps">
-      <li><strong>Sense.</strong> Maya has 0:12 of speech and one reaction in 14 minutes; her share is far below her participation weight. The trigger is audio-level accounting — it works even if STT is degraded.</li>
-      <li><strong>Wake.</strong> The draw-out trigger fires at the lowest untried ladder level — cooldowns, ceiling, weight, and mute all checked deterministically (a weight of zero would have stopped the wake here). It assembles the actor's input: full context, the recommendation <code>draw_out(maya, level_0)</code> with its reason, and the menu of legal actions.</li>
-      <li><strong>Decide + write.</strong> One LLM call returns one structured action. The actor may follow the recommendation, choose a different legal action, or return <code>do_nothing</code> — which is logged to <code>agentIntents</code> with its reason, no card shown. Here it agrees and writes the line; the row is inserted with its text final, plus the full prompt and raw response for audit. TTS synthesis kicks off immediately in parallel, so the audio exists before anyone approves anything. The card shows the exact words: "Let's hear from some voices we haven't heard yet — thumbs up or down: was this a busy week?"</li>
-      <li><strong>Window.</strong> A ~4 s veto window runs while the card sits on the panel. One tap cancels; one tap approves early; untouched, the window lapses and auto-approves. Every transition is a guarded Convex mutation that succeeds only while the intent is still <code>pending</code> — approve and cancel race atomically, and the database decides. If the room had moved on first, the engine would already have canceled the card as <code>stale</code>.</li>
-      <li><strong>Speak.</strong> Playback starts the instant the transition lands — the audio was synthesized while the window ran. Brio's track plays the line; captions mirror it; the row is marked <code>executed</code>.</li>
-      <li><strong>Close the loop.</strong> Maya sends a thumbs-up reaction. The action lands in her ledger, her deficit shrinks, and the level-1 escalation that would have followed never fires. Approval-to-audio is near-instant; the end-to-end pace belongs to the veto window, by design.</li>
+      <li><strong>The handoff.</strong> The therapist opens the session, then presses the green <em>Hand to Brio</em> button on Brio's own video tile. Until that introduce executes, the engine proposes nothing — Brio sits in the room silently, building the ledger. The introduction opens the exercise in the same breath and sets the norm once: passing is always okay.</li>
+      <li><strong>Sense a thought ending.</strong> Leo shares his favorite thing. STT fragments merge at write into one row per <em>thought</em> (same speaker, gaps under 2.5 s), and each landing fragment schedules a debounced wake check — only the check after the true end of the thought reaches the triggers, and only once the floor has been quiet ~2.5 s.</li>
+      <li><strong>Wake with a moment, not a name.</strong> Maya hasn't been heard since the handoff, so the round trigger fires — cooldowns, the 3-invite ceiling, weight, passes, and mute all checked deterministically first. For round and follow-up wakes the trigger deliberately pins no target: who goes next is transcript semantics, so the actor picks — from candidates the engine pre-filtered.</li>
+      <li><strong>Decide + write.</strong> One LLM call returns one structured action against a menu it cannot extend, with the utterance in the same call — or <code>do_nothing</code>, logged like any other. The commit mutation re-checks everything against live state atomically: menu legality, target eligibility, the pass rule, the ceiling, a mute that landed mid-flight, and a dedupe gap so two in-flight wakes can't both land. The card shows the exact words: "Maya, want to share yours? No pressure!"</li>
+      <li><strong>The dial, then the floor.</strong> On the default dial the intent executes instantly (a 3 s veto window on the middle dial; a required tap on suggest-only — and the therapist can mute or veto at any moment regardless). <em>Executed</em> means the decision is final — not that anyone heard it. The worker's delivery gate now waits for a real gap: no human speaking, ~2.5 s of silence. If the room stays busy for 12 s, it hands the line back — <code>canceled (yielded)</code>, fully audited, never spoken — and the engine simply decides fresh later. If a child starts talking while Brio speaks, Brio stops mid-sentence: it always yields to children.</li>
+      <li><strong>Voice, stamped.</strong> Playback runs from pre-synthesized audio and the worker stamps <code>voicedAt</code> when it finishes — the record distinguishes what was decided from what children actually heard. Then the floor belongs to the kids: no new voiced move until someone responds (any share, reaction, or pass hands the floor back instantly) or 12 s of true silence runs out. Maya answers; her ledger moves; the round rolls on.</li>
     </ol>
 
     <p class="read">Therapist commands are Convex mutations — one path, transactional, replayable. Mute pre-empts at the audio layer too: a muted Brio cannot finish a sentence it already started rendering, because audio frames are gated at publish time, not at request time.</p>
@@ -361,8 +361,8 @@ footer p{max-width:var(--read)}
   <div class="wrap stack">
     <div class="sec-head">
       <p class="eyebrow">04 · Reflexes and judgment</p>
-      <h2>Triggers wake; the actor decides; two autonomy modes gate</h2>
-      <p class="read">The triggers are pure TypeScript — no I/O, no model calls. State: the exercise description, a per-child ledger (airtime, action count, last contribution, prompts issued, the therapist-set participation weight — zero removes a child from targeting entirely), and mode flags (muted, autonomy dial). They no longer decide anything: a firing trigger wakes the actor with a recommendation, a reason, and a menu of legal actions — cooldowns and ceilings enforced <em>before</em> the model is ever called, which also bounds LLM cost and cadence. Every wake logs <code>event → trigger → decision</code>, and the decision may be <code>do_nothing</code>.</p>
+      <h2>Triggers wake; the actor decides; three dials gate</h2>
+      <p class="read">The triggers are pure TypeScript — no I/O, no model calls. State: the exercise description, a per-child ledger (airtime, action count, last contribution, prompts issued, passes, the therapist-set participation weight — zero removes a child from targeting entirely), and mode flags (muted, autonomy dial, whether the handoff has happened). A firing trigger wakes the actor with a recommendation, a reason, and a menu of legal actions — eligibility, cooldowns, and ceilings enforced <em>before</em> the model is ever called. Evaluation runs on two paths: a debounced check ~2.5 s after each utterance lands (the "someone just finished a thought" moment), and a 5 s tick as idle-detector and fallback. The whole pacing model is three concepts: the <strong>thought gap</strong> (let a thought finish, 2.5 s), <strong>turn-taking</strong> (≥12 s between decisions, plus a post-speech grace that ends the moment any child responds — a response <em>is</em> the floor handing back — or after 12 s of true silence), and the <strong>delivery gate</strong> (§05). Every wake logs <code>event → trigger → decision</code>, and the decision may be <code>do_nothing</code>.</p>
     </div>
 
     <div class="tbl-scroll">
@@ -370,13 +370,15 @@ footer p{max-width:var(--read)}
         <caption>Trigger table — all thresholds config, pending clinical calibration</caption>
         <thead><tr><th>Trigger</th><th>Fires when (defaults)</th><th>What wakes, with what menu</th></tr></thead>
         <tbody>
-          <tr><td><strong>Draw out — ladder</strong></td><td>Share &gt; 40% below weighted expectation · silent &gt; 3 min · child cooldown 4 min clear · weight &gt; 0</td><td>Recommends the lowest untried level — level 0: unnamed group cue (voiced) → level 1: low-pressure selection on the child's screen → level 2: named invite that always carries a pass. The actor sees full context and may decline or adapt; escalation only after a level drew no action</td></tr>
-          <tr><td><strong>Dominance note</strong></td><td>Child &gt; 2× weighted share over rolling 5 min</td><td>Recommends a panel suggestion to the therapist — lower the weight, or redirect the group; never voiced at the child</td></tr>
-          <tr><td><strong>Re-engage idle</strong></td><td>No action from anyone for 30 s</td><td>Recommends a pacing observation or a group selection</td></tr>
-          <tr><td><strong>Affirm first share</strong></td><td>A below-weight child completes their first speaking turn</td><td>Recommends a brief, non-evaluative acknowledgement ("thanks for sharing, Leo")</td></tr>
-          <tr><td><strong>Distress tripwire</strong></td><td>Watchlist hit on any transcript line</td><td>No LLM, no wait: raises the flag directly, at zero latency. The sweep still reads the same window behind it</td></tr>
-          <tr><td><strong>Safety sweep</strong></td><td>Every 10 s, over the fresh transcript window</td><td>Wakes the evaluator — a two-item menu: <code>raise_flag(participant, quote)</code> or <code>do_nothing</code></td></tr>
-          <tr><td><strong>Cue / named moves</strong></td><td>Therapist tap</td><td>Wakes the actor with <code>do_nothing</code> off the menu — Brio must offer its best. A named move fixes the action; the actor writes the line. The tap is the approval, and session start works this way too: the therapist speaks first, then cues Brio's introduction</td></tr>
+          <tr><td><strong>The handoff gate</strong></td><td>No executed <code>introduce</code> yet</td><td>Nothing — the engine proposes zero moves until the therapist hands Brio the room (the green button on Brio's tile). Therapist-initiated moves bypass the gate; they are explicit</td></tr>
+          <tr><td><strong>The round</strong></td><td>Post-handoff · some children not heard since the handoff · floor free · per-child round cooldown 25 s · ceiling &lt; 3</td><td>The lead-facilitator move. Menu: <code>draw_out · affirm · link · re_engage · do_nothing</code> — with NO pinned target: the actor reads the full timeline and picks who goes next. Round invites are named with an easy out (level 2) — being called on is the norm in a facilitated round</td></tr>
+          <tr><td><strong>Follow-up</strong></td><td>Everyone has been heard · floor free · grace clear</td><td>Keeps the exercise alive past the first lap: named follow-ups on what a child shared, links between shares, late affirms, fresh group angles, a private note to the therapist, or silence. Candidates exclude anyone who passed, ignored their last invite, hit the ceiling, or was targeted &lt; 60 s ago. Two escalation guards: an unanswered group prompt drops <code>re_engage</code> off the menu until someone speaks, and panel notes space themselves ≥ 90 s — the observed curve in a dead room is one fresh angle → a quiet word to the therapist → silence</td></tr>
+          <tr><td><strong>Affirm first share</strong></td><td>A child's first-ever share, &lt; 20 s fresh, and they spoke <em>since</em> being invited</td><td>A brief, non-evaluative acknowledgement — exempt from the post-speech grace so it stays timely. Never fires on a decline</td></tr>
+          <tr><td><strong>Equity ladder</strong><span class="small">fallback path</span></td><td>A previously-heard child drifts silent &gt; 90 s or &gt; 40% below weighted share · equity cooldown 4 min</td><td>The gentle ladder survives as the fallback when the round is blocked: level 0 unnamed group cue → level 1 on-screen selection (not voiced) → level 2 named invite. Level 0 lines are hard-banned from containing any child's name</td></tr>
+          <tr><td><strong>Dominance note</strong></td><td>Child &gt; 2× weighted share over rolling 5 min (&gt; 45 s sampled)</td><td>Recommends a panel suggestion to the therapist — lower the weight, or redirect the group; never voiced at the child</td></tr>
+          <tr><td><strong>Distress tripwire</strong></td><td>Watchlist hit on any transcript line — including phrases split across merged fragments</td><td>No LLM, no wait: raises the flag directly, at zero latency. The sweep still reads the same window behind it</td></tr>
+          <tr><td><strong>Safety sweep</strong></td><td>Every 10 s, over the fresh transcript window</td><td>Wakes the evaluator — a two-item menu: <code>raise_flag(utterance)</code> or <code>do_nothing</code></td></tr>
+          <tr><td><strong>Cue / named moves</strong></td><td>Therapist tap</td><td>Wakes the actor with <code>do_nothing</code> off the menu — Brio must offer its best. A named move fixes the action; the actor writes the line. The tap is the approval — these execute immediately on any dial, and the handoff button is exactly this: a cued <code>introduce</code> that also opens the exercise</td></tr>
         </tbody>
       </table>
     </div>
@@ -384,19 +386,19 @@ footer p{max-width:var(--read)}
     <div class="grid g3">
       <div class="card">
         <p class="eyebrow"><span class="tag tag-a">Autonomous</span> · default</p>
-        <p>Voiced lines auto-execute after a ~4 s veto window unless canceled — and because the audio is pre-synthesized, execution at lapse is instant. The demo runs here: Brio visibly co-facilitates.</p>
+        <p>Decisions execute instantly; the mute is the brake, and every line still shows on the panel as it happens. The demo runs here: Brio audibly leads at a human pace — the delivery gate, not an approval timer, sets the rhythm.</p>
       </div>
       <div class="card">
-        <p class="eyebrow"><span class="tag tag-b">Suggest-only</span> · one tap away</p>
-        <p>Every card waits for the therapist's tap; nothing is voiced unbidden. Where a cautious clinician — or an early pilot — can choose to live. Cue-initiated speech executes on the tap in either mode: the tap is consent.</p>
+        <p class="eyebrow"><span class="tag tag-b">3-second delay</span> · the middle dial</p>
+        <p>Each engine move waits a 3 s veto window before executing — one tap cancels, one tap approves early, and pre-synthesized audio makes execution at lapse instant. The countdown renders on the card.</p>
       </div>
       <div class="card">
-        <p class="eyebrow">Always-on displays</p>
-        <p>Captions, the equity view, and flags are not intents at all — they stream continuously and are unaffected by the dial or by mute.</p>
+        <p class="eyebrow"><span class="tag tag-c">Suggest-only</span> · one tap away</p>
+        <p>Every card waits for the therapist's tap; nothing is voiced unbidden. Where a cautious clinician — or an early pilot — can choose to live. Cards whose moment passes cancel themselves as stale.</p>
       </div>
     </div>
 
-    <p class="read">Intent lifecycle: <code>pending → executed | canceled</code>, with <code>cancellationReason: therapist | muted | stale</code>. Mute drops pending cards rather than queueing them, and the triggers cancel their own cards when their premise dies — the quiet child starts talking, or the moment passes. <code>do_nothing</code> decisions are inserted directly as executed rows with the model's reason: no card, no display, full audit. Every actor row stores the prompt sent and the raw response received. Voiced rows are born with their final text; announce time is the row's creation time. Every threshold above is config, re-derived with the clinical partner in week one.</p>
+    <p class="read">Intent lifecycle: <code>pending → executed → voiced | canceled</code>, with <code>cancellationReason: therapist | muted | stale | yielded</code>. <em>Executed</em> means the decision is final; <em>voicedAt</em>, stamped by the worker when playback finishes, means children actually heard it — and only executed moves (plus therapist vetoes) count as "targeting" a child for cooldown purposes: a yielded line the room never heard locks nobody out. Mute drops pending cards rather than queueing them; the triggers cancel their own cards when their premise dies. <strong>A pass is final</strong>: detected from the word ("pass", and "past" — its reliable STT garble), from a soft decline shortly after an invite ("No, I'm good"), or from a tapped Pass card, it makes the child untargetable for 3 minutes — enforced at the trigger <em>and</em> re-checked as a hard veto at commit, because prompt rules alone were observed failing. Speaking up again voluntarily clears it: opting back in is the child's call. <code>do_nothing</code> decisions are inserted directly as executed rows with the model's reason: no card, no display, full audit. Every actor row stores the prompt sent and the raw response received. Every threshold above is config, re-derived with the clinical partner in week one.</p>
   </div>
 </section>
 
@@ -405,22 +407,26 @@ footer p{max-width:var(--read)}
   <div class="wrap stack">
     <div class="sec-head">
       <p class="eyebrow">05 · Control &amp; safety model</p>
-      <h2>Three gates, in series</h2>
-      <p class="read">The PRD's boundary list is enforced structurally, not rhetorically. For Brio to say anything, three independent gates must pass — and the therapist sits in front of the last one.</p>
+      <h2>Four gates, in series</h2>
+      <p class="read">The PRD's boundary list is enforced structurally, not rhetorically. For Brio to say anything, four independent gates must pass — the human holds the third, and the room itself holds the last.</p>
     </div>
 
-    <div class="grid g3">
+    <div class="grid g2">
       <div class="card">
-        <p class="eyebrow">Gate 1 · the menu</p>
-        <p>The actor chooses from a menu deterministic code builds per wake-up: only legal actions, only eligible targets — weight-zero and over-ceiling children never appear on it. <code>do_nothing</code> is always present, except on a therapist cue, where Brio must offer its best. Diagnosis, advice, and free chat aren't low-probability outputs; they're not on the menu, and the output is re-checked against it.</p>
+        <p class="eyebrow">Gate 1 · the menu and the hard veto</p>
+        <p>The actor chooses from a menu deterministic code builds per wake-up: only legal actions, only eligible targets — weight-zero children, recent passes, over-ceiling and recently-invited kids never appear on it. <code>do_nothing</code> is always present, except on a therapist cue, where Brio must offer its best. The commit mutation then re-checks the decision against <em>live</em> tables — menu legality, target eligibility, the pass rule, the per-child ceiling, mid-flight mutes, and a dedupe gap against concurrent wakes. A violation lands as an audited <code>do_nothing</code> with the veto reason; nothing errors, nothing slips. Prompt rules were observed being ignored by the model; these were not.</p>
       </div>
       <div class="card">
         <p class="eyebrow">Gate 2 · the crafted prompt</p>
-        <p>The same call that decides also writes, under a tightly specified system prompt: silence is framed as the usually-correct answer, two sentences max, warm and low-pressure, invitations always carry a pass, no clinical language, no child-to-child comparisons, group-addressed content by default. Zero-cost string sanity checks run inline; there is deliberately no post-generation model eval — the human gate covers what a judge model would, without its latency.</p>
+        <p>The same call that decides also writes, under a tightly specified system prompt: silence framed as the usually-correct answer, two sentences max, warm and low-pressure, easy outs on invitations (varied, never chanted — the norm is set once at the handoff), bridge-in-one-breath acknowledgments, a pass is final, no clinical language, no child-to-child comparisons. There is deliberately no post-generation model eval — the gates on either side cover what a judge model would, without its latency.</p>
       </div>
       <div class="card">
         <p class="eyebrow">Gate 3 · the human</p>
-        <p>Every line sits on the panel before it plays: autonomous mode (the default) gives a veto window; suggest-only requires the tap. Mute pre-empts at the audio-frame level; a participation weight of zero removes a child from targeting entirely; cue and the named moves make Brio an instrument, not just an actor.</p>
+        <p>Three dials: instant (default — the mute is the brake), a 3 s veto window, or tap-to-approve. Every line shows on the panel with its reason either way; mute pre-empts at the audio-frame level and drops pending cards; a participation weight of zero removes a child from targeting entirely; cue and the named moves make Brio an instrument, not just an actor — and the therapist can supervise from outside the room entirely, panel in hand.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Gate 4 · the floor</p>
+        <p>The worker owns the microphone and never talks over a child. An executed line waits for a real gap (~2.5 s of live silence); if the room stays busy for 12 s the line is <em>yielded</em> — given back unspoken, audited as such, visible to the therapist and to the actor's own next decision. A child who starts talking while Brio speaks cuts it off mid-sentence within a second. Timing correctness lives here, at the only layer that can see the live floor — the brain never has to guess whether a slow speaker is finished.</p>
       </div>
     </div>
 
@@ -437,10 +443,10 @@ footer p{max-width:var(--read)}
     <div class="sec-head">
       <p class="eyebrow">06 · The actor</p>
       <h2>How a decision gets made — and written, in the same breath</h2>
-      <p class="read">One LLM call per wake-up, three process shapes, one pattern. The <strong>facilitation actor</strong> receives the roster with weights, a ledger summary, the last ~90 s of transcript, Brio's own recent actions, the exercise description, and the trigger's recommendation with its reason — plus the menu. It returns one structured action: <code>{action, target?, utterance?, reason}</code>, where the utterance is written in the same call, or <code>do_nothing</code>. The <strong>safety evaluator</strong> is the same pattern on a 10 s clock with a two-item menu. The <strong>one-off job</strong> runs at session end: a single call that writes every child's note in one go (the full session transcript is mechanical concatenation — no model involved). Session start needs no special process — the therapist speaks first and cues Brio's introduction like any other cue. The prototype waits for completions; TTS starts the moment text exists, so approval triggers playback, never generation. A failed call means no card this wake; the trigger re-fires. No post-generation eval pass; the therapist preview is the judge.</p>
+      <p class="read">One LLM call per wake-up, three process shapes, one pattern. The <strong>facilitation actor</strong> receives the roster with weights and the therapist's pre-session notes, the <em>entire session timeline</em> — every transcribed thought, every reaction and selection answer (passes included), and Brio's own complete decision history: lines it spoke, moments it chose silence with their reasons, and moves that were vetoed, went stale, or were <em>yielded</em>, each marked "the children never heard it" — plus the trigger's recommendation and the menu. Self-knowledge is load-bearing: a yielded acknowledgment must fold into the opening of the next spoken line, an unanswered invite must not be repeated verbatim, and unsaid lines must never be referred to as said. It returns one structured action: <code>{action, target?, utterance?, reason}</code>, where the utterance is written in the same call, or <code>do_nothing</code>. The <strong>safety evaluator</strong> is the same pattern on a 10 s clock with a two-item menu. The <strong>one-off job</strong> runs at session end: a single call that writes every child's note in one go (the full session transcript is mechanical concatenation — no model involved). The prototype waits for completions; TTS pre-synthesizes the moment text exists. A failed call still lands as an audited <code>do_nothing</code> carrying the error; the trigger re-fires. No post-generation eval pass; the gates are the judge.</p>
     </div>
     <div class="callout">
-      <p><strong>What the model receives, emits, and gets wrong</strong> — stated here because it is the question that matters: it receives <code>(context, recommendation, menu)</code>; it emits one structured action carrying the sentence Brio will say — or <code>do_nothing</code>; and it goes wrong in two characteristic ways. First, mis-transcribed child speech: the line confidently references something nobody said (mitigated by STT-confidence gating on the window, and by the therapist reading the exact words first). Second, action bias: language models would rather do something than stay silent, and a facilitator's best move is usually silence — so the prompt frames <code>do_nothing</code> as the expected answer, and the unnecessary-action rate is measured explicitly in the scenario evals. Both failures are reproduced deliberately in the eval fixtures.</p>
+      <p><strong>What the model receives, emits, and gets wrong</strong> — stated here because it is the question that matters: it receives <code>(context, recommendation, menu)</code>; it emits one structured action carrying the sentence Brio will say — or <code>do_nothing</code>; and live sessions showed it going wrong in three characteristic ways. First, mis-transcribed child speech: the line confidently references something nobody said (mitigated by thought-level merging, and by the therapist seeing the exact words). Second, action bias: models would rather do something than stay silent — the prompt frames <code>do_nothing</code> as the expected answer, and menus shrink deterministically when the room says stop. Third — the empirical lesson of the live-testing cycle — <em>prompt rules alone do not hold</em>: the model named children in unnamed group cues, re-invited a child who said "I want to pass," and chanted its own example phrasing. Every one of those rules that matters is therefore also a deterministic mechanism: the name ban is a constraint veto, the pass is a commit-time hard stop, repetition is a menu drop. The prompt shapes behavior; the gates guarantee it.</p>
     </div>
   </div>
 </section>
@@ -451,7 +457,7 @@ footer p{max-width:var(--read)}
     <div class="sec-head">
       <p class="eyebrow">07 · Session data</p>
       <h2>Six tables, and everything else derived</h2>
-      <p class="read">The append-only pair — <code>utterances</code> and <code>actions</code> — is the record: airtime reconstructs as Σ(endAt − startAt), the review timeline is a merge of four small queries, and notes read a child's own rows. Hot state lives in the agent's memory; the counters on <code>participants</code> are its materialized view, and Convex live-syncs every screen. Three conventions replace fields: a participant's Convex <code>_id</code> doubles as their LiveKit identity, presence comes from LiveKit rather than the database, and Convex's built-in <code>_creationTime</code> stamps every insert.</p>
+      <p class="read">The append-only pair — <code>utterances</code> and <code>actions</code> — is the record: airtime reconstructs as Σ(endAt − startAt), the review timeline is a merge of four small queries, and notes read a child's own rows. An utterance row is a <em>thought</em>, not an STT fragment: a slow-speaking child's "And… sometimes… the…" merges at write into one honest row, which is what every consumer wants — the actor's context, the transcript, first-share detection, even the watchlist tripwire (which re-runs on the merged text and so catches phrases split across fragments). Hot state lives in the agent's memory; the counters on <code>participants</code> are its materialized view, and Convex live-syncs every screen. Three conventions replace fields: a participant's Convex <code>_id</code> doubles as their LiveKit identity, presence comes from LiveKit rather than the database, and Convex's built-in <code>_creationTime</code> stamps every insert.</p>
     </div>
 
     <div class="diagram">
@@ -489,21 +495,23 @@ footer p{max-width:var(--read)}
 
         <rect class="box" x="360" y="226" width="280" height="132" rx="3"/>
         <text x="374" y="250" font-weight="600">utterances</text>
-        <text x="374" y="267" class="sub">append-only · one row per burst</text>
+        <text x="374" y="267" class="sub">append-only · one row per THOUGHT</text>
         <text x="374" y="288" class="sub">participantId · startAt · endAt</text>
         <text x="374" y="305" class="sub">text · sttOk</text>
-        <text x="374" y="322" class="sub">timing from speaking detection</text>
-        <text x="374" y="339" class="sub">text from STT, best-effort</text>
+        <text x="374" y="322" class="sub">same-speaker fragments merge at</text>
+        <text x="374" y="339" class="sub">write (gaps under 2.5 s)</text>
 
-        <rect class="box-eng" x="40" y="426" width="280" height="164" rx="3"/>
+        <rect class="box-eng" x="40" y="426" width="280" height="200" rx="3"/>
         <text x="54" y="450" font-weight="600">agentIntents</text>
         <text x="54" y="467" class="sub">every decision — even do_nothing</text>
         <text x="54" y="488" class="sub">type (incl. do_nothing) · source</text>
         <text x="54" y="505" class="sub">targetParticipantId · reason</text>
         <text x="54" y="522" class="sub">utterance? (born with final text)</text>
-        <text x="54" y="539" class="sub">state: pending → executed|canceled</text>
-        <text x="54" y="556" class="sub">cancellationReason · resolvedAt</text>
-        <text x="54" y="573" class="sub">prompt · llmResponse (audit)</text>
+        <text x="54" y="539" class="sub">ladderLevel? · voicedAt?</text>
+        <text x="54" y="556" class="sub">state: pending → executed → voiced</text>
+        <text x="54" y="573" class="sub">  | canceled: therapist·muted·stale·yielded</text>
+        <text x="54" y="590" class="sub">resolvedAt</text>
+        <text x="54" y="607" class="sub">prompt · llmResponse (audit)</text>
 
         <rect class="box" x="360" y="426" width="280" height="106" rx="3"/>
         <text x="374" y="450" font-weight="600">actions</text>
@@ -573,7 +581,7 @@ footer p{max-width:var(--read)}
       </table>
     </div>
 
-    <p class="read">Three environments. <strong>Local / reviewer</strong>: <code>npm run dev</code> starts Vite, <code>npx convex dev</code> (anonymous local deployment — reviewers need no Convex account), and the media worker as a local process; LiveKit Cloud serves media everywhere, because the self-hostable server lacks Inference STT and isn't worth the trade for a prototype. Tests and invariant evals run fully keyless (sims + scripted actor). <strong>Live URL</strong>: Render static site + <code>npx convex deploy</code> + the worker deployed to LiveKit Cloud agents — standing cost $0; the worker bills only during live sessions. (Dev and deployed workers use distinct agent names so a laptop worker never double-registers against the deployment.) <strong>Known simplification</strong>: the worker talks to Convex through public functions (v0 has no auth at all — sessions are unguessable ids); real auth is Phase 1 work alongside the compliance stack.</p>
+    <p class="read">Three environments. <strong>Local / reviewer</strong>: one command — <code>npm run dev</code> in <code>src/</code> — starts all three processes (Convex functions in watch mode, the media worker, Vite); reviewers need no Convex account (anonymous local deployment works). LiveKit Cloud serves media everywhere, because the self-hostable server lacks Inference STT and isn't worth the trade for a prototype. The test suite runs fully keyless. <strong>Live URL</strong>: Render static site + <code>npx convex deploy</code> + the worker deployed to LiveKit Cloud agents — standing cost $0; the worker bills only during live sessions. (Dev and deployed workers use distinct agent names so a laptop worker never double-registers against the deployment.) <strong>Known simplifications</strong>: the worker talks to Convex through public functions (v0 has no auth at all — sessions are unguessable ids); therapist force-mute is honored by the child's client, not enforced by the media server; and cross-talk between physical microphones in one room duplicates speech under the wrong speaker — demo with headphones or separate devices. Real auth is Phase 1 work alongside the compliance stack.</p>
   </div>
 </section>
 
@@ -589,7 +597,7 @@ footer p{max-width:var(--read)}
     <div class="grid g3">
       <div class="card">
         <p class="eyebrow">Unit · <span class="mono">npm test</span></p>
-        <p>Trigger reflexes in isolation: thresholds, cooldowns, ladder order, menu construction (who is eligible, what is legal), lifecycle transitions, prompt-context assembly (what the actor is and isn't shown), and the sanity checks. No network, no keys, seconds to run.</p>
+        <p>Fifty-eight keyless tests, in seconds: pure trigger reflexes (the handoff gate, the round, follow-up menus and their escalation guards, cooldowns, ceilings, grace-until-response), the hard constraints (including the observed level-0 name ban and the pass veto), guarded lifecycle races under fake timers (approve vs veto vs auto-execute vs mute vs dial flips vs yield), merge-at-write, pass detection incl. soft declines and opt-back-in, and the full trigger→actor→audited-commit loop through the no-key fallback path.</p>
       </div>
       <div class="card">
         <p class="eyebrow">Scenarios · <span class="mono">npm run eval</span></p>
@@ -618,14 +626,18 @@ footer p{max-width:var(--read)}
         <caption>Failure → designed degradation</caption>
         <thead><tr><th style="width:30%">Failure</th><th>Designed behavior</th></tr></thead>
         <tbody>
-          <tr><td><strong>STT mis-hears a child</strong><span class="small">the headline AI failure</span></td><td>Low-confidence stretches are excluded from the LLM's transcript window, so the generated line stays generic rather than confidently wrong. Airtime accounting never depended on STT. The suggest-only preview is the last catch.</td></tr>
-          <tr><td><strong>STT stream drops</strong></td><td>Ledger continues from audio-level events; captions pause with a panel notice; draw-outs continue (they key on airtime, not words); distress watchlist coverage gap is flagged on the panel.</td></tr>
+          <tr><td><strong>STT mis-hears a child</strong><span class="small">the headline AI failure</span></td><td>Thought-level merging keeps garbled fragments in one attributable row; the therapist sees the exact words on every card and in live captions; the panel and the veto are the catch. Airtime accounting never depended on STT.</td></tr>
+          <tr><td><strong>STT stream drops</strong></td><td>Ledger continues from audio-level events; a speaking burst that produces no transcript still lands as a row with <code>sttOk: false</code>, so airtime never lies; draw-outs continue (they key on airtime, not words).</td></tr>
           <tr><td><strong>LLM slow or down</strong></td><td>The prototype waits: cards simply appear later, and the veto window still runs in full before playback. On hard failure no card appears and the trigger re-fires on its next evaluation — the session degrades toward a plain video call, never toward unreviewed speech. Notes generation retries after session; the record loses nothing.</td></tr>
-          <tr><td><strong>TTS fails mid-utterance</strong></td><td>Caption still renders the full line; the intent stays <code>executed</code> with a panel notice. Speech is enhancement; text is the guarantee.</td></tr>
-          <tr><td><strong>Agent process crashes</strong></td><td>Session state re-hydrates from Convex on restart; the room persists independently (LiveKit); Brio rejoins muted and waits for the therapist to unmute — never resumes acting unprompted.</td></tr>
-          <tr><td><strong>The actor over-acts</strong><span class="small">models would rather help than stay silent</span></td><td>The prompt frames <code>do_nothing</code> as the usually-correct answer and the scenario evals score the unnecessary-action rate; cooldowns and ceilings cap frequency regardless of the model's enthusiasm; the therapist gate catches the rest.</td></tr>
+          <tr><td><strong>TTS fails mid-utterance</strong></td><td>The intent row keeps its exact text — the record never depends on audio — and a missing <code>voicedAt</code> stamp is itself visible in the audit. Speech is enhancement; text is the guarantee.</td></tr>
+          <tr><td><strong>Agent process crashes</strong></td><td>The brain is unaffected — it lives in Convex, not the process, and the worker holds no state worth losing. A queued line's missing <code>voicedAt</code> ages out of the in-flight guard in 30 s, so the engine never wedges. Re-dispatching the agent into the live room (one call) resumes media; on join it sweeps tracks already present, so nobody's speech is missed.</td></tr>
+          <tr><td><strong>The actor over-acts</strong><span class="small">models would rather help than stay silent</span></td><td>The prompt frames <code>do_nothing</code> as the usually-correct answer; cooldowns, ceilings, and the min-gap cap frequency regardless of the model's enthusiasm; menus shrink when the room says stop; the therapist gate catches the rest.</td></tr>
+          <tr><td><strong>Brio talks over a child</strong><span class="small">observed live; the worst social failure</span></td><td>Delivery-time floor check in the worker, the only layer that can see live speech: an executed line waits for a real gap, is yielded back unspoken if the room stays busy 12 s, and barge-in cuts Brio off mid-sentence within ~1 s of a child speaking. Text heuristics for "is the speaker done?" were tried and deleted — the floor decides, not a guess.</td></tr>
+          <tr><td><strong>Pestering after a pass</strong><span class="small">observed live; the cardinal clinical failure</span></td><td>A pass — the word, its STT garble "past", a soft decline after an invite, or a tapped card — makes the child untargetable for 3 minutes at the trigger AND as a hard commit-time veto (the model was observed re-inviting 2 s after a pass; the database refused it). A voluntary share clears it: opting back in is the child's call.</td></tr>
+          <tr><td><strong>Robotic repetition</strong><span class="small">observed live: four re-engages in 75 s; "totally fine to pass" ×7</span></td><td>An unanswered group prompt drops <code>re_engage</code> off the menu until someone speaks; panel notes space themselves 90 s; a menu reduced to silence skips the model call entirely; out-phrases rotate by prompt rule with the norm set once at the handoff.</td></tr>
           <tr><td><strong>A child spams reactions</strong><span class="small">rapid-fire actions</span></td><td>Action mutations rate-limit per child; excess reactions still log (they are signal) but stop moving the counters or the equity view.</td></tr>
-          <tr><td><strong>Over-prompting an anxious child</strong><span class="small">the clinical failure</span></td><td>Hard ceiling on prompts per child (default 3/session), the ladder never skips levels, a pass counts as participation and resets it, and weight zero removes the child from targeting — enforced by invariant tests, not intentions.</td></tr>
+          <tr><td><strong>Over-prompting an anxious child</strong><span class="small">the clinical failure</span></td><td>Hard ceiling on targeted invites per child (default 3/session) enforced at commit across every trigger path, per-child re-invite spacing, the pass rule above, and weight zero removes the child from targeting — enforced by tests and vetoes, not intentions.</td></tr>
+          <tr><td><strong>Two decisions in flight collide</strong><span class="small">the debounced check and the tick race</span></td><td>The commit mutation is where mutations serialize: the second decision inside the 10 s window lands as an audited <code>do_nothing ("superseded")</code>. At most one line is ever queued at the floor — an executed-but-unvoiced line blocks new wakes.</td></tr>
           <tr><td><strong>Convex slow or down</strong></td><td>Hot loop is in-memory and unaffected; UI staleness degrades gracefully. Commands are Convex mutations by design (one path, transactional) — if Convex itself is unreachable the session degrades to a plain video call with Brio muted, the correct failure posture for a clinical room.</td></tr>
         </tbody>
       </table>
@@ -652,7 +664,7 @@ footer p{max-width:var(--read)}
       <div class="card">
         <p class="eyebrow">Then</p>
         <ul style="margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem">
-          <li><strong>Breakout rooms</strong> — sessions already model rooms; add room-scoped engine instances and a roving-therapist panel; adopt Realtime speech-to-speech inside breakouts where Brio genuinely converses</li>
+          <li><strong>Multi-room orchestration</strong> — v0 already IS the breakout room (Brio leads, the therapist supervises from outside); add the main room around it: several Brio-led rooms at once, one roving-therapist panel across them, Realtime speech-to-speech where Brio genuinely converses</li>
           <li><strong>Compliance infrastructure</strong> — self-hosted LiveKit SFU, BAA'd model providers, encrypted event log, consent and retention flows</li>
           <li><strong>The engagement layer</strong> — the pet token economy and group points, layered on once the participation loop is proven; a formal talking-stick mode for groups that need tighter structure</li>
           <li><strong>The between-sessions half</strong> — missions, parent loop, cohort memory (linking across weeks, therapist-triggered)</li>
@@ -668,7 +680,7 @@ footer p{max-width:var(--read)}
     <div class="sec-head">
       <p class="eyebrow">Appendix</p>
       <h2>How this design got here</h2>
-      <p class="read">The decisions that changed between the first sketch and this document, in order, each with the reason it moved. None of these were reversals for taste — each traded something away on purpose.</p>
+      <p class="read">The decisions that changed between the first sketch and this document, in order, each with the reason it moved — the last three driven by adversarial live sessions with real users. None of these were reversals for taste — each traded something away on purpose.</p>
     </div>
 
     <ol class="steps">
@@ -681,14 +693,17 @@ footer p{max-width:var(--read)}
       <li><strong>Speech went from guarded templates to generated lines.</strong> Validator chains and fallback races were removed as latency spent guarding against what the therapist preview already catches. The model writes Brio's actual words; TTS pre-synthesizes during the window so approval triggers playback, never generation.</li>
       <li><strong>The big inversion: rules decide → rules recommend.</strong> Rules can count airtime but cannot read the room, so deterministic triggers now wake a full-context actor that may always choose <code>do_nothing</code> — bounded by a menu it cannot extend, hard constraints, and the human gate. Distress gained a 10-second LLM sweep beside the zero-latency tripwire, and every decision is audited with its prompt and raw response.</li>
       <li><strong>The brain moved into Convex; the worker became a dumb pipe.</strong> All cognition lives in testable Convex functions; the agents-js process survives only because something must hold Brio's seat in the room — per-track STT in, a published voice track out.</li>
-      <li><strong>The stack settled on two keys and no standing bill.</strong> LiveKit (media + Inference STT + hosted agent) and OpenAI (gpt-5-mini + TTS), with the web on Render and the brain on Convex, at $0/month standing cost. Autonomous mode became the default — instant execution at window lapse makes Brio visibly co-facilitate — with suggest-only one tap away. The title followed the architecture: from "a deterministic brain with a narrow mouth" to "reflexes, judgment, and a veto."</li>
+      <li><strong>The stack settled on two keys and no standing bill.</strong> LiveKit (media + Inference STT + hosted agent) and OpenAI (gpt-5-mini + TTS), with the web on Render and the brain on Convex, at $0/month standing cost. The title followed the architecture: from "a deterministic brain with a narrow mouth" to "reflexes, judgment, and a veto."</li>
+      <li><strong>Co-facilitator became room-leader.</strong> The first live run exposed a role confusion: with the therapist and Brio in the same room, nobody knew who was leading. The deployment model was recast as the breakout room — therapist opens, presses the handoff on Brio's own tile, and may supervise from outside the room entirely. The engine gained the handoff gate (silent until introduced), the round (invite everyone once — the actor picks who's next from the transcript, because "who has truly shared" is semantics, not arithmetic), and the follow-up phase; the gentle L0/L1 ladder became the fallback path. The autonomy dial split into three, with instant execution the new default: at leading pace, the mute is a better brake than a timer.</li>
+      <li><strong>The floor took over timing — and the patches came out.</strong> Real users exposed what row-timestamps can't see: STT fragments a slow child's thought (fixed by merge-at-write: one row per thought), and no text heuristic can know a speaker is finished (a trailing-words detector was built, beaten by the very next test, and deleted whole). The systematic fix split deciding from delivering: <code>executed → voiced</code> with a delivery gate in the worker — wait for a live gap, <em>yield</em> the line back if the room stays busy, stop mid-sentence when a child speaks. Pacing collapsed to three narratable concepts (thought gap, turn-taking with grace-until-response, the floor), and two whole timer constants were deleted rather than tuned.</li>
+      <li><strong>Prompt rules were promoted to mechanisms, one observed failure at a time.</strong> Live sessions proved the model ignores instructions under pressure: it re-invited a child five times — twice after "I want to pass"; it chanted its own example phrasing; it fired four group activities into 75 seconds of silence. Each failure became deterministic: pass-is-final as a commit-time veto (with soft declines — "No, I'm good" — detected in context, and a voluntary share clearing the pass), the invite ceiling enforced at commit across every trigger path, unanswered prompts shrinking the menu, and the actor's context expanded to its own full decision history — including yielded lines marked "the children never heard it" — so it can bridge, vary, and never cite words that were never said. The doctrine the cycle produced: <em>the prompt shapes behavior; the gates guarantee it.</em></li>
     </ol>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>BrioCare TDD v0.7 · Milton Ren · 29 August 2026. Companions: <span class="mono">docs/prd.html</span> and <span class="mono">research/pediatric-group-therapy.html</span>. Run commands, keys, and known limitations ship in the repository README; the eval report is generated by <span class="mono">npm run eval</span>.</p>
+    <p>BrioCare TDD v0.8 · Milton Ren · 30 August 2026. Companions: <span class="mono">docs/prd.html</span> and <span class="mono">research/pediatric-group-therapy.html</span>. Run commands, keys, and known limitations ship in the repository README; the eval report is generated by <span class="mono">npm run eval</span>.</p>
   </div>
 </footer>
 

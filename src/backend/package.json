@@ -3,12 +3,17 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "dev": "convex dev"
+    "dev": "convex dev",
+    "test": "vitest run"
   },
   "dependencies": {
-    "convex": "^1.45.0"
+    "convex": "^1.45.0",
+    "livekit-server-sdk": "^2.18.0"
   },
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "@edge-runtime/vm": "^5.0.0",
+    "convex-test": "^0.0.56",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
   }
 }

@@ -4,9 +4,15 @@
   "version": "0.1.0",
   "workspaces": [
     "backend",
-    "worker"
+    "worker",
+    "web"
   ],
   "scripts": {
-    "dev:db": "npm run dev -w @briocare/backend"
+    "dev:db": "npm run dev -w @briocare/backend",
+    "test": "npm run test -w @briocare/backend",
+    "dev": "concurrently -n db,worker,web -c green,magenta,cyan --kill-others \"npm run dev -w @briocare/backend\" \"npm run dev -w @briocare/worker\" \"npm run dev -w @briocare/web\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
   }
 }
