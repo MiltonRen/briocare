@@ -86,6 +86,15 @@ label { font-size: 13px; font-weight: 600; color: var(--ink-soft); display: bloc
   padding: 20px;
   margin-top: 16px;
 }
+/* opt-in sage bloom, matching the document cards — landing card only */
+.card.bloom { position: relative; overflow: hidden; }
+.card.bloom::before {
+  content: ""; position: absolute; left: -80px; top: -130px; width: 420px; height: 330px;
+  background: radial-gradient(closest-side, var(--green-wash), transparent);
+  pointer-events: none;
+}
+.card.bloom > * { position: relative; }
+
 .muted { color: var(--ink-soft); font-size: 13px; }
 .mono { font-family: var(--mono); font-size: 12px; }
 .row { display: flex; gap: 10px; align-items: center; }
@@ -99,6 +108,65 @@ label { font-size: 13px; font-weight: 600; color: var(--ink-soft); display: bloc
 .chip.executed { background: var(--rule-soft); color: var(--ink-soft); }
 .chip.canceled { background: var(--red-wash); color: var(--z-red); }
 .chip.gray { background: var(--rule-soft); color: var(--ink-soft); }
+
+/* ---- PRD / TDD, under the landing card ---- */
+.docs { margin-top: 34px; }
+.docs-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+  white-space: nowrap;
+}
+.docs-head .hair { flex: 1; height: 1px; background: var(--rule); }
+
+.docgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.doccard {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--rule-soft);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px 18px 16px;
+  color: inherit; text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+/* a soft green bloom in the top-left corner, stronger on hover */
+.doccard::before {
+  content: ""; position: absolute; left: -40px; top: -60px; width: 190px; height: 150px;
+  background: radial-gradient(closest-side, var(--green-wash), transparent);
+  opacity: 0.85; pointer-events: none;
+  transition: opacity 160ms ease;
+}
+.doccard > * { position: relative; }
+.doccard:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+  box-shadow: 0 2px 4px rgba(19, 40, 33, 0.06), 0 18px 34px -18px rgba(19, 40, 33, 0.34);
+}
+.doccard:hover::before { opacity: 1; }
+.doccard:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.doctag {
+  align-self: flex-start;
+  font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  color: var(--green); background: var(--green-wash);
+  border-radius: 999px; padding: 3px 10px;
+}
+.doccard h3 { font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
+.doccard p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+.docgo {
+  margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--green);
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.docgo i { font-style: normal; transition: transform 160ms ease; }
+.doccard:hover .docgo i { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .doccard, .docgo i { transition: none; }
+  .doccard:hover { transform: none; }
+  .doccard:hover .docgo i { transform: none; }
+}
 
 /* ---- active session layout ---- */
 .session { display: grid; grid-template-columns: 1fr 400px; height: 100vh; }
